@@ -56,14 +56,14 @@
 						<h3 class="text-white font-weight-bold mb-3">Get in Touch</h3>
 						<ul>
 							<li class="mb-3">
-								<i class="fas fa-map-marker"></i> 123 Sebastian, USA.</li>
+								<i class="fas fa-map-marker"></i> Morbi Road, Rajkot.</li>
 							<li class="mb-3">
-								<i class="fas fa-mobile"></i> 333 222 3333 </li>
+								<i class="fas fa-mobile"></i> +91 12345 67890 </li>
 							<li class="mb-3">
-								<i class="fas fa-phone"></i> +222 11 4444 </li>
+								<i class="fas fa-phone"></i> +0281 11 4444 </li>
 							<li class="mb-3">
 								<i class="fas fa-envelope-open"></i>
-								<a href="mailto:example@mail.com"> mail 1@example.com</a>
+								<a href="mailto:example@mail.com"> bangGoods@example.com</a>
 							</li>
 							<li>
 								<i class="fas fa-envelope-open"></i>
@@ -122,7 +122,7 @@
 		<!-- copyright -->
 		<div class="copy-right py-3">
 		<div class="container">
-			<p class="text-center text-white">© 2018 Electro Store. All rights reserved .
+			<p class="text-center text-white">© 2019 BangGoods. All rights reserved .
 			</p>
 		</div>
 	</div>

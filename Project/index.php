@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title> BangGoods | Home </title>
+	<title> Home </title>
+	
+	<link rel = "icon" type = "image/png" href = "/logo2.png">
+    <!-- For apple devices 
+    <link rel = "apple-touch-icon" type = "image/png" href = "/logo2.png"/>-->
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
-	<meta name="keywords" content="Electro Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"
-	/>
+	<meta name="keywords" content=""	/>
 	<script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
@@ -142,7 +145,7 @@
 		</div>
 	</div>-->
 	<!-- middle section -->
-
+	<!-- footer -->
 	<div class="footer-top-first">
 			<div class="container py-md-5 py-sm-4 py-3">
 				<!-- footer first section -->
@@ -191,7 +194,7 @@
 				<!-- //footer second section -->
 			</div>
 		</div>
-	<!-- footer -->
+	
 	<?php require_once('footer.php');?>
 	<!-- //footer -->
 

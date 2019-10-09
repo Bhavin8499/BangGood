@@ -1,3 +1,4 @@
+<?php 
 class User{
 
     public static $table_name = "bh_users";
@@ -171,3 +172,4 @@ function forgot_password($username = ''){
     }
 
 }
+?>

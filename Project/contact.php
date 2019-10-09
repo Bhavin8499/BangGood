@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<title> Contact Us</title>
+	<link rel = "icon" type = "image/png" href = "/logo2.png">
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />

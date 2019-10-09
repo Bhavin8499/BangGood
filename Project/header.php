@@ -420,7 +420,7 @@
 				<div class="col-md-3 logo_agile">
 					<h1 class="text-center">
 						<a href="index.html" class="font-weight-bold font-italic">
-							<img src="images/logo2.png" alt=" " class="img-fluid">Electro Store
+							<img src="images/logo2.png" alt=" " class="img-fluid"> BangGoods
 						</a>
 					</h1>
 				</div>
