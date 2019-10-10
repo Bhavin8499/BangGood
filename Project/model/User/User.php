@@ -1,14 +1,21 @@
+<?php
+    if(!class_exists('Database')){
+        require("../Database/Database.php");
+    }
+
 class User{
 
     public static $table_name = "bh_users";
 
-    $user_id = 0;
-    $fName = "";
-    $lName = "";
-    $mobile_no = 0000;
-    $email = "";
-    $access = "";
+    public $user_id = 0;
+    public $fName = "";
+    public $lName = "";
+    public $mobile_no = "";
+    public $email = "";
+    public $access = "";
     
+    public $database = new Database();
+
     function __construct( $args = array()) {
         
         $this->user_id = $args['user_id'];
@@ -20,16 +27,13 @@ class User{
 
     }
 
-
     function isValidPassword($password = ''){
 
         if(count($password) < 1)
             return FALSE;
         else{
 
-            $database = new Database();
-
-            $args = $database->query("select * from "+ $this->table_name + " where id="+$this->user_id);
+            $args = this->database->get_result("select * from "+ $this->table_name + " where id="+$this->user_id);
 
             if($args["password"] == $password){
                 return TRUE;
@@ -46,15 +50,14 @@ class User{
 
         if(isValidPassword( $old_pass )){
             
-            $database = new Database();
 
-            $result = $database->query("update "+$this->table_name+" set password='"+ $new_password +"' where user_id ="+$this->user_id);
+            $result = $this->database->run_query("update "+$this->table_name+" set password='"+ $new_password +"' where user_id ="+$this->user_id);
 
             if($result){
                 return "Passowrd Changed Successfully.";
             }
             else{
-                return "Some Error Occured Please Try Again Later..."
+                return "Some Error Occured Please Try Again Later...";
             }
 
         }
@@ -97,9 +100,9 @@ function login_user($login_type = "username", $name = "", $password = ''){
 
 function get_user_by_email($email = ''){
 
-    $databse = new Database();
+    $database = new Database();
 
-    $result = $database->query("select * from "+ User->table_name + " where email="+$email);
+    $result = $database->get_result("select * from "+ User::$table_name + " where email="+$email);
 
     if(count($result) < 1 ){
         return FALSE;
@@ -113,9 +116,9 @@ function get_user_by_email($email = ''){
 
 function get_user_by_username($name = ''){
 
-    $databse = new Database();
+    $database = new Database();
 
-    $result = $database->query("select * from "+ User->table_name + " where user_name="+$name);
+    $result = $database->query("select * from "+ User::$table_name + " where user_name="+$name);
 
     if(count($result) < 1 ){
         return FALSE;
@@ -171,3 +174,4 @@ function forgot_password($username = ''){
     }
 
 }
+?>

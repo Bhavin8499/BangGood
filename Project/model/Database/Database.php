@@ -51,11 +51,4 @@
 
     }
 
-    /*$db = new Database();
-
-    $db->connect_database();
-    $result = $db->get_result("select * from bh_categories");
-
-    print_r($result);*/
-    
 ?>
