@@ -72,16 +72,9 @@
 						</ul>
 					</div>
 					<div class="col-md-3 col-sm-6 footer-grids w3l-agileits mt-md-0 mt-4">
-						<!-- newsletter -->
-						<h3 class="text-white font-weight-bold mb-3">Newsletter</h3>
-						<p class="mb-3">Free Delivery on your first order!</p>
-						<form action="#" method="post">
-							<div class="form-group">
-								<input type="email" class="form-control" placeholder="Email" name="email" required="">
-								<input type="submit" value="Go">
-							</div>
-						</form>
-						<!-- //newsletter -->
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d625.3433910223363!2d70.7957962923297!3d22.366796566612265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c83cf3e28db7%3A0xcf4894ee53eaed62!2sMarwadi%20University!5e0!3m2!1sen!2sin!4v1570713170136!5m2!1sen!2sin" width="110%" height="200" frameborder="0" style="border:0;" allowfullscreen="">
+						</iframe>
+										
 						<!-- social icons -->
 						<div class="footer-grids  w3l-socialmk mt-3">
 							<h3 class="text-white font-weight-bold mb-3">Follow Us on</h3>

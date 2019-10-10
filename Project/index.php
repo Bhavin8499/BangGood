@@ -45,9 +45,8 @@
 <body>
 	<!-- top-header -->
 		<?php require_once('header.php');?>
-	<!-- //shop locator (popup) -->
+	<!-- //top-header -->
 
-    <!-- modals -->
     
     <!-- log in -->
         <?php require_once('login.php');?>
@@ -57,13 +56,7 @@
           <?php require_once('register.php');?>
     <!-- //register -->   
 
-	<!-- //modal -->
-	<!-- //top-header -->
-
-      
-	<!-- shop locator (popup) -->
-     
-
+	
     <!-- navigation -->
     <?php require_once('nevigation.php');?>
 	<!-- //navigation -->
@@ -85,22 +78,33 @@
 				<!-- product left 
 				<div class="agileinfo-ads-display ">-->
 				<div class="wrapper col-md-12 col-xs-12">
-					<?php require_once("first_section.php")?>
+						<!-- first section -->
+							<?php require_once("first_section.php")?>
 						<!-- //first section -->
 
 							
 						<!-- second section -->
 						<?php require_once("second_section.php")?>
 						<!-- //second section -->
+
 						<!-- third section -->
-						<?php require_once("third_section.php")?>
+						<div class="product-sec1 product-sec2 px-sm-5 px-3">
+							<div class="row">
+								<h3 class="col-md-4 effect-bg">Summer Carnival</h3>
+								<p class="w3l-nut-middle">Get Extra 10% Off</p>
+								<div class="col-md-8 bg-right-nut">
+									<img src="images/image1.png" alt="">
+								</div>
+							</div>
+						</div>
 						<!-- //third section -->
+						
 						<!-- fourth section -->
 						<?php require_once("forth_section.php")?>
 						<!-- //fourth section -->
 					</div>
 				</div>
-				<!-- //product left -->
+				
 
 				</div>
 			</div>
@@ -108,43 +112,6 @@
 	</div>
 	<!-- //top products -->
 
-	<!-- middle section hello
-	<div class="join-w3l1 py-sm-5 py-4">
-		<div class="container py-xl-4 py-lg-2">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="join-agile text-left p-4">
-						<div class="row">
-							<div class="col-sm-7 offer-name">
-								<h6>Smooth, Rich & Loud Audio</h6>
-								<h4 class="mt-2 mb-3">Branded Headphones</h4>
-								<p>Sale up to 25% off all in store</p>
-							</div>
-							<div class="col-sm-5 offerimg-w3l">
-								<img src="images/off1.png" alt="" class="img-fluid">
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-6 mt-lg-0 mt-5">
-					<div class="join-agile text-left p-4">
-						<div class="row ">
-							<div class="col-sm-7 offer-name">
-								<h6>A Bigger Phone</h6>
-								<h4 class="mt-2 mb-3">Smart Phones 5</h4>
-								<p>Free shipping order over $100</p>
-							</div>
-							<div class="col-sm-5 offerimg-w3l">
-								<img src="images/off2.png" alt="" class="img-fluid">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>-->
-	<!-- middle section -->
 	<!-- footer -->
 	<div class="footer-top-first">
 			<div class="container py-md-5 py-sm-4 py-3">

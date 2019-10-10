@@ -43,18 +43,12 @@
 
 <body>
     <!-- top-header -->
-    <?php require_once('faqs.php');?>
+    <?php require_once('header.php');?>
 	<!-- //top-header -->
 
    <!-- navigation -->
     <?php require_once('nevigation.php');?>
 	<!-- //navigation -->
-
-	<!-- banner-2 -->
-	<div class="page-head_agile_info_w3l">
-
-	</div>
-	<!-- //banner-2 -->
 	<!-- page -->
 	<div class="services-breadcrumb">
 		<div class="agile_inner_breadcrumb">

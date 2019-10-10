@@ -4,6 +4,7 @@
 <head>
 	<title> Help</title>
 	<!-- Meta tag Keywords -->
+	<link rel = "icon" type = "image/png" href = "/logo2.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
 	<meta name="keywords" content=""	/>
@@ -47,11 +48,6 @@
         <?php require_once('nevigation.php')?>
 	<!-- //navigation -->
 
-	<!-- banner-2 -->
-	<div class="page-head_agile_info_w3l">
-
-	</div>
-	<!-- //banner-2 -->
 	<!-- page -->
 	<div class="services-breadcrumb">
 		<div class="agile_inner_breadcrumb">
