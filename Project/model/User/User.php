@@ -2,7 +2,7 @@
     if(!class_exists('Database')){
         require("../Database/Database.php");
     }
-
+    
 class User{
 
     public static $table_name = "bh_users";
@@ -14,8 +14,6 @@ class User{
     public $email = "";
     public $access = "";
     
-    public $database = new Database();
-
     function __construct( $args = array()) {
         
         $this->user_id = $args['user_id'];
@@ -33,7 +31,7 @@ class User{
             return FALSE;
         else{
 
-            $args = this->database->get_result("select * from "+ $this->table_name + " where id="+$this->user_id);
+            $args = Database::dbObj->get_result("select * from "+ $this->table_name + " where id="+$this->user_id);
 
             if($args["password"] == $password){
                 return TRUE;
@@ -51,7 +49,7 @@ class User{
         if(isValidPassword( $old_pass )){
             
 
-            $result = $this->database->run_query("update "+$this->table_name+" set password='"+ $new_password +"' where user_id ="+$this->user_id);
+            $result = Database::dbObj->run_query("update "+$this->table_name+" set password='"+ $new_password +"' where user_id ="+$this->user_id);
 
             if($result){
                 return "Passowrd Changed Successfully.";
@@ -100,9 +98,7 @@ function login_user($login_type = "username", $name = "", $password = ''){
 
 function get_user_by_email($email = ''){
 
-    $database = new Database();
-
-    $result = $database->get_result("select * from "+ User::$table_name + " where email="+$email);
+    $result = Database::dbObj->get_result("select * from "+ User::$table_name + " where email="+$email);
 
     if(count($result) < 1 ){
         return FALSE;
@@ -116,9 +112,7 @@ function get_user_by_email($email = ''){
 
 function get_user_by_username($name = ''){
 
-    $database = new Database();
-
-    $result = $database->query("select * from "+ User::$table_name + " where user_name="+$name);
+    $result = Database::dbObj->query("select * from "+ User::$table_name + " where user_name="+$name);
 
     if(count($result) < 1 ){
         return FALSE;
@@ -132,9 +126,7 @@ function get_user_by_username($name = ''){
 
 function get_user_by_id($id = ''){
 
-    $databse = new Database();
-
-    $result = $database->query("select * from "+ User->table_name + " where user_id="+$id);
+    $result = Database::dbObj->query("select * from "+ User->table_name + " where user_id="+$id);
 
     if(count($result) < 1 ){
         return FALSE;
@@ -157,9 +149,7 @@ function forgot_password($username = ''){
 
         $reset_id = "bg"+ rand(100000,99999) + "reset";
         
-        $database = new Database();
-
-        $database->query("insert into bg_resetpass (user_id, reset_id, is_reset) values ($user->user_id, $reset_id, 0)");
+        Database::dbObj->query("insert into bg_resetpass (user_id, reset_id, is_reset) values ($user->user_id, $reset_id, 0)");
 
         $link = "~\resetPassword.php";
 
