@@ -7,6 +7,8 @@
         private $host = "localhost";
         private $database_name = "bh_banggood";
         private $conn;
+        public static $dbObj = new Database();
+
 
         function __construct(){
             // Create connection
@@ -50,5 +52,8 @@
         }
 
     }
+
+
+
 
 ?>
