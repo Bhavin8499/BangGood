@@ -7,7 +7,7 @@
         private $host = "localhost";
         private $database_name = "bh_banggood";
         private $conn;
-        public static $dbObj = new Database();
+        public static $dbObj;
 
 
         function __construct(){
@@ -18,6 +18,14 @@
             if ($this->conn->connect_error) {
                 die("Connection failed: " . $this->conn->connect_error);
             }
+        }
+
+        public static function getInstance(){
+            if(Database::$dbObj == null){
+                Database::$dbObj = new Database();
+            }
+            
+            return Database::$dbObj;
         }
 
         function run_query($query = ""){
@@ -52,8 +60,5 @@
         }
 
     }
-
-
-
 
 ?>
