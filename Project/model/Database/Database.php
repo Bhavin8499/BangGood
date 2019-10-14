@@ -37,6 +37,9 @@
 
             $result = $this->conn->query($query, MYSQLI_USE_RESULT);
 
+            if($result == null || $result == false)
+                return false;
+
             for ($set = array (); $row = $result->fetch_assoc(); $set[] = $row);
 
             if ($set == null){

@@ -4,7 +4,7 @@ class Categories{
     public $cateName = "";
     public $cateDesc = "";
     public $cateParent = 0;
-    public static $table_name = "bh_categories";
+    public static $table_name = "categories";
 
     function __construct(){
 
@@ -47,20 +47,31 @@ function get_parent_categories(){
     $arr = $db->get_results($query);
 
     $arrModel = array();
+    
+    if(is_array($arr)){
 
-    foreach ($arr as $row) {
-        $model = new Categories();
-        $model->set_data($row);
-        echo $model->cateID;
-        array_push($arrModel,$model);
+        foreach ($arr as $row) {
+            $model = new Categories();
+            $model->set_data($row);
+            echo $model->cateID;
+            array_push($arrModel,$model);
+        }
+
+        return $arrModel;
+
     }
 
-    return $arrModel;
+    else $arr;
 
 }
 
 $arr = get_parent_categories();
 
 $model = $arr[0];
+ 
+if(is_array($model))
+    print_r($model);
+else
+    echo "No Data Found";
 
 ?>
