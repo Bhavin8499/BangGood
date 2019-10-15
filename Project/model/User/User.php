@@ -5,7 +5,7 @@
     
 class User{
 
-    public static $table_name = "bh_users";
+    public static $table_name = "bg_users";
 
     public $user_id = 0;
     public $fName = "";

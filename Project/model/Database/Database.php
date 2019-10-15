@@ -5,17 +5,19 @@
         private $username = "root";
         private $password = "";
         private $host = "localhost";
-        private $database_name = "bh_banggood";
-        private $conn;
+        private $database_name = "banggoods";
+        public $conn;
         public static $dbObj;
 
 
-        function __construct(){
+        function __construct()
+        {
             // Create connection
             $this->conn = new mysqli($this->host, $this->username, $this->password, $this->database_name);
 
             // Check connection
-            if ($this->conn->connect_error) {
+            if ($this->conn->connect_error)
+            {
                 die("Connection failed: " . $this->conn->connect_error);
             }
         }
@@ -30,7 +32,6 @@
 
         function run_query($query = ""){
             return $this->conn->query($query,MYSQLI_USE_RESULT);
-
         }
 
         function get_results($query = ""){

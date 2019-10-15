@@ -1,36 +1,24 @@
 <!doctype html>
 <html lang="en">
-		<?php    $title = "Home"; ?>
+		<?php    $title = "Admin | Home"; ?>
 
 	<!-- top-header -->
 		<?php
-			require_once('model/Product/Product.php'); 
 			require_once('header.php');
 		?>
 	<!-- //top-header -->
 
     
-    <!-- log in -->
-        <?php require_once('login.php');?>
-    <!-- // log in -->
-
-    <!-- register -->   
-          <?php require_once('register.php');?>
-    <!-- //register -->   
-
-	
+    
     <!-- navigation -->
     <?php require_once('nevigation.php');?>
 	<!-- //navigation -->
 
 	<!-- banner -->
-	<?php require_once("banner.php")?>
+	<?php //require_once("banner.php")?>
 	<!-- //banner -->
 
 	<!-- top Products -->
-	<?php	$pro = new Product();
-			$result_set=$pro->getRecentProduct('name,price','mobile');
-	?>
 	<div class="ads-grid col-md-12 col-xs-12">
 		<div class="container-fluid">
 			<!-- tittle heading -->
@@ -53,12 +41,12 @@
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<!--<a href="single.php">Samsung Galaxy J7</a>-->
-												<a href="single.php"><?php echo "".strtoupper($result_set[$i]['name']);?></a>
+												<a href="single.php">Samsung Galaxy J7</a>
+												
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price"><?php echo "".$result_set[$i]['price'];?></span> INR
-												<del><?php echo "".$result_set[$i]['price']+500;?></del>
+												<span class="item_price">$200.00</span>
+												<del>$280.00</del>
 											</div>
 											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 												<form action="#" method="post">
@@ -135,7 +123,7 @@
 								<h3 class="col-md-4 effect-bg">Summer Carnival</h3>
 								<p class="w3l-nut-middle">Get Extra 10% Off</p>
 								<div class="col-md-8 bg-right-nut">
-									<img src="images/image1.png" alt="">
+									<img src="../images/image1.png" alt="">
 								</div>
 							</div>
 						</div>
