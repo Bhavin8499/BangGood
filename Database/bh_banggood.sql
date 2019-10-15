@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2019 at 02:12 PM
+-- Generation Time: Oct 14, 2019 at 07:19 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -167,6 +167,7 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(250) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `mobile_no` bigint(20) NOT NULL,
   `creation_date` date NOT NULL,
   `role` varchar(25) NOT NULL
@@ -273,7 +274,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cate_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cate_id` int(6) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `contact_us`
 --
