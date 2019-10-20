@@ -1,6 +1,6 @@
 <?php
 
-    require_once("C:\\xampp\htdocs\BangGood\Project\model\Database\Database.php");
+    require_once(dirname(__FILE__)."\..\Database\Database.php");
     class Contact{
 
         public $cid = 0;
@@ -47,18 +47,35 @@
         	$result_set = $this->dbObj->get_results($sql);
 
 			if($this->connection->errno) {
-				die("Error while getting CONTACT details : ".$this->connection->errno);
+				die("Error while getting concact details : ".$this->connection->errno);
 			}
 			return $result_set;
         }
+
+        function deleteContact($cid){
+
+        	$sql = "DELETE FROM contact_us WHERE cid = ?";
+
+        	if(!($preparedStatement = $this->connection->prepare($sql)))
+                die($this->connection->error);
+
+            $preparedStatement->bind_param("i",$cid);
+
+            if($preparedStatement->execute())
+            	return "true";
+            else
+                die("ERROR WHILE DELETING CONTACT: ".$this->connection->error);
+        }
+
     }
 
-    //$arr=array('name'=>'Harsh',"email"=>'hchhatbar86@gmail.com','contact_no'=>'90000099999','subject'=>'Check','message'=>'temp');
-    //$cont=new Contact($arr);
+    /*$arr=array('name'=>'Harsh',"email"=>'hchhatbar86@gmail.com','contact_no'=>'90000099999','subject'=>'Check','message'=>'temp');
+    $cont=new Contact($arr);
     //$result_set=$cont->addContact();
 
     /*$result_set=$cont->getAllContact();
     print_r($result_set);*/
-   // echo $_SERVER['DOCUMENT_ROOT'];
+    // echo $_SERVER['DOCUMENT_ROOT'];
 
+    /*$result_set=$cont->deleteContact(1);*/
 ?>

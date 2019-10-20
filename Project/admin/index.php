@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-		<?php    $title = "Admin | Home"; ?>
+		<?php  $title = "Admin | Home"; ?>
 
 	<!-- top-header -->
 		<?php
@@ -13,10 +13,6 @@
     <!-- navigation -->
     <?php require_once('nevigation.php');?>
 	<!-- //navigation -->
-
-	<!-- banner -->
-	<?php //require_once("banner.php")?>
-	<!-- //banner -->
 
 	<!-- top Products -->
 	<div class="ads-grid col-md-12 col-xs-12">

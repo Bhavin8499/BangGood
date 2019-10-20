@@ -5,7 +5,7 @@
         private $username = "root";
         private $password = "";
         private $host = "localhost";
-        private $database_name = "banggoods";
+        private $database_name = "bh_banggood";
         public $conn;
         public static $dbObj;
 
@@ -64,5 +64,5 @@
         }
 
     }
-
+    //$dbObj=new Database();
 ?>

@@ -24,12 +24,12 @@
 	<!-- //navigation -->
 
 	<!-- banner -->
-	<?php require_once("banner.php")?>
+	<?php //require_once("banner.php")?>
 	<!-- //banner -->
 
 	<!-- top Products -->
 	<?php	$pro = new Product();
-			$result_set=$pro->getRecentProduct('name,price','mobile');
+			$result_set=$pro->getRecentProduct('pro_id,name,mrp,images',1);
 	?>
 	<div class="ads-grid col-md-12 col-xs-12">
 		<div class="container-fluid">
@@ -48,25 +48,24 @@
 							<?php for($i=0;$i<4;$i++) {?>
 								<div class="col-md-3 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
-										<div class="men-thumb-item text-center">
-											<img src="images/m1.jpg" alt="">
+										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">
+											<img src=<?php echo $result_set[$i]['images'];?> alt="image"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' >
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<!--<a href="single.php">Samsung Galaxy J7</a>-->
-												<a href="single.php"><?php echo "".strtoupper($result_set[$i]['name']);?></a>
+												<a href="./single.php?pro_id=<?php echo $result_set['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price"><?php echo "".$result_set[$i]['price'];?></span> INR
-												<del><?php echo "".$result_set[$i]['price']+500;?></del>
+												<span class="item_price"><?php echo "".$result_set[$i]['mrp'];?></span> INR
+												<del><?php echo "".$result_set[$i]['mrp']+500;?></del>
 											</div>
 											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 												<form action="#" method="post">
 													<fieldset>
 														<input type="hidden" name="cmd" value="_cart" />
 														<input type="hidden" name="add" value="1" />
-														<input type="hidden" name="business" value=" " />
-														<input type="hidden" name="item_name" value="Samsung Galaxy J7" />
+														<input type="hidden" name="business" value="<?php echo "".ucfirst($result_set[$i]['name']);?>" />
+														<input type="hidden" name="item_name" value="" />
 														<input type="hidden" name="amount" value="200.00" />
 														<input type="hidden" name="discount_amount" value="1.00" />
 														<input type="hidden" name="currency_code" value="USD" />
@@ -129,7 +128,7 @@
 
 						<!-- //second section -->
 
-						<!-- third section -->
+						<!-- third section 
 						<div class="product-sec1 product-sec2 px-sm-5 px-3">
 							<div class="row">
 								<h3 class="col-md-4 effect-bg">Summer Carnival</h3>
@@ -138,7 +137,7 @@
 									<img src="images/image1.png" alt="">
 								</div>
 							</div>
-						</div>
+						</div>-->
 						<!-- //third section -->
 						
 						<!-- fourth section -->

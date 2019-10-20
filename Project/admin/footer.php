@@ -123,7 +123,7 @@
 
 	<!-- js-files -->
 	<!-- jquery -->
-	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src="../js/jquery-2.2.3.min.js"></script>
 	<!-- //jquery -->
 
 	<!-- nav smooth scroll -->
@@ -144,7 +144,7 @@
 	<!-- //nav smooth scroll -->
 
 	<!-- popup modal (for location)-->
-	<script src="js/jquery.magnific-popup.js"></script>
+	<script src="../js/jquery.magnific-popup.js"></script>
 	<script>
 		$(document).ready(function () {
 			$('.popup-with-zoom-anim').magnificPopup({
@@ -164,7 +164,7 @@
 	<!-- //popup modal (for location)-->
 
 	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
+	<script src="../js/minicart.js"></script>
 	<script>
 		paypals.minicarts.render(); 
 		//use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
@@ -208,7 +208,7 @@
 	<!-- //password-script -->
 	
 	<!-- scroll seller -->
-	<script src="js/scroll.js"></script>
+	<script src="../js/scroll.js"></script>
 	<!-- //scroll seller -->
 
 	<!-- smoothscroll
@@ -216,8 +216,8 @@
 	<!-- //smoothscroll -->
 
 	<!-- start-smooth-scrolling -->
-	<script src="js/move-top.js"></script>
-	<script src="js/easing.js"></script>
+	<script src="../js/move-top.js"></script>
+	<script src="../js/easing.js"></script>
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -233,6 +233,6 @@
 
 
 	<!-- for bootstrap working -->
-	<script src="js/bootstrap.js"></script>
+	<script src="../js/bootstrap.js"></script>
 	<!-- //for bootstrap working -->
 	<!-- //js-files -->
