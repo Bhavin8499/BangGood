@@ -15,7 +15,7 @@
     <!-- // log in -->
 
     <!-- register -->   
-          <?php require_once('register.php');?>
+          <?php //require_once('register.php');?>
     <!-- //register -->   
 
 	

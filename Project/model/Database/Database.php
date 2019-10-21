@@ -31,7 +31,12 @@
         }
 
         function run_query($query = ""){
-            return $this->conn->query($query,MYSQLI_USE_RESULT);
+            $this->conn->query($query,MYSQLI_USE_RESULT);
+
+            if($this->conn->error != null)
+                return $this->conn->error;
+
+            return $this->conn->insert_id;
         }
 
         function get_results($query = ""){
@@ -52,7 +57,16 @@
 
         function get_result($query = ""){
 
+
             $result = $this->conn->query($query, MYSQLI_USE_RESULT);
+
+            if($this->conn->error){
+                echo $this->conn->error;
+            }
+
+            if($result == null || $result == false)
+                return false;
+
             $arr = $result->fetch_assoc();
 
             if($arr != null){
@@ -64,5 +78,5 @@
         }
 
     }
-    //$dbObj=new Database();
+
 ?>

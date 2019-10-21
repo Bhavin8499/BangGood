@@ -40,7 +40,7 @@ function get_parent_categories(){
         require("../Database/Database.php");
     }
 
-    $db = new Database();
+    $db = Database::getInstance();
 
     $query = "select * from ".Categories::$table_name." where parent = 0"; 
     
