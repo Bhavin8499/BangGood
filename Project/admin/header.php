@@ -47,31 +47,31 @@
 		<div class="container-fluid">
 			<div class="row main-top-w3l py-2">
 				<div class="col-lg-4 header-most-top">
-					<p class="text-white text-lg-left text-center">Offer Zone Top Deals & Discounts
+					<p class="text-white text-lg-left text-center">B a n g G o o d s
 						<i class="fas fa-shopping-cart ml-1"></i>
 					</p>
 				</div>
 				<div class="col-lg-8 header-right mt-lg-0 mt-2">
 					<!-- header lists -->
 					<ul>
-						<li class="text-center border-right text-white">
+						<!--<li class="text-center border-right text-white">
 							<a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">
 								<i class="fas fa-map-marker mr-2"></i>Add Somting</a>
 						</li>
 						<li class="text-center border-right text-white">
 							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-								<i class="fas fa-truck mr-2"></i>Track Order</a>
+								<i class="fas fa-truck mr-2"></i>Add </a>
 						</li>
 						<li class="text-center border-right text-white">
 							<i class="fas fa-phone mr-2"></i> 001 234 5678
-						</li>
+						</li>-->
 						<li class="text-center border-right text-white">
 							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-								<i class="fas fa-sign-in-alt mr-2"></i> Log In </a>
+								<i class="fas fa-sign-out-alt mr-2"></i> Log Out </a>
 						</li>
 						<li class="text-center text-white">
 							<a href="#" data-toggle="modal" data-target="#exampleModal2" class="text-white">
-								<i class="fas fa-sign-out-alt mr-2"></i>Register </a>
+								<i class="fas fa-acc-alt mr-2"></i> Profile </a>
 						</li>
 					</ul>
 					<!-- //header lists -->
@@ -81,17 +81,17 @@
 	</div>
 
 
-	<div class="header-bot">
+	<!--<div class="header-bot">
 		<div class="container">
 			<div class="row header-bot_inner_wthreeinfo_header_mid">
-				<!-- logo -->
+				 logo 
 				<div class="col-md-3 logo_agile">
 					<h1 class="text-center">
 						<a href="index.html" class="font-weight-bold font-italic">
 							<img src="../images/logo2.png" alt="logo" class="img-fluid">BangGoods
 						</a>
 					</h1>
-				</div>
+				</div>-->
 				<!-- //logo -->
 				<!-- header-bot 
 				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
@@ -116,9 +116,9 @@
 								</form>
 							</div>
 						</div> -->
-						<!-- //cart details -->
+						<!-- //cart details 
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->

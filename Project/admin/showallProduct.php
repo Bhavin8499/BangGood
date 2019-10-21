@@ -41,9 +41,12 @@
 						</div>  
 					</div>
 					<div class="item-info-product text-center border-top mt-4">
-						<h4 class="pt-1"><?php echo $result_set[$i]['name'];?></h4>
+						<h4 class="pt-1"><a href="./single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>">
+                        <?php echo "".ucfirst($result_set[$i]['name']);?>
+                        </a>
+                        </h4>
 						<div class="info-product-price my-2">
-							 MRP:<span class="item_price"><?php echo $result_set[$i]['mrp'];?></span> |
+							 INR:<span class="item_price"><?php echo $result_set[$i]['mrp'];?></span> |
 							 Quantity:   <span><?php echo $result_set[$i]['qty'];?></span>
 						</div>
                     </div>

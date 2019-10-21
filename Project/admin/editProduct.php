@@ -1,20 +1,14 @@
 <!doctype html>
 <html lang="en">
 <?php
-    global $result_set;
-    global $pro_id;
+   
     require_once(dirname(__FILE__)."/../model/Product/Product.php");
-    if(isset($_REQUEST['pro_id']))
-    {
-            $pro=new Product();
-             $pro_id=$_REQUEST['pro_id'];
-             $result_set = $pro->getProduct($pro_id);
-    }
-    else if(isset($_POST['pro_edit']))
+
+    if(isset($_POST['pro_update']))
     {
             $pro=new Product();
 
-            $pro_id     =$_POST['pro_id'];
+            $id     =$_POST['id'];
             $cat_id     =$_POST['pro_cat'];
             $name       =$_POST['pro_name'];
             $mrp        =$_POST['pro_price'];
@@ -35,16 +29,31 @@
             
             $images='./images/n6_1p.jpg';
 
-            /*secho "<br>".$cat_id     ;echo "<br>".$name       ;echo "<br>".$mrp        ;
-            echo htmlspecialchars($strDesc);echo "<br>".$tags       ;echo "<br>".$discount   ;echo "<br>".$qty        ;echo "<br>".$can_buy    ;*/
-            $pro->updateProduct($name, $cat_id,$mrp, $discount, $disctiption,$images,$qty,$can_buy,$tags,$prod_id);
+            /*echo "<br>".$id;
+            echo "<br>".$cat_id     ;echo "<br>".$name       ;echo "<br>".$mrp        ;
+            echo htmlspecialchars($description);echo "<br>".$tags       ;echo "<br>".$discount   ;echo "<br>".$qty        ;echo "<br>".$can_buy    ;*/
+            $result_set=$pro->updateProduct($name, $cat_id,$mrp, $discount, $description,$images,$qty,$can_buy,$tags,$id);
             
-            header('location:editProduct.php?pro_id='.$pro_id);
+            //echo $result_set;
+        header('location:editProduct.php?pro_id='.$id);
           
+    }
+    
+    if(isset($_REQUEST['pro_id']))
+    {
+        if(!empty($_REQUEST['pro_id']))
+         {    $pro=new Product();
+                //$pro_id=(int)$_REQUEST['pro_id'];
+             $result_set = $pro->getProduct($_REQUEST['pro_id']);
+
+         }
+       
     }
     else{
         echo "<center><h3>Please come from proper way</h3></center>";
-    }
+        }
+
+    
 ?>
 		<?php  $title = "Edit Product"; ?>
 
@@ -67,7 +76,7 @@
                    <div class="product-sec1 px-sm-4 px-4 py-sm-4 py-4 mb-4">
 				        <div class="row">
 					    <div class="col-md-12 product-men mt-5">		
-                        <form action="editProduct.php" method="post"  enctype="multipart/form-data">
+                    <form action="editProduct.php" method="post" enctype="multipart/form-data">
                         <div class="form-group form-inline">
                             <label class="col-form-label">Category&nbsp;</label>
                             <select class="form-control custom-select form-control-sm" name="pro_cat" id="" required="true">
@@ -106,7 +115,7 @@
                         </div>
 						<div class="form-group">
 							<label class="col-form-label">Images</label>
-							<input type="file" class="form-control" placeholder=" " multiple="true" name="pro_images" value="<?php echo $result_set['images'];?>" required="">
+							<input type="file" class="form-control" placeholder=" " multiple="true" name="pro_images" value="<?php echo $result_set['images'];?>" >
 						</div>
                         
                         <div class="form-group form-inline col-md-4 col-md-12">
@@ -118,13 +127,13 @@
                     
                             <div class="form-check">
                               <label class="form-check-label px-sm-4">Can Buy - 
-                                <input type="checkbox" class="form-control  form-check-input" name="pro_canbuy" id="" required="true" <?php echo ($result_set['can_buy']=='1' ? 'checked' : '');?> />
+                                <input type="checkbox" class="form-control  form-check-input" name="pro_canbuy" id="" <?php echo ($result_set['can_buy']=='1' ? 'checked' : '');?> />
                               </label>
                             </div>
                         </div>
 						<div class="form-group form-inline col-md-6 col-md-12 ">
-							<input type="submit" class="button btn btn-primary" name="pro_edit" value="Update">&nbsp;
-                            <input type="hidden" name="pro_id" value="<?php echo $result_set['pro_id'];?>">
+							<input type="submit" class="form-control button btn btn-primary" name="pro_update" value="Update">&nbsp;
+                            <input type="hidden" name="id" value="<?php echo $result_set['pro_id'];?>">
                             <a href="showallProduct.php"><input type="button" name="del_Pro" value="Cancel" class="button btn btn-danger" /></a>
 						</div>
 					</form>

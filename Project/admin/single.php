@@ -5,7 +5,7 @@
 	<?php require_once('header.php');
 	global $result_set;
     global $pro_id;
-    require_once(dirname(__FILE__)."./model/Product/Product.php");
+    require_once(dirname(__FILE__)."/../model/Product/Product.php");
     if(isset($_REQUEST['pro_id']))
     {
             $pro=new Product();
@@ -32,9 +32,9 @@
 					<div class="grid images_3_of_2">
 						<div class="flexslider">
 							<ul class="slides">
-								<li data-thumb="<?php echo $result_set['images'];?>" >
+								<li data-thumb="<?php echo '.'.$result_set['images'];?>" >
 									<div class="thumb-image">
-										<img src="<?php echo $result_set['images'];?>"  data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="<?php echo '.'.$result_set['images'];?>"  data-imagezoom="true" class="img-fluid" alt=""> </div>
 								</li>
 								<li data-thumb="">
 									<div class="thumb-image">
@@ -98,25 +98,14 @@
 							<i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
 						</p>
 					</div>
-					<div class="occasion-cart">
-						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-							<form action="#" method="post">
-								<fieldset>
-									<input type="hidden" name="cmd" value="_cart" />
-									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="Samsung Galaxy J7 Prime" />
-									<input type="hidden" name="amount" value="200.00" />
-									<input type="hidden" name="discount_amount" value="1.00" />
-									<input type="hidden" name="currency_code" value="USD" />
-									<input type="hidden" name="return" value=" " />
-									<input type="hidden" name="cancel_return" value=" " />
-									<input type="submit" name="submit" value="Add to cart" class="button" />
-								</fieldset>
+                        <div class="form-group form-inline col-md-3 col-md-6">
+							<form action="editProduct.php" method="post" >
+									<input type="hidden" name="pro_id" value="<?php echo $pro_id;?>" />
+                                    <input type="submit" name="edit" value="Edit" class="button btn btn-secondary" />
+                                    <a href="showallProduct.php"><input type="button" name="del_Pro" value="Cancel" class="button btn btn-danger" /></a>
 							</form>
-						</div>
+                        </div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -164,14 +153,14 @@
     <!-- //footer -->
     
 
+
 	<!-- imagezoom 
 	<script src="js/imagezoom.js"></script>-->
 	<!-- //imagezoom -->
 
     	<!-- flexslider -->
-	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-
-<script src="js/jquery.flexslider.js"></script>
+<link rel="stylesheet" href="../css/flexslider.css" type="text/css" media="screen" />
+<script src="../js/jquery.flexslider.js"></script>
 <script>
     // Can also be used with $(document).ready()
     $(window).load(function () {

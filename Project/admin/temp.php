@@ -1,5 +1,42 @@
 <!doctype html>
 <html lang="en">
+<?php
+if(isset($_POST['pro_update']))
+    {
+           
+            $id     =$_POST['id'];
+            $cat_id     =$_POST['pro_cat'];
+            $name       =$_POST['pro_name'];
+            $mrp        =$_POST['pro_price'];
+
+            $description=$_POST['pro_discription'];
+            $description = preg_replace("/\s+|\n+|\r/", ' ', $description);
+            //echo htmlspecialchars($description);
+        
+            $tags       =$_POST['pro_tags'];
+            $discount   =$_POST['pro_discount'];
+            $qty        =$_POST['pro_quantity'];
+            $can_buy    =$_POST['pro_canbuy'];
+
+            if($can_buy=='on')
+                    $can_buy=1;
+            else
+                    $can_buy=0;
+            
+            $images='./images/n6_1p.jpg';
+
+            echo "<br>".$id;
+            echo "<br>".$cat_id;echo "<br>".$name ;echo "<br>".$mrp ;
+            echo htmlspecialchars($description);echo "<br>".$tags;echo "<br>".$discount;echo "<br>".$qty;echo "<br>".$can_buy;
+           // $pro->updateProduct($name, $cat_id,$mrp, $discount, $description,$images,$qty,$can_buy,$tags,$pro_id);
+            //header('location:editProduct.php?pro_id='.$id);
+          
+    }
+    else
+    {
+        echo "<h1>UPDATE NAI THYU</h1>";
+    }
+?>
 <?php  $title = "Product"; ?>
 
 <!-- top-header -->
@@ -91,7 +128,7 @@
     
 <form action="#" method="post" enctype="multipart/form-data">
     Select image to upload:
-    <input type="file" name="fileToUpload[]" id="fileToUpload" multiple="true">
+    <input type="file" name="fileToUpload" id="fileToUpload" multiple="true">
     <input type="submit" value="Upload Image" name="submit">
 </form>
 
@@ -102,17 +139,16 @@
 </html>	
 <?php
 $target_dir = "../images/";
-//$target_file = $target_dir .basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir .basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
-//$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $allowTypes = array('jpg','png','jpeg','gif');
     
 // Check if image file is a actual image or fake image
 if(isset($_POST["submit"])) {
-    foreach($_FILES["fileToUpload"]["name"] as $key=>$val){
-        $target_file = $target_dir .basename($_FILES["fileToUpload"]["name"][$key]);
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-      $check = getimagesize($_FILES["fileToUpload"]["tmp_name"][$key]);
+            //$target_file = $target_dir .basename($_FILES["fileToUpload"]["name"][$key]);
+            //$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
@@ -126,7 +162,7 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
     // Check file size
-    if ($_FILES["fileToUpload"]["size"][$key] > 500000) {
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
         }   
@@ -141,13 +177,12 @@ if(isset($_POST["submit"])) {
         echo "\nSorry, your file was not uploaded.";
     // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$key], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"][$key]). " has been uploaded.";
-        } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+         } else {
             echo "Sorry, there was an error uploading your file.";
         }
+        }
     }
-}
-}
 ?>
                                     

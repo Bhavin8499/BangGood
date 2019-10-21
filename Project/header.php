@@ -1,7 +1,7 @@
 <head>
 	<title> <?php echo $title; ?> </title>
 	
-	<link rel = "icon" type = "image/png" href = "../images/logo2.png">
+	<link rel = "icon" type = "image/png" href = "./images/logo2.png">
     
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">

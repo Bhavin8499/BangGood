@@ -53,7 +53,7 @@
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="./single.php?pro_id=<?php echo $result_set['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
+												<a href="./single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
 											</h4>
 											<div class="info-product-price my-2">
 												<span class="item_price"><?php echo "".$result_set[$i]['mrp'];?></span> INR

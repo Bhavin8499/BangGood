@@ -78,7 +78,7 @@
             
             if($preparedStatement->execute())
                {    
-                   echo $preparedStatement->affected_rows;               
+                   //echo $preparedStatement->affected_rows;               
                    return "true";
                }
             else
@@ -143,9 +143,9 @@ function getAllProduct($columns='*')
 
     echo "<br>";*/
 
-  /*  $result_set=$pro->updateProduct('Samsung Galaxy J7',1,13000,0,'<I>3500mah Bettery</I><BR><B>Android 9</B>','./images/sgJ2.jpg',3,0,'SAMSUNG',1);
-    echo $result_set;
-*/
+   /*$result_set=$pro->updateProduct('Samsung Galaxy J7',1,13000,0,'<I>3500mah Bettery</I><BR><B>Android 9</B>','./images/sgJ2.jpg',3,1,'SAMSUNG,Mobile',1);
+    echo $result_set;*/
+
     /*$result_set=$pro->getAllProduct('name,price');
 	print_r ($result_set);*/
 
