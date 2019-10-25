@@ -10,8 +10,10 @@
 
 }
 */
+//echo "<h1>HELLO</h1>";
 
-function generate_insert_query($args, $tbl_name = ""){
+function generate_insert_query($args, $tbl_name = "")
+{
 
     $keys = array();
     $values = array();
@@ -26,7 +28,8 @@ function generate_insert_query($args, $tbl_name = ""){
     return "insert into $tbl_name (".implode(",",$keys).") values (".implode(",", $values).");";
 }
 
-function generate_update_query($args){
+function generate_update_query($args)
+{
     
     $strItem = "";
 

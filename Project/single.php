@@ -8,9 +8,9 @@
     require_once(dirname(__FILE__)."./model/Product/Product.php");
     if(isset($_REQUEST['pro_id']))
     {
-            $pro=new Product();
-            $pro_id=$_REQUEST['pro_id'];
-            $result_set = $pro->getProduct($pro_id);
+            $pro=new Product($_REQUEST['pro_id']);
+            //$pro_id=$_REQUEST['pro_id'];
+            //$result_set = $pro->getProduct($pro_id);
     }	
 	?>
 	<!-- //header-bottom -->
@@ -32,9 +32,9 @@
 					<div class="grid images_3_of_2">
 						<div class="flexslider">
 							<ul class="slides">
-								<li data-thumb="<?php echo $result_set['images'];?>" >
+								<li data-thumb="<?php echo $pro->images;?>" >
 									<div class="thumb-image">
-										<img src="<?php echo $result_set['images'];?>"  data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="<?php echo $pro->images;?>"  data-imagezoom="true" class="img-fluid" alt=""> </div>
 								</li>
 								<li data-thumb="">
 									<div class="thumb-image">
@@ -51,29 +51,16 @@
 				</div>
 
 				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
-					<h3 class="mb-3"><?php echo $result_set['name'];?></h3>
+					<h3 class="mb-3"><?php echo $pro->name;?></h3>
 					<p class="mb-3">
-						<span class="item_price">INR <?php echo $result_set['mrp'];?></span>
-						<del class="mx-2 font-weight-light"><?php echo $result_set['mrp']+500;?></del>
+						<span class="item_price">INR <?php echo $pro->mrp;?></span>
+						<del class="mx-2 font-weight-light"><?php echo $pro->mrp+500;?></del>
 						<label>Free delivery</label>
 					</p>
-					<div class="single-infoagile">
-						<ul>
-							<li class="mb-3">
-								Cash on Delivery Eligible.
-							</li>
-							<li class="mb-3">
-								Shipping Speed to Delivery.
-							</li>
-							<li class="mb-3">
-								EMIs from $655/month.
-							</li>
-							<li class="mb-3">
-								Bank OfferExtra 5% off* with Axis Bank Buzz Credit CardT&C
-							</li>
-						</ul>
-					</div>
 					<div class="product-single-w3l">
+						<?php echo $pro->description;?>
+					</div>
+					<!--<div class="product-single-w3l">
 						<p class="my-3">
 							<i class="far fa-hand-point-right mr-2"></i>
 							<label>1 Year</label>Manufacturer Warranty</p>
@@ -97,7 +84,7 @@
 						<p class="my-sm-4 my-3">
 							<i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
 						</p>
-					</div>
+					</div>-->
 					<div class="occasion-cart">
 						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 							<form action="#" method="post">

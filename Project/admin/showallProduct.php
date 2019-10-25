@@ -18,7 +18,8 @@
 	<!-- //navigation -->
 
 	<!-- Form -->
-    <?php $result_set=$pro->getAllProduct();	?>
+    <?php //$result_set=$pro->getAllProduct();	
+            $result_set=getAllProduct();?>
 	<div class="ads-grid col-md-12 col-xs-12">
 		<div class="container-fluid">
         <h3 class="tittle-w3l text-center col-md-12 col-xs-12">
@@ -46,17 +47,17 @@
                         </a>
                         </h4>
 						<div class="info-product-price my-2">
-							 INR:<span class="item_price"><?php echo $result_set[$i]['mrp'];?></span> |
+							 INR: <span class="item_price"><?php echo $result_set[$i]['mrp'];?></span> |
 							 Quantity:   <span><?php echo $result_set[$i]['qty'];?></span>
 						</div>
                     </div>
                     <div class='col-md-6 col-md-12 mb-2'>
 					<a href="editProduct.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="edit_Pro" value="Edit Product" class="button btn btn-secondary" /></a>
-                    <a href="#"><input type="button" name="pro_del" value="Delete Product" class="button btn btn-danger"     /></a>
+                    <a href="#"><input type="button" name="pro_del" value="Delete Product" class="button btn btn-danger" /></a>
                     </div>
 				    </div>
 			        </div>
-               <?php }?>
+                       <?php }?>
                    <!-- -->    
                     </div>
                     </div>

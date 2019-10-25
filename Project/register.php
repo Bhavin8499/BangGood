@@ -6,8 +6,6 @@ if(!function_exists("register_new_user")){
 }
 	if(isset($_POST['submit'])){
 
-		
-
 		$args = [
 			"username" => $_POST["username"],
         	"password" => $_POST["password"],

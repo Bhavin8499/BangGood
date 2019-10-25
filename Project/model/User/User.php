@@ -1,8 +1,10 @@
 <?php
-    if(!class_exists('Database')){
+    if(!class_exists('Database'))
+    {
         include(dirname(__FILE__)."/../Database/Database.php");
     }
-    if(!function_exists('get_query_from_arr')){
+    if(!function_exists('generate_insert_query'))
+    {
         include(dirname(__FILE__)."/../helper_functions.php");
     }
     
@@ -253,7 +255,8 @@ function register_new_user($args = array(), $args_profile = array()){
 
     $args = array_replace_recursive($def_arr, $args);
 
-    $query = generate_insert_query($args, User::$table_name);
+
+    $query = generate_insert_query($args, Product::$table_name);
 
     $user_id = $dbObj->run_query($query);
 

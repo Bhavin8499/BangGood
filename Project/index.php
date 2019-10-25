@@ -28,8 +28,7 @@
 	<!-- //banner -->
 
 	<!-- top Products -->
-	<?php	$pro = new Product();
-			$result_set=$pro->getRecentProduct('pro_id,name,mrp,images',1);
+	<?php		$result_set=getRecentProduct('pro_id,name,mrp,images',1);
 	?>
 	<div class="ads-grid col-md-12 col-xs-12">
 		<div class="container-fluid">
@@ -43,7 +42,7 @@
 						<!-- first section -->
 							<?php //require_once("first_section.php")?>
 							<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-							<h3 class="heading-tittle text-center font-italic">New Brand Mobiles</h3>
+							<h3 class="heading-tittle text-center font-italic">Mobiles</h3>
 							<div class="row">
 							<?php for($i=0;$i<4;$i++) {?>
 								<div class="col-md-3 product-men mt-5">

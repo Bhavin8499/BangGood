@@ -4,31 +4,43 @@
     require_once(dirname(__FILE__)."/../model/Product/Product.php");
     if(isset($_POST['pro_submit']))
     {
-            $pro=new Product();
+            //$pro=new Product();
 
-            $cat_id     =$_POST['pro_cat'];
-            $name       =$_POST['pro_name'];
-            $mrp        =$_POST['pro_price'];
+            // $cat_id     =$_POST['pro_cat'];
+            // $name       =$_POST['pro_name'];
+            // $mrp        =$_POST['pro_price'];
 
-            $description=$_POST['pro_discription'];
-            $description = preg_replace("/\s+|\n+|\r/", ' ', $description);
-            //echo htmlspecialchars($description);
+             $description=$_POST['pro_discription'];
+             $description = preg_replace("/\s+|\n+|\r/", ' ', $description);
+            // //echo htmlspecialchars($description);
         
-            $tags       =$_POST['pro_tags'];
-            $discount   =$_POST['pro_discount'];
-            $qty        =$_POST['pro_quantity'];
-            $can_buy    =$_POST['pro_canbuy'];
+            // $tags       =$_POST['pro_tags'];
+            // $discount   =$_POST['pro_discount'];
+            // $qty        =$_POST['pro_quantity'];
+             $can_buy    =$_POST['pro_canbuy'];
 
             if($can_buy=='on')
                 $can_buy=1;
 
             $images='./images/sgs10.jpg';
 
+            $args = [
+                "name" =>$_POST['pro_name'],
+                "cat_id" =>$_POST['pro_cat'],
+                "mrp" =>$_POST['pro_price'],
+                "discount" => $_POST['pro_discount'],
+                "description" => ".".$description,
+                "images" => "./images/gp4.jpg",
+                "qty" => $_POST['pro_quantity'],
+                "can_buy" => $can_buy,
+                "tags"=> $_POST['pro_tags']
+            ];
+
             /*secho "<br>".$cat_id     ;echo "<br>".$name       ;echo "<br>".$mrp        ;
             echo htmlspecialchars($strDesc);echo "<br>".$tags       ;echo "<br>".$discount   ;echo "<br>".$qty        ;echo "<br>".$can_buy    ;*/
-            $pro->addProduct($name,$cat_id,$mrp,$discount,$description,$images,$qty,$can_buy,$tags);
-            
-          
+            //$pro->addProduct($name,$cat_id,$mrp,$discount,$description,$images,$qty,$can_buy,$tags);
+            $result_set=addProduct($args);
+            //echo $result_set;
     }
 ?>
 		<?php  $title = "Add Product"; ?>
