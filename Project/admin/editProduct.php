@@ -26,6 +26,72 @@
     if(isset($_POST['pro_update']))
     {
             $pro=new Product($_POST['id']);
+
+            $errors = array();
+            $uploadedFiles = array();
+            $extension = array("jpeg","jpg","png","gif");
+            $bytes = 1024;
+            $KB = 1024;
+            $totalBytes = $bytes * $KB;
+            $UploadFolder = "./images";
+            $imagesDB="";
+            $counter = 0;
+            
+            foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
+                $temp = $_FILES["files"]["tmp_name"][$key];
+                $name = $_FILES["files"]["name"][$key];
+                if(empty($temp)){break;}
+                
+                $counter++;
+                $UploadOk = true;
+                
+                if($_FILES["files"]["size"][$key] > $totalBytes)
+                {
+                    $UploadOk = false;
+                    array_push($errors, $name." file size is larger than the 1 MB.");
+                }
+                
+                $ext = pathinfo($name, PATHINFO_EXTENSION);
+                if(in_array($ext, $extension) == false){
+                    $UploadOk = false;
+                    array_push($errors, $name." is invalid file type.");
+                }
+                
+                if(file_exists($UploadFolder."/".$name) == true){
+                    $UploadOk = false;
+                    array_push($errors, $name." file is already exist.");
+                }
+                
+                if($UploadOk == true){
+                    move_uploaded_file($temp,".".$UploadFolder."/".$name);
+                    //echo $UploadFolder."/".$name;
+                    array_push($uploadedFiles, $UploadFolder."/".$name);
+                }
+            }
+            if($counter>0){
+                if(count($errors)>0)
+                {
+                    echo "<b>Errors:</b>";
+                    echo "<br/><ul>";
+                    foreach($errors as $error)
+                    {
+                        echo "<li>".$error."</li>";
+                    }
+                    echo "</ul><br/>";
+                }
+                //print_r($uploadedFiles);
+                $imagesDB=serialize($uploadedFiles);
+                //echo "<br>";
+                //print_r($imagesDB);
+                //$imagesDB=Unserialize($imagesDB);echo "<br>";
+                //print_r($imagesDB);
+            }
+            else{
+                echo "Please, Select file(s) to upload.";
+            }
+
+
+
             $pro->cat_id     = $_POST['pro_cat'];
             $pro->name       = $_POST['pro_name'];
             $pro->mrp        = $_POST['pro_price'];
@@ -47,8 +113,8 @@
             else
                     $pro->can_buy=0;
             
-            $pro->images='./images/gp4.jpg';
-            
+            $pro->images=$imagesDB;
+
             $result_set=$pro->updateProduct();
             
             //echo $result_set;
@@ -118,7 +184,8 @@
                         </div>
 						<div class="form-group">
 							<label class="col-form-label">Images</label>
-							<input type="file" class="form-control" placeholder=" " multiple="true" name="pro_images" value="<?php echo $pro->images;?>" >
+                            <input type="file" class="form-control" placeholder=" " multiple="true" name="files[]" value="<?php echo Unserialize($pro->images);?>" id="fileupload" >
+                            <div id="dvPreview"></div>
 						</div>
                         
                         <div class="form-group form-inline col-md-4 col-md-12">
@@ -151,6 +218,38 @@
 
     <!-- footer -->
     <?php require_once('footer.php');?>
-	<!-- //footer -->
+    <!-- //footer -->
+    <script language="javascript" type="text/javascript">
+        window.onload = function () {
+            var fileUpload = document.getElementById("fileupload");
+            fileUpload.onchange = function () {
+                if (typeof (FileReader) != "undefined") {
+                    var dvPreview = document.getElementById("dvPreview");
+                    dvPreview.innerHTML = "";
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    for (var i = 0; i < fileUpload.files.length; i++) {
+                        var file = fileUpload.files[i];
+                        if (regex.test(file.name.toLowerCase())) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var img = document.createElement("IMG");
+                                img.height = "250";
+                                img.width = "175";
+                                img.src = e.target.result;
+                                dvPreview.appendChild(img);
+                            }
+                            reader.readAsDataURL(file);
+                        } else {
+                            alert(file.name + " is not a valid image file.");
+                            dvPreview.innerHTML = "";
+                            return false;
+                        }
+                    }
+                } else {
+                    alert("This browser does not support HTML5 FileReader.");
+                }
+            }
+        };
+    </script>
 </body>
 </html>	

@@ -3,9 +3,10 @@
 	<?php  $title = "Single Product"; ?>
 	<!-- top-header -->
 	<?php require_once('header.php');
-	global $result_set;
-    global $pro_id;
-    require_once(dirname(__FILE__)."./model/Product/Product.php");
+	if(!class_exists('Product'))
+    {
+     require_once(dirname(__FILE__)."/model/Product/Product.php");
+    }
     if(isset($_REQUEST['pro_id']))
     {
             $pro=new Product($_REQUEST['pro_id']);
@@ -32,17 +33,18 @@
 					<div class="grid images_3_of_2">
 						<div class="flexslider">
 							<ul class="slides">
-								<li data-thumb="<?php echo $pro->images;?>" >
+								<?php $image=Unserialize($pro->images);?>
+								<li data-thumb="<?php echo $image[0];?>" >
 									<div class="thumb-image">
-										<img src="<?php echo $pro->images;?>"  data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="<?php echo $image[0];?>"  data-imagezoom="true" class="img-fluid" alt="" > </div>
 								</li>
-								<li data-thumb="">
+								<li data-thumb="<?php echo $image[1];?>">
 									<div class="thumb-image">
-										<img src="" data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="<?php echo $image[1];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
 								</li>
-								<li data-thumb="">
-									<div class="">
-										<img src="" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								<li data-thumb="<?php echo $image[2];?>">
+									<div class="thumb-image">
+										<img src="<?php echo $image[2];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
 								</li>
 							</ul>
 							<div class="clearfix"></div>

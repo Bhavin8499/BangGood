@@ -48,7 +48,9 @@
 								<div class="col-md-3 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">
-											<img src=<?php echo $result_set[$i]['images'];?> alt="image"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' >
+												
+												<?php $image=Unserialize($result_set[$i]['images']);?>
+											<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' >
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
@@ -84,23 +86,23 @@
 
 							
 						<!-- second section -->
-						<?php// require_once("second_section.php")?>
-				<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-						<h3 class="heading-tittle text-center font-italic">Tv & Audio</h3>
+						<?php		$result_set=getRecentProduct('pro_id,name,mrp,images',2);	?>
+					<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+						<h3 class="heading-tittle text-center font-italic">Laptop</h3>
 					<div class="row">
 							<?php for($i=1;$i<=4;$i++)	{?>
 							<div class="col-md-3 product-men mt-5">
 							<div class="men-pro-item simpleCart_shelfItem">
 							<div class="men-thumb-item text-center">
-							<img src="images/m4.jpg" alt="">
+							<img src="<?php echo $result_set[$i]['images'];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>" style='height:auto; max-height:90%; width:auto; max-width: 90%;'>
 							</div>
 							<div class="item-info-product text-center border-top mt-4">
   	    						<h4 class="pt-1">
-									<a href="single.php">Sony 80 cm (32 inches)</a>
+									<a href="single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
 								</h4>
 							<div class="info-product-price my-2">
-								<span class="item_price">$320.00</span>
-									<del>$340.00</del>
+								<span class="item_price"><?php echo $result_set[$i]['mrp'];?></span>
+									<del><?php echo $result_set[$i]['mrp'];?></del>
 							</div>
 							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 							<form action="#" method="post">

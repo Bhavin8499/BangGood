@@ -3,16 +3,15 @@
 	<?php  $title = "Single Product"; ?>
 	<!-- top-header -->
 	<?php require_once('header.php');
-	global $result_set;
-    global $pro_id;
-    require_once(dirname(__FILE__)."/../model/Product/Product.php");
+	 if(!class_exists('Product'))
+	 {
+	  require_once(dirname(__FILE__)."/../model/Product/Product.php");
+	 }
+ 
     if(isset($_REQUEST['pro_id']))
     {
 			$pro=new Product($_REQUEST['pro_id']);
-			//echo "<h1>".$pro->name."</h1>";
-            //$pro_id=$_REQUEST['pro_id'];
-            //$result_set = $pro->getProduct($pro_id);
-    }	
+	 }	
 	?>
 	<!-- //header-bottom -->
     <!-- navigation -->
@@ -32,18 +31,19 @@
 				<div class="col-lg-5 col-md-8 single-right-left ">
 					<div class="grid images_3_of_2">
 						<div class="flexslider">
-							<ul class="slides">
-								<li data-thumb="<?php echo '.'.$pro->images;?>" >
+						<ul class="slides">
+								<?php $image=Unserialize($pro->images);?>
+								<li data-thumb="<?php echo '.'.$image[0];?>" >
 									<div class="thumb-image">
-										<img src="<?php echo '.'.$pro->images;?>"  data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="<?php echo '.'.$image[0];?>"  data-imagezoom="true" class="img-fluid" alt="" > </div>
 								</li>
-								<li data-thumb="">
+								<li data-thumb="<?php echo '.'.$image[1];?>">
 									<div class="thumb-image">
-										<img src="" data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="<?php echo '.'.$image[1];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
 								</li>
-								<li data-thumb="">
-									<div class="">
-										<img src="" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								<li data-thumb="<?php echo '.'.$image[2];?>">
+									<div class="thumb-image">
+										<img src="<?php echo '.'.$image[2];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
 								</li>
 							</ul>
 							<div class="clearfix"></div>
@@ -58,23 +58,10 @@
 						<del class="mx-2 font-weight-light"><?php echo $pro->mrp+500;?></del>
 						<label>Free delivery</label>
 					</p>
-					<div class="single-infoagile">
-						<ul>
-							<li class="mb-3">
-								Cash on Delivery Eligible.
-							</li>
-							<li class="mb-3">
-								Shipping Speed to Delivery.
-							</li>
-							<li class="mb-3">
-								EMIs from $655/month.
-							</li>
-							<li class="mb-3">
-								Bank OfferExtra 5% off* with Axis Bank Buzz Credit CardT&C
-							</li>
-						</ul>
-					</div>
 					<div class="product-single-w3l">
+						<?php echo $pro->description;?>
+					</div>
+					<!--<div class="product-single-w3l">
 						<p class="my-3">
 							<i class="far fa-hand-point-right mr-2"></i>
 							<label>1 Year</label>Manufacturer Warranty</p>
@@ -98,7 +85,7 @@
 						<p class="my-sm-4 my-3">
 							<i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
 						</p>
-					</div>
+					</div>-->
                         <div class="form-group form-inline col-md-3 col-md-6">
 							<form action="editProduct.php" method="post" >
 									<input type="hidden" name="pro_id" value="<?php echo $pro->pro_id;?>" />

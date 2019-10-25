@@ -10,14 +10,8 @@
     <!-- modals -->
     
     <!-- log in -->
-        <?php require_once('login.php');?>
+    <?php require_once('login.php');?>
     <!-- // log in -->
-
-    <!-- register -->   
-          <?php require_once('register.php');?>
-    <!-- //register -->   
-
-	<!-- //modal -->
 	<!-- //top-header -->
 
   	<!-- shop locator (popup) -->

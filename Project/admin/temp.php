@@ -46,6 +46,7 @@ if(isset($_POST['pro_update']))
 <!-- navigation -->
 <?php require_once('nevigation.php');?>
 <!-- //navigation -->
+<section id="ps-container" class="ps-container">
 
 <div class="tab-content ml-1" id="myTabContent">
                                     <div class="<% Response.Write(classLink1); %>" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
@@ -126,19 +127,38 @@ if(isset($_POST['pro_update']))
                                          -->
                                     </div>
     
-<form action="#" method="post" enctype="multipart/form-data">
+<!--<form action="#" method="post" enctype="multipart/form-data">
     Select image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload" multiple="true">
     <input type="submit" value="Upload Image" name="submit">
 </form>
+///////////////////////////////////////////////////////
+     footer -->
+   
+and you must check your HTML code
 
-    <!-- footer -->
+<form action="temp.php" method="post" enctype="multipart/form-data">
+    <table width="100%">
+        <tr>
+            <td>Select Photo (one or multiple):</td>
+            <td><input type="file" name="files[]" multiple/></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">Note: Supported image format: .jpeg, .jpg, .png, .gif</td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="Create Gallery" id="selectedButton"/></td>
+        </tr>
+    </table>
+</form>
+
+
     <?php require_once('footer.php');?>
 	<!-- //footer -->
 </body>
 </html>	
 <?php
-$target_dir = "../images/";
+/*$target_dir = "../images/";
 $target_file = $target_dir .basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -183,6 +203,34 @@ if(isset($_POST["submit"])) {
             echo "Sorry, there was an error uploading your file.";
         }
         }
+    }*/
+//////////////////////////////////////////////
+extract($_POST['submit']);
+$error=array();
+$extension=array("jpeg","jpg","png","gif");
+foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name) {
+    $file_name=$_FILES["files"]["name"][$key];
+    $file_tmp=$_FILES["files"]["tmp_name"][$key];
+    $ext=pathinfo($file_name,PATHINFO_EXTENSION);
+
+    if(in_array($ext,$extension)) {
+        if(!file_exists("../images/".$txtGalleryName."/".$file_name)) {
+            //move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key],"../images/".$txtGalleryName."/".$file_name);
+            echo $file_tmp=$_FILES["files"]["tmp_name"][$key],"../images/".$txtGalleryName."/".$file_name;
+        }   
+        else {
+            $filename=basename($file_name,$ext);
+            $newFileName=$filename.time().".".$ext;
+           // move_uploaded_file($file_tmp=$_FILES["files"]["tmp_name"][$key],"../images/".$txtGalleryName."/".$newFileName);
+           echo $file_tmp=$_FILES["files"]["tmp_name"][$key],"../images/".$txtGalleryName."/".$file_name;
+        }
     }
+
+    else {
+        array_push($error,"$file_name, ");
+    }
+}
+
+
 ?>
                                     

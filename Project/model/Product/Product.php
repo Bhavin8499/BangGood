@@ -88,7 +88,6 @@
     
         }
         
-
         function updateStock($prod_id , $stock)
         {
         	$sql = "UPDATE product SET stock=? WHERE product_id = ?";
