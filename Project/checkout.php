@@ -1,72 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+	
+	<?php    $title = "Check out"; ?>
 
-<head>
-	<title>Checkout</title>
-	<!-- Meta tag Keywords -->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<meta name="keywords" content=""	/>
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-	<!-- //Meta tag Keywords -->
+	<!-- top-header -->
+	<?php
+			require_once('model/Product/Product.php'); 
+			require_once('header.php');
+	?>
+	<!-- //top-header -->
 
-	<!-- Custom-Files -->
-	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<!-- Bootstrap css -->
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<!-- Main css -->
-	<link rel="stylesheet" href="css/fontawesome-all.css">
-	<!-- Font-Awesome-Icons-CSS -->
-	<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
-	<!-- pop-up-box -->
-	<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
-	<!-- menu style -->
-	<!-- //Custom-Files -->
-
-	<!-- web fonts -->
-	<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-	    rel="stylesheet">
-	<!-- //web fonts -->
-
-</head>
-
-<body>
-    <!--header -->
-    <?php require_once('header.php');?>
-	<!-- //header-->
-    <!-- navigation -->
-    <?php require_once('nevigation.php')?>
+	 <!-- navigation -->
+	 <?php require_once('nevigation.php');?>
 	<!-- //navigation -->
+<?php
+//print_r($_POST);
+//echo count($_POST);
+/*foreach ($_POST as $key => $value) {
+	echo "Field ==== ".htmlspecialchars($key)."   is === ".htmlspecialchars($value)."<br>";
+}*/
+?>
 
-	<!-- banner-2 -->
-	<div class="page-head_agile_info_w3l">
 
-	</div>
-	<!-- //banner-2 -->
-	<!-- page -->
-	<div class="services-breadcrumb">
-		<div class="agile_inner_breadcrumb">
-			<div class="container">
-				<ul class="w3_short">
-					<li>
-						<a href="index.html">Home</a>
-						<i>|</i>
-					</li>
-					<li>Checkout</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- //page -->
 	<!-- checkout page -->
 	<div class="privacy py-sm-5 py-4">
 		<div class="container py-xl-4 py-lg-2">
@@ -77,7 +33,7 @@
 			<!-- //tittle heading -->
 			<div class="checkout-right">
 				<h4 class="mb-sm-4 mb-3">Your shopping cart contains:
-					<span>3 Products</span>
+					<span><?php echo (count($_POST)-4)/6;?> Products</span>
 				</h4>
 				<div class="table-responsive">
 					<table class="timetable_sub">
@@ -89,15 +45,18 @@
 								<th>Product Name</th>
 
 								<th>Price</th>
-								<th>Remove</th>
+							
 							</tr>
 						</thead>
 						<tbody>
+						<?php 
+							for($i=1;$i<=(count($_POST)-4)/6;$i++){
+								?>
 							<tr class="rem1">
-								<td class="invert">1</td>
+								<td class="invert"><?php echo $i ;?></td>
 								<td class="invert-image">
 									<a href="single.html">
-										<img src="images/a.jpg" alt=" " class="img-responsive">
+										<img src="<?php echo $_POST['image_path_'.$i];?>" alt="" class="img-responsive">
 									</a>
 								</td>
 								<td class="invert">
@@ -105,72 +64,16 @@
 										<div class="quantity-select">
 											<div class="entry value-minus">&nbsp;</div>
 											<div class="entry value">
-												<span>1</span>
+												<span><?php echo $_POST['quantity_'.$i];?></span>
 											</div>
 											<div class="entry value-plus active">&nbsp;</div>
 										</div>
 									</div>
 								</td>
-								<td class="invert">Back Cover</td>
-								<td class="invert">$259</td>
-								<td class="invert">
-									<div class="rem">
-										<div class="close1"> </div>
-									</div>
-								</td>
+								<td class="invert"><?php echo $_POST['item_name_'.$i];?></td>
+								<td class="invert"><?php echo $_POST['amount_'.$i];?></td>
 							</tr>
-							<tr class="rem2">
-								<td class="invert">2</td>
-								<td class="invert-image">
-									<a href="single2.html">
-										<img src="images/a4.jpg" alt=" " class="img-responsive">
-									</a>
-								</td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value">
-												<span>1</span>
-											</div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Cordless Trimmer</td>
-								<td class="invert">$1,999</td>
-								<td class="invert">
-									<div class="rem">
-										<div class="close2"> </div>
-									</div>
-								</td>
-							</tr>
-							<tr class="rem3">
-								<td class="invert">3</td>
-								<td class="invert-image">
-									<a href="single.html">
-										<img src="images/a3.jpg" alt=" " class="img-responsive">
-									</a>
-								</td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value">
-												<span>1</span>
-											</div>
-											<div class="entry value-plus active">&nbsp;</div>
-										</div>
-									</div>
-								</td>
-								<td class="invert">Nikon Camera</td>
-								<td class="invert">$37,490</td>
-								<td class="invert">
-									<div class="rem">
-										<div class="close3"> </div>
-									</div>
-								</td>
-							</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>

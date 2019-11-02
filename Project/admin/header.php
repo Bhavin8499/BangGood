@@ -46,12 +46,12 @@
 <div class="agile-main-top">
 		<div class="container-fluid">
 			<div class="row main-top-w3l py-2">
-				<div class="col-lg-4 header-most-top">
+				<div class="col-md-4 col-md-6 header-most-top">
 					<p class="text-white text-lg-left text-center">B a n g G o o d s
 						<i class="fas fa-shopping-cart ml-1"></i>
 					</p>
 				</div>
-				<div class="col-lg-8 header-right mt-lg-0 mt-2">
+				<div class="col-md-6 header-right mt-lg-0 mt-2">
 					<!-- header lists -->
 					<ul>
 						<!--<li class="text-center border-right text-white">

@@ -32,19 +32,12 @@
 					<div class="grid images_3_of_2">
 						<div class="flexslider">
 						<ul class="slides">
-								<?php $image=Unserialize($pro->images);?>
-								<li data-thumb="<?php echo '.'.$image[0];?>" >
+								<?php $image=Unserialize($pro->images);
+									for($i=0;$i<count($image);$i++){?>
+								<li data-thumb="<?php echo '.'.$image[$i];?>" >
 									<div class="thumb-image">
-										<img src="<?php echo '.'.$image[0];?>"  data-imagezoom="true" class="img-fluid" alt="" > </div>
-								</li>
-								<li data-thumb="<?php echo '.'.$image[1];?>">
-									<div class="thumb-image">
-										<img src="<?php echo '.'.$image[1];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
-								</li>
-								<li data-thumb="<?php echo '.'.$image[2];?>">
-									<div class="thumb-image">
-										<img src="<?php echo '.'.$image[2];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
-								</li>
+										<img src="<?php echo '.'.$image[$i];?>"  data-imagezoom="true" class="img-fluid" alt="" > </div>
+									</li><?php } ?>
 							</ul>
 							<div class="clearfix"></div>
 						</div>
@@ -61,31 +54,6 @@
 					<div class="product-single-w3l">
 						<?php echo $pro->description;?>
 					</div>
-					<!--<div class="product-single-w3l">
-						<p class="my-3">
-							<i class="far fa-hand-point-right mr-2"></i>
-							<label>1 Year</label>Manufacturer Warranty</p>
-						<ul>
-							<li class="mb-1">
-								3 GB RAM | 16 GB ROM | Expandable Upto 256 GB
-							</li>
-							<li class="mb-1">
-								5.5 inch Full HD Display
-							</li>
-							<li class="mb-1">
-								13MP Rear Camera | 8MP Front Camera
-							</li>
-							<li class="mb-1">
-								3300 mAh Battery
-							</li>
-							<li class="mb-1">
-								Exynos 7870 Octa Core 1.6GHz Processor
-							</li>
-						</ul>
-						<p class="my-sm-4 my-3">
-							<i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
-						</p>
-					</div>-->
                         <div class="form-group form-inline col-md-3 col-md-6">
 							<form action="editProduct.php" method="post" >
 									<input type="hidden" name="pro_id" value="<?php echo $pro->pro_id;?>" />
@@ -99,42 +67,6 @@
 	</div>
 	<!-- //Single Page -->
 
-	<!-- middle section 
-	<div class="join-w3l1 py-sm-5 py-4">
-		<div class="container py-xl-4 py-lg-2">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="join-agile text-left p-4">
-						<div class="row">
-							<div class="col-sm-7 offer-name">
-								<h6>Smooth, Rich & Loud Audio</h6>
-								<h4 class="mt-2 mb-3">Branded Headphones</h4>
-								<p>Sale up to 25% off all in store</p>
-							</div>
-							<div class="col-sm-5 offerimg-w3l">
-								<img src="images/off1.png" alt="" class="img-fluid">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 mt-lg-0 mt-5">
-					<div class="join-agile text-left p-4">
-						<div class="row ">
-							<div class="col-sm-7 offer-name">
-								<h6>A Bigger Phone</h6>
-								<h4 class="mt-2 mb-3">Smart Phones 5</h4>
-								<p>Free shipping order over $100</p>
-							</div>
-							<div class="col-sm-5 offerimg-w3l">
-								<img src="images/off2.png" alt="" class="img-fluid">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- middle section -->
 
     <!-- footer -->
     <?php require_once('footer.php');?>

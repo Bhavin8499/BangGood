@@ -32,20 +32,23 @@
 				<div class="col-lg-5 col-md-8 single-right-left ">
 					<div class="grid images_3_of_2">
 						<div class="flexslider">
-							<ul class="slides">
-								<?php $image=Unserialize($pro->images);?>
-								<li data-thumb="<?php echo $image[0];?>" >
+						<ul class="slides">
+								<?php $image=Unserialize($pro->images);
+									for($i=0;$i<count($image);$i++){?>
+								<li data-thumb="<?php echo $image[$i];?>" >
 									<div class="thumb-image">
-										<img src="<?php echo $image[0];?>"  data-imagezoom="true" class="img-fluid" alt="" > </div>
-								</li>
-								<li data-thumb="<?php echo $image[1];?>">
+										<img src="<?php echo $image[$i];?>"  data-imagezoom="true" class="img-fluid" alt="" style='height:450px; max-height:90%; width:auto; max-width: 90%;' > 
+									</div>
+									</li>
+								<?php } ?>
+								<!--<li data-thumb="<?php // echo '.'.$image[1];?>">
 									<div class="thumb-image">
-										<img src="<?php echo $image[1];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
+										<img src="<?php //echo '.'.$image[1];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
 								</li>
-								<li data-thumb="<?php echo $image[2];?>">
+								<li data-thumb="<?php //echo '.'.$image[2];?>">
 									<div class="thumb-image">
-										<img src="<?php echo $image[2];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
-								</li>
+										<img src="<?php //echo '.'.$image[2];?>" data-imagezoom="true" class="img-fluid" alt=""> </div>
+								</li>-->
 							</ul>
 							<div class="clearfix"></div>
 						</div>
@@ -93,13 +96,14 @@
 								<fieldset>
 									<input type="hidden" name="cmd" value="_cart" />
 									<input type="hidden" name="add" value="1" />
-									<input type="hidden" name="business" value=" " />
-									<input type="hidden" name="item_name" value="Samsung Galaxy J7 Prime" />
-									<input type="hidden" name="amount" value="200.00" />
-									<input type="hidden" name="discount_amount" value="1.00" />
-									<input type="hidden" name="currency_code" value="USD" />
-									<input type="hidden" name="return" value=" " />
-									<input type="hidden" name="cancel_return" value=" " />
+									<input type="hidden" name="business" value="" />
+									<input type="hidden" name="item_name" value="<?php echo $pro->name;?>" />
+									<input type="hidden" name="amount" value="<?php echo $pro->mrp;?>" />
+									<input type="hidden" name="image_path" value="<?php echo $image[0];?>" />
+									<input type="hidden" name="discount_amount" value="" />
+									<input type="hidden" name="currency_code" value="INR" />
+									<input type="hidden" name="return" value="" />
+									<input type="hidden" name="cancel_return" value="" />
 									<input type="submit" name="submit" value="Add to cart" class="button" />
 								</fieldset>
 							</form>
@@ -158,7 +162,7 @@
 	<!-- //imagezoom -->
 
     	<!-- flexslider -->
-	<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 
 <script src="js/jquery.flexslider.js"></script>
 <script>

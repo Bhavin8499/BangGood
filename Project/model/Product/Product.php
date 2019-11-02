@@ -80,9 +80,7 @@
         {
             $query = "UPDATE ".Product::$table_name." SET name='".$this->name."',cat_id=".$this->cat_id.",mrp=".$this->mrp.",discount='".$this->discount."',description='".$this->description."',images='".$this->images."',qty=".$this->qty.",can_buy=".$this->can_buy.",tags='".$this->tags."' WHERE pro_id =".$this->pro_id;
 
-            
-            $update_id = $this->database->run_query($query);
-        
+            $update_id = $this->database->run_query($query);        
             
             return $update_id;
     
@@ -104,11 +102,9 @@
                 die("ERROR WHILE UPDATING PRODUCT QUANTITY: ".$this->connection->error);
         }
 
-
-
         function deleteProduct(){
 
-        	$query = "UPDATE product SET qty=0 WHERE pro_id = ?";
+        	$query = "UPDATE product SET qty=0 WHERE pro_id =".$this->pro_id;
             
             $update_id = $this->database->run_query($query);
         
@@ -126,6 +122,15 @@ function getAllProduct($columns='*')
  	$result_set = $dbObj->get_results($sql);
    
 	return $result_set;
+}
+function getProduct($columns='*',$cat_id){
+    $sql = "SELECT ".$columns." FROM  product WHERE cat_id= ".$cat_id;
+    
+    $dbObj = Database::getInstance();
+
+    $result_set = $dbObj->get_results($sql);
+
+    return $result_set;
 }
 function addProduct($args=array())
 {
