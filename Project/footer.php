@@ -124,6 +124,8 @@
 	<!-- js-files -->
 	<!-- jquery -->
 	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src = "js/jquery-ui.js"></script>
+      
 	<!-- //jquery -->
 
 	<!-- nav smooth scroll -->
@@ -180,8 +182,8 @@
 				total += items[i].get('quantity');
 			}
 
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+			if (total < 1) {
+				alert('The minimum order quantity is 1. Please add more to your shopping cart before checking out');
 				evt.preventDefault();
 			}
 		});

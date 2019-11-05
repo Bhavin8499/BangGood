@@ -22,25 +22,25 @@
 										<div class="col-sm-6 multi-gd-img">
 											<ul class="multi-column-dropdown">
 												<li>
-													<a href="product.html">All Mobile Phones</a>
+													<a href="product.php?search=All Mobile">All Mobile Phones</a>
 												</li>
 												<li>
-													<a href="product.html">All Mobile Accessories</a>
+													<a href="product.php?search=All Accessories">All Accessories</a>
 												</li>
 												<li>
-													<a href="product.html">Cases & Covers</a>
+													<a href="product.php?search=cover">Cases & Covers</a>
 												</li>
 												<li>
-													<a href="product.html">Screen Protectors</a>
+													<a href="product.php?search=ScreenGard">Screen Protectors</a>
 												</li>
 												<li>
-													<a href="product.html">Power Banks</a>
+													<a href="product.php?search=PowerBank Accessories">Power Banks</a>
 												</li>
 												<li>
 													<a href="product.html">All Certified Refurbished</a>
 												</li>
 												<li>
-													<a href="product.html">Tablets</a>
+													<a href="product.php?serch=Tablet">Tablets</a>
 												</li>
 												<li>
 													<a href="product.html">Wearable Devices</a>
@@ -53,19 +53,19 @@
 										<div class="col-sm-6 multi-gd-img">
 											<ul class="multi-column-dropdown">
 												<li>
-													<a href="product.html">Laptops</a>
+													<a href="product.php?search=All Laptop">Laptops</a>
 												</li>
 												<li>
-													<a href="product.html">Drives & Storage</a>
+													<a href="product.php?search=MemoryCard HardDisk">Drives & Storage</a>
 												</li>
 												<li>
-													<a href="product.html">Printers & Ink</a>
+													<a href="product.php?search=">Printers & Ink</a>
 												</li>
 												<li>
-													<a href="product.html">Networking Devices</a>
+													<a href="product.php?seach=">Networking Devices</a>
 												</li>
 												<li>
-													<a href="product.html">Computer Accessories</a>
+													<a href="product.php?search=Computer Accessories">Computer Accessories</a>
 												</li>
 												<li>
 													<a href="product.html">Game Zone</a>

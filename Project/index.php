@@ -23,10 +23,6 @@
     <?php require_once('nevigation.php');?>
 	<!-- //navigation -->
 
-	<!-- banner -->
-	<?php //require_once("banner.php")?>
-	<!-- //banner -->
-
 	<!-- top Products -->
 	<?php		$result_set=getRecentProduct('pro_id,name,mrp,images,discount',1);
 	?>
@@ -47,10 +43,9 @@
 							<?php for($i=0;$i<4;$i++) {?>
 								<div class="col-md-3 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
-										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">
-												
+										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">			
 												<?php $image=Unserialize($result_set[$i]['images']);?>
-											<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' >
+											<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' />
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
@@ -87,49 +82,49 @@
 
 							
 						<!-- second section -->
-						<?php		$result_set=getRecentProduct('pro_id,name,mrp,images,discount',2);	?>
-					<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
-						<h3 class="heading-tittle text-center font-italic">Laptop</h3>
-					<div class="row">
-							<?php for($i=0;$i<4;$i++)	{?>
-							<div class="col-md-3 product-men mt-5">
-							<div class="men-pro-item simpleCart_shelfItem">
-							<?php $image=Unserialize($result_set[$i]['images']);?>
-							<div class="men-thumb-item text-center">
-							<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>" style='height:auto; max-height:90%; width:auto; max-width: 90%;'>
-							</div>
-							<div class="item-info-product text-center border-top mt-4">
-  	    						<h4 class="pt-1">
-									<a href="single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
-								</h4>
-							<div class="info-product-price my-2">
-								<span class="item_price"><?php echo $result_set[$i]['mrp'];?></span>
-									<del><?php echo $result_set[$i]['mrp']+500;?></del>
-							</div>
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-							<form action="#" method="post">
-								<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value="" />
-										<input type="hidden" name="item_name" value="<?php echo "".ucfirst($result_set[$i]['name']);?>" />
-										<input type="hidden" name="image_path" value="<?php echo $image[0];?>" />
-										<input type="hidden" name="amount" value="<?php echo $result_set[$i]['mrp'];?>" />
-										<input type="hidden" name="discount_amount" value="<?php echo $result_set[$i]['discount'];?>" />
-										<input type="hidden" name="currency_code" value="INR" />
-										<input type="hidden" name="return" value="" />
-										<input type="hidden" name="cancel_return" value="" />
-										<input type="submit" name="submit" value="Add to cart" class="button btn" />
-								</fieldset>
-							</form>
-							</div>
-							</div>
-							</div>
-						</div>	
-						<?php } ?>
+						<?php		$result_set=getRecentProduct('pro_id,name,mrp,images,discount',2);?>
+						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+							<h3 class="heading-tittle text-center font-italic">Laptop</h3>
+							<div class="row">
+							<?php for($i=0;$i<4;$i++) {?>
+								<div class="col-md-3 product-men mt-5">
+									<div class="men-pro-item simpleCart_shelfItem">
+										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">
+												
+												<?php $image=Unserialize($result_set[$i]['images']);?>
+											<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' />
+										</div>
+										<div class="item-info-product text-center border-top mt-4">
+											<h4 class="pt-1">
+												<a href="./single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
+											</h4>
+											<div class="info-product-price my-2">
+												<span class="item_price"><?php echo "".$result_set[$i]['mrp'];?></span> INR
+												<del><?php echo "".$result_set[$i]['mrp']+500;?></del>
+											</div>
+											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="hidden" name="cmd" value="_cart" />
+														<input type="hidden" name="add" value="1" />
+														<input type="hidden" name="business" value="" />
+														<input type="hidden" name="item_name" value="<?php echo "".ucfirst($result_set[$i]['name']);?>" />
+														<input type="hidden" name="amount" value="<?php echo $result_set[$i]['mrp'];?>" />
+														<input type="hidden" name="image_path" value="<?php echo $image[0];?>" />
+														<input type="hidden" name="discount_amount" value="<?php echo $image[0];?>" />
+														<input type="hidden" name="currency_code" value="INR" />
+														<input type="hidden" name="return" value="" />
+														<input type="hidden" name="cancel_return" value="" />
+														<input type="submit" name="submit" value="Add to cart" class="button btn" />
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<?php } ?>
+						</div>
 					</div>
-					</div>
-
 						<!-- //second section -->
 
 						<!-- third section 
@@ -145,23 +140,25 @@
 						<!-- //third section -->
 						
 						<!-- fourth section -->
-						<?php //require_once("forth_section.php")?>
-				<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mt-4">
-				<h3 class="heading-tittle text-center font-italic">Large Appliances</h3>
-					<div class="row">
-						<?php for($i=1;$i<=4;$i++) {?>
+					<?php $result_set=getRecentProduct('pro_id,name,mrp,images,discount',3);?>
+						<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+							<h3 class="heading-tittle text-center font-italic">Accessories</h3>
+							<div class="row">
+							<?php for($i=0;$i<4;$i++) {?>
 								<div class="col-md-3 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
-										<div class="men-thumb-item text-center">
-											<img src="images/m7.jpg" alt="">
+										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">
+												
+												<?php $image=Unserialize($result_set[$i]['images']);?>
+											<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' />
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
-												<a href="single.html">Whirlpool 245</a>
+												<a href="./single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price">$230.00</span>
-												<del>$280.00</del>
+												<span class="item_price"><?php echo "".$result_set[$i]['mrp'];?></span> INR
+												<del><?php echo "".$result_set[$i]['mrp']+500;?></del>
 											</div>
 											<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 												<form action="#" method="post">
@@ -169,22 +166,23 @@
 														<input type="hidden" name="cmd" value="_cart" />
 														<input type="hidden" name="add" value="1" />
 														<input type="hidden" name="business" value="" />
-														<input type="hidden" name="item_name" value="Whirlpool 245" />
-														<input type="hidden" name="amount" value="230.00" />
-														<input type="hidden" name="discount_amount" value="" />
-														<input type="hidden" name="currency_code" value="USD" />
+														<input type="hidden" name="item_name" value="<?php echo "".ucfirst($result_set[$i]['name']);?>" />
+														<input type="hidden" name="amount" value="<?php echo $result_set[$i]['mrp'];?>" />
+														<input type="hidden" name="image_path" value="<?php echo $image[0];?>" />
+														<input type="hidden" name="discount_amount" value="<?php echo $image[0];?>" />
+														<input type="hidden" name="currency_code" value="INR" />
 														<input type="hidden" name="return" value="" />
 														<input type="hidden" name="cancel_return" value="" />
 														<input type="submit" name="submit" value="Add to cart" class="button btn" />
-														</fieldset>
-													</form>
-												</div>
+													</fieldset>
+												</form>
 											</div>
 										</div>
 									</div>
+								</div>
 								<?php } ?>
-								</div>			
-							</div>
+						</div>
+					</div>
 						<!-- //fourth section -->
 						</div>
 					</div>
@@ -243,6 +241,7 @@
 			</div>
 		</div>
 	
+	<!-- footer -->
 	<?php require_once('footer.php');?>
 	<!-- //footer -->
 

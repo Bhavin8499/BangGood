@@ -33,6 +33,8 @@
 	<!-- pop-up-box -->
 	<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
 	<!-- menu style -->
+	<link href = "css/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
+	<!--jquery style-->
 	<!-- //Custom-Files -->
 
 	<!-- web fonts -->
@@ -106,10 +108,8 @@
 						<li class="text-center border-right text-white">
 							<i class="fas fa-phone mr-2"></i> 12345 67890
 						</li>
-					
 						<li class="text-center border-right text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-								<i class="fas fa-sign-in-alt mr-2"></i> Log Out </a>
+							<a href="logout.php"  class="text-white"><i class="fas fa-sign-in-alt mr-2"></i> Log Out </a>
 						</li>
 					</ul>
 					<!-- //header lists -->
@@ -137,10 +137,10 @@
 				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
 					<div class="row">
 						<!-- search -->
-						<div class="col-10 agileits_search">
-							<form class="form-inline" action="#" method="post">
-								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
-								<button class="btn my-2 my-sm-0" type="submit">Search</button>
+						<div class="col-10 agileits_search" >
+							<form  action="product.php" method="POST" class="form-inline" >
+								<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" required>
+								<button class="btn my-2 my-sm-0" type="submit"  id="search_button" >Search</button>
 							</form>
 						</div>
 						<!-- //search -->

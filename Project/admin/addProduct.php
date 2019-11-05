@@ -130,6 +130,7 @@
                                <option value=NULL>Select Category</option>
                                <option value=1>Mobile</option>
                                <option value=2>Laptop</option>
+                               <option value=3>Accessories</option>
                              </select>
                         </div>
 						<div class="form-group ">

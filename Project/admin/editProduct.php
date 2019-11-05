@@ -152,6 +152,7 @@
                                <option value=NULL>Select Category</option>
                                <option value=1 <?php echo ($pro->cat_id =='1' ? 'selected' : '');?>>Mobile</option>
                                <option value=2 <?php echo ($pro->cat_id =='2' ? 'selected' : '');?>>Laptop</option>
+                               <option value=3 <?php echo ($pro->cat_id =='3' ? 'selected' : '');?>>Accessories</option>
                              </select>
                         </div>
 						<div class="form-group ">

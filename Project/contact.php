@@ -6,25 +6,14 @@
 	<?php require_once('header.php');?>
 	<!-- //top-header -->
     
+	<!-- log in -->
+    <?php require_once('login.php');?>
+    <!-- // log in -->
+	
 	<!-- navigation -->
         <?php require_once('nevigation.php')?>
 	<!-- //navigation -->
 	
-	<!-- page -->
-	<div class="services-breadcrumb">
-		<div class="agile_inner_breadcrumb">
-			<div class="container">
-				<ul class="w3_short">
-					<li>
-						<a href="index.html">Home</a>
-						<i>|</i>
-					</li>
-					<li>Contact Us</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- //page -->
 
 	<!-- contact -->
 	<div class="contact py-sm-5 py-4">

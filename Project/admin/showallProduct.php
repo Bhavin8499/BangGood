@@ -54,6 +54,7 @@
                             <option value='ALL' >ALL</option>
                             <option value=1 <?php if(isset($_REQUEST['pro_category'])){echo ($_REQUEST['pro_category']=='1' ? 'selected' : '');}?>>MOBILE</option>
                             <option Value=2 <?php if(isset($_REQUEST['pro_category'])){echo ($_REQUEST['pro_category']=='2' ? 'selected' : '');}?>>LAPTOP</option>
+                            <option Value=3 <?php if(isset($_REQUEST['pro_category'])){echo ($_REQUEST['pro_category']=='3' ? 'selected' : '');}?>>ACCESSORIES</option>
                           </select>
                         </div>
                     </div>     
@@ -79,8 +80,8 @@
 						</div>
                     </div>
                     <div class='col-md-6 col-md-12 mb-2'>
-					<a href="editProduct.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="edit_Pro" value="Edit Product" class="button btn btn-secondary" /></a>
-                    <a href="?pro_del=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="pro_del" value="Delete Product" class="button btn btn-danger" /></a>
+					<a href="editProduct.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="edit_Pro" value="Edit Product" class="button btn btn-secondary btn-sm" /></a>
+                    <a href="?pro_del=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="pro_del" value="Delete Product" class="button btn btn-danger btn-sm" /></a>
                     </div>
 				    </div>
 			        </div>

@@ -30,7 +30,8 @@
 	
 	unset($_POST['login_user']);
 
-	}
+	header('refresh:1');
+}
 ?>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
