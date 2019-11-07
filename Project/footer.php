@@ -164,6 +164,35 @@
 		});
 	</script>
 	<!-- //popup modal (for location)-->
+	<script>
+	function addToCart(pro_id){
+			var user_id = '<?php if(isset($_SESSION['user_id'])) { echo $_SESSION['user_id'] ;}else{ echo "abc" ;}?>';
+			if(user_id!='abc')
+			{
+				var action = 'insert_cart';
+				var type = 'cart';
+				var pro_id = pro_id.value;
+				//alert(user_id+"-"+pro_id.value);
+				$.ajax({
+				url:"model/Cart/Cart.php",
+				method:"POST",
+				data:{action:action,user_id:user_id,pro_id:pro_id,type:type},
+				success:function(data){
+					alert("Product Added To Your Cart List");
+				},
+				error: function(errorThrown){
+        			alert(errorThrown);
+        			alert("There is an error with AJAX!");
+    			}               
+
+			});
+			}
+			else
+			{
+				alert("Please Login ! ");
+			}
+	 }
+	</script>
 
 	<!-- cart-js -->
 	<script src="js/minicart.js"></script>
@@ -203,21 +232,6 @@
 			}
 		});
 	});
-	 $(document).ready(function(){
-		$('#_addToCart').click(function(e){
-			var session = '<?php if(isset($_SESSION['user_id'])) { echo $_SESSION['user_id'] ;}else{ echo "abc" ;}?>';
-			if(session!='abc')
-			{
-
-			}
-			else
-			{
-				alert("Please Login !");
-				e.preventDefault();
-			}
-		});
-	 });
-	
 	</script>
 
 	<!-- //cart-js -->

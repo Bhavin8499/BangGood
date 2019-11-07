@@ -13,6 +13,7 @@ class Cart{
     public $cart_id=0;
     public $name=""; // it could be wishlist/cart
     public $value="";
+    
     public $result_set;
     public $connection;
     public $database;
@@ -55,12 +56,16 @@ class Cart{
             }
         }
 
+        $value = array_values($value);
+
         //print_r($value);
 
-        $this->value = json_encode($value);
+        $this->value = json_encode($value,true) ;
 
         $query = "UPDATE cart set value = '".$this->value."' WHERE cart_id =".$this->cart_id;
-    
+        
+        //echo $query;
+
         $update_id = $this->database->run_query($query);
 
         return $update_id;  
@@ -75,7 +80,7 @@ class Cart{
         
         foreach($value as $key=>$row){
             if($row['pro_id'] == $proct_id){
-                $value[$key]['qty'] = $qty;
+                $value[$key]['qty'] = (int)$qty;
                 //echo "true";
                 $flag=1;
             }
@@ -83,13 +88,14 @@ class Cart{
         
         $value = json_encode($value);
 
-        $cart->value = $value;
+        $this->value = $value;
 
-        $query = "UPDATE cart set value = '".$value."' WHERE cart_id =".$cart->cart_id;
+        $query = "UPDATE cart set value = '".$this->value."' WHERE cart_id =".$cart_id;
     
-        $update_id = $cart->database->run_query($query);
+        //echo $query;
+        $update_id = $this->database->run_query($query);
 
-        echo $update_id;  
+        return $update_id;  
     }
 
     function getWishlist(){
@@ -154,13 +160,27 @@ function addProductCart($user_id,$type,$product)
         return $insert_id;  
     }
 }
+/// --------------- DONT CHANGE THE BELLOW CODE ITS FOR AJAX -------------------////
+
 if(isset($_POST['action']))
 {
-   $user_id=$_POST['user_id'];
-   $qty=$_POST['qty'];
-   $cart_id=$_POST['cart_id'];
-   $cart =new Cart($user_id);
-   $cart->updateQuantity($cart_id,$proct_id,$qty);
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "ERROR";
+    $pro_id = isset($_POST['pro_id']) ? $_POST['pro_id'] : "ERROR";
+    
+    if($_POST['action']=='update_quantity')
+    {
+        $qty = isset($_POST['qty']) ? $_POST['qty'] : "ERROR";
+        $cart_id = isset($_POST['cart_id']) ?  $_POST['cart_id'] : "ERROR";
+        $cart = new Cart($user_id);
+        $cart->updateQuantity($cart_id,$pro_id,$qty);
+    }
+    if($_POST['action']=='insert_cart')
+    {
+        $type = isset($_POST['type']) ? $_POST['type'] : "ERROR" ;
+        $product=array("pro_id"=>$pro_id,"qty"=>1);
+        $result_set=addProductCart($user_id,$type,$product);
+        echo $result_set;
+    }
 }
 
 
@@ -185,15 +205,22 @@ for($i=0;$i<count($p);$i++)
 
 
 foreach($p as $key=>$row){
-    if($row['pro_id'] == 3){
-      //unset($p[$key]);
+    if($row['pro_id'] == 2){
+      unset($p[$key]);
     }
 }        
-
+echo "<br>";
 print_r($p);
 */
 
 // $p=array("pro_id"=>2,"qty"=>1);
 // $r=addProductCart(1,"cart",$p);
 // echo $r;
+
+//$cart = new Cart(1);
+//$r=$cart->getCart();
+//print_r($r);
+//$cart->deleteProduct(8);*/
+//$cart->updateQuantity(4,11,3);
+
 ?>

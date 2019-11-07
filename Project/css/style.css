@@ -457,7 +457,7 @@ h3.tittle-w3l span {
     outline: none;
 }
 
-.snipcart-details input.button {
+.snipcart-details input.button ,.snipcart-details button{
     font-size: 13px;
     color: #fff;
     background: #0879c9;
@@ -480,7 +480,7 @@ h3.tittle-w3l span {
     -ms-transition: 0.5s all;
 }
 
-.snipcart-details input.button:hover {
+.snipcart-details input.button:hover , .snipcart-details button:hover {
     background: #000;
 }
 
