@@ -444,14 +444,6 @@ $(document).ready(function(){
 			 return filter;
 		}
 
-			// if ($('.cat').is(':checked')) {
-			// 	$( "#mrp_range" ).slider("enable", false );
-			// }
-			// else
-			// {
-			// 	$( "#mrp_range" ).slider("disable", true );
-			// }
-
 		$('.common-selector').click(function(){
 			//filter_data();
 			if ($('.cat').is(':checked')) {

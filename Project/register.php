@@ -1,4 +1,7 @@
-<?php include("header.php"); ?>
+<?php 
+$title="Register";
+include("header.php");
+include("login.php"); ?>
 <?php include("nevigation.php"); ?>
 <?php
 if(!function_exists("register_new_user")){

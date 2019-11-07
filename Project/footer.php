@@ -168,31 +168,63 @@
 	<!-- cart-js -->
 	<script src="js/minicart.js"></script>
 	<script>
-		paypals.minicarts.render(); 
-		//use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
+		// paypals.minicarts.render(); 
+		// //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
 
-		paypals.minicarts.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
+		// paypals.minicarts.cart.on('checkout', function (evt) {
+		// 	var items = this.items(),
+		// 		len = items.length,
+		// 		total = 0,
+		// 		i;
 
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
+		// 	// Count the number of each item in the cart
+		// 	for (i = 0; i < len; i++) {
+		// 		total += items[i].get('quantity');
+		// 	}
+
+		// 	if (total < 1) {
+		// 		alert('The minimum order quantity is 1. Please add more to your shopping cart before checking out');
+		// 		evt.preventDefault();
+		// 	}
+		// });
+	</script>
+	<script>
+	$(document).ready(function(){
+		$('#submit_cart').click(function(){
+			var session = '<?php if(isset($_SESSION['user_id'])) { echo $_SESSION['user_id'] ;}else{ echo "abc" ;}?>';
+			if(session!='abc')
+			{
+				//alert('abc');
+				window.location = "cart.php";
 			}
-
-			if (total < 1) {
-				alert('The minimum order quantity is 1. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
+			else
+			{
+				alert("Please Login !");
 			}
 		});
+	});
+	 $(document).ready(function(){
+		$('#_addToCart').click(function(e){
+			var session = '<?php if(isset($_SESSION['user_id'])) { echo $_SESSION['user_id'] ;}else{ echo "abc" ;}?>';
+			if(session!='abc')
+			{
+
+			}
+			else
+			{
+				alert("Please Login !");
+				e.preventDefault();
+			}
+		});
+	 });
+	
 	</script>
+
 	<!-- //cart-js -->
 
 	<!-- password-script -->
 	<script>
-		window.onload = function () {
+		window = function () {
 			document.getElementById("password1").onchange = validatePassword;
 			document.getElementById("password2").onchange = validatePassword;
 		}
