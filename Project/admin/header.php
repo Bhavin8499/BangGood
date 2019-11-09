@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <head>
 	<title> <?php echo $title; ?> </title>
 	
@@ -66,7 +69,7 @@
 							<i class="fas fa-phone mr-2"></i> 001 234 5678
 						</li>-->
 						<li class="text-center border-right text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
+							<a href="logout.php" class="text-white">
 								<i class="fas fa-sign-out-alt mr-2"></i> Log Out </a>
 						</li>
 						<li class="text-center text-white">

@@ -70,7 +70,7 @@
                                $p[$i] = new Product($result_set[$i]['pro_id']);
                                ?>
                                         <tr class="rem1">
-                                        <td class="invert"><?php echo $i+1;    ?></td>
+                                        <td class="invert"><?php echo $i+1;?></td>
                                         <td class="invert-image" >
                                             <a href="single.php?pro_id=<?php echo $p[$i]->pro_id;?>">
                                                 <?php $image = Unserialize($p[$i]->images);?>
@@ -78,13 +78,13 @@
                                             </a>
                                         </td>
                                         <td class="invert">
-                                            <input type='number' name='quantity' value="<?php echo $result_set[$i]['qty']; ?>" min="1" class='qty' style="width:auto; max-width:100px;" onclick='updateQty(this,<?php echo $p[$i]->pro_id;?>)' /><br />
+                                            <input type='number' name='quantity' value="<?php echo $result_set[$i]['qty']; ?>" min="1" class='qty' style="width:auto; max-width:100px;" onclick='updateQty(this,<?php echo $p[$i]->pro_id;?>,<?php echo $p[$i]->mrp; ?>)' /><br />
                                             <input type='hidden' name='pro_id' value='<?php echo $result_set[$i]['pro_id']; ?>' onclick='this' class='pro_id' />
                                             <input style="font-size:1em; margin:0; padding:0; border:0; background-color:White;" name="btnUpdateCart" type="submit" value="Restock" />
                                         </td>
                                         <td class="invert"><?php echo $p[$i]->name; ?></td>
                                         <td class="invert"><?php echo $p[$i]->mrp; ?></td>
-                                        <td class="invert"></td>
+                                        <td class="invert"> <p><span id="tot_mrp<?php echo $p[$i]->pro_id;?>"> <?php echo $result_set[$i]['qty']*$p[$i]->mrp; ?> </span></p></td>
                                         <td class="invert">
                                         <a href="cart.php?delProduct=YES&pro_id=<?php echo $p[$i]->pro_id; ?>"> <div class="rem">
                                         <div class="close1"> </div>
@@ -126,14 +126,16 @@
 <?php include_once('footer.php'); ?>
 	
     <script>
-        function updateQty(qty,pro_id)
+        function updateQty(qty,pro_id,mrp)
         {
             if(qty.value>=1)
             {
                 var action = 'update_quantity';
                 var cart_id = '<?php echo $cart->cart_id; ?>';
                 var user_id = '<?php echo $cart->user_id; ?>';
+                var mrp = mrp;
                 var pro_id = pro_id;
+                //alert(mrp);
                 //alert(qty.value+"*--*"+pro_id+"*--*"+user_id+"**--*"+cart_id);
                 $.ajax({
                 	url:"model/Cart/Cart.php",
@@ -147,6 +149,9 @@
                 		alert("There is an error with AJAX!");
                 	}
                 });
+                var tot_mrp = mrp * qty.value;
+                document.getElementById("tot_mrp"+pro_id).innerHTML = tot_mrp;
+                        
             }
         }
 		$('.value-minus').on('click', function () {

@@ -1,7 +1,14 @@
 <!doctype html>
 <html lang="en">
 <?php
-    require_once(dirname(__FILE__)."/../model/Product/Product.php");
+    if(!class_exists("Product")){
+        require_once(dirname(__FILE__)."/../model/Product/Product.php");
+    }
+    if(!function_exists('upload_image'))
+    {
+        include(dirname(__FILE__)."/../helper_functions.php");
+    }
+    
     if(isset($_POST['pro_submit']))
     {
             //$pro=new Product();
@@ -12,70 +19,69 @@
             // $tags       =$_POST['pro_tags'];
             // $discount   =$_POST['pro_discount'];
             // $qty        =$_POST['pro_quantity'];
-                $errors = array();
-				$uploadedFiles = array();
-				$extension = array("jpeg","jpg","png","gif");
-				$bytes = 1024;
-				$KB = 1024;
-				$totalBytes = $bytes * $KB;
-				$UploadFolder = "./images";
-				$imagesDB="";
-				$counter = 0;
-				
-				foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
-					$temp = $_FILES["files"]["tmp_name"][$key];
-					$name = $_FILES["files"]["name"][$key];
-					if(empty($temp)){break;}
-					
-					$counter++;
-					$UploadOk = true;
-					
-					if($_FILES["files"]["size"][$key] > $totalBytes)
-					{
-						$UploadOk = false;
-						array_push($errors, $name." file size is larger than the 1 MB.");
-					}
-					
-					$ext = pathinfo($name, PATHINFO_EXTENSION);
-					if(in_array($ext, $extension) == false){
-						$UploadOk = false;
-						array_push($errors, $name." is invalid file type.");
-					}
-					
-					if(file_exists($UploadFolder."/".$name) == true){
-						$UploadOk = false;
-						array_push($errors, $name." file is already exist.");
-					}
-					
-					if($UploadOk == true){
-						move_uploaded_file($temp,".".$UploadFolder."/".$name);
-						//echo $UploadFolder."/".$name;
-						array_push($uploadedFiles, $UploadFolder."/".$name);
-					}
-				}
-				if($counter>0){
-					if(count($errors)>0)
-					{
-						echo "<b>Errors:</b>";
-						echo "<br/><ul>";
-						foreach($errors as $error)
-						{
-							echo "<li>".$error."</li>";
-						}
-						echo "</ul><br/>";
-					}
-					//print_r($uploadedFiles);
-                    $imagesDB=serialize($uploadedFiles);
-                    //echo "<br>";
-					//print_r($imagesDB);
-					//$imagesDB=Unserialize($imagesDB);echo "<br>";
-					//print_r($imagesDB);
-				}
-				else{
-					echo "Please, Select file(s) to upload.";
-				}
-				
-
+            $errors = array();
+            $uploadedFiles = array();
+            $extension = array("jpeg","jpg","png","gif");
+            $bytes = 1024;
+            $KB = 1024;
+            $totalBytes = $bytes * $KB;
+            $UploadFolder = "./images";
+            $imagesDB="";
+            $counter = 0;
+            
+            foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
+                $temp = $_FILES["files"]["tmp_name"][$key];
+                $name = $_FILES["files"]["name"][$key];
+                if(empty($temp)){break;}
+                
+                $counter++;
+                $UploadOk = true;
+                
+                if($_FILES["files"]["size"][$key] > $totalBytes)
+                {
+                    $UploadOk = false;
+                    array_push($errors, $name." file size is larger than the 1 MB.");
+                }
+                
+                $ext = pathinfo($name, PATHINFO_EXTENSION);
+                if(in_array($ext, $extension) == false){
+                    $UploadOk = false;
+                    array_push($errors, $name." is invalid file type.");
+                }
+                
+                if(file_exists($UploadFolder."/".$name) == true){
+                    $UploadOk = false;
+                    array_push($errors, $name." file is already exist.");
+                }
+                
+                if($UploadOk == true){
+                    move_uploaded_file($temp,".".$UploadFolder."/".$name);
+                    //echo $UploadFolder."/".$name;
+                    array_push($uploadedFiles, $UploadFolder."/".$name);
+                }
+            }
+            if($counter>0){
+                if(count($errors)>0)
+                {
+                    echo "<b>Errors:</b>";
+                    echo "<br/><ul>";
+                    foreach($errors as $error)
+                    {
+                        echo "<li>".$error."</li>";
+                    }
+                    echo "</ul><br/>";
+                }
+                //print_r($uploadedFiles);
+                $imagesDB=serialize($uploadedFiles);
+                //echo "<br>";
+                //print_r($imagesDB);
+                //$imagesDB=Unserialize($imagesDB);echo "<br>";
+                //print_r($imagesDB);
+            }
+            else{
+                echo "Please, Select file(s) to upload.";
+            }
+			
             $description=$_POST['pro_discription'];
             $description = preg_replace("/\s+|\n+|\r/", ' ', $description);
             $can_buy    =$_POST['pro_canbuy'];

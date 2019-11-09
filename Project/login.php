@@ -27,6 +27,14 @@
     }
 	
 	$_SESSION["user_id"] = $user->user_id;
+	if($user->role=="customer")
+	{
+		echo "<script>window.location = \"index.php\";</script>";
+	}
+	else if($user->role=="admin")
+	{
+		echo "<script>window.location = \"admin\/index.php\";</script>";
+	}
 	
 	unset($_POST['login_user']);
 

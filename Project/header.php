@@ -1,8 +1,10 @@
+<?php 
+	session_start();
+?>
 <head>
+
 	<title> 
-	<?php
-	session_start(); 
-	echo $title; ?>
+	<?php echo $title; ?>
 	 </title>
 	
 	<link rel = "icon" type = "image/png" href = "./images/logo2.png">

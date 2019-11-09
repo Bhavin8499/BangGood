@@ -1,142 +1,6 @@
 <!doctype html>
 <html lang="en">
-<?php
-if(isset($_POST['pro_update']))
-    {
-           
-            $id     =$_POST['id'];
-            $cat_id     =$_POST['pro_cat'];
-            $name       =$_POST['pro_name'];
-            $mrp        =$_POST['pro_price'];
-
-            $description=$_POST['pro_discription'];
-            $description = preg_replace("/\s+|\n+|\r/", ' ', $description);
-            //echo htmlspecialchars($description);
-        
-            $tags       =$_POST['pro_tags'];
-            $discount   =$_POST['pro_discount'];
-            $qty        =$_POST['pro_quantity'];
-            $can_buy    =$_POST['pro_canbuy'];
-
-            if($can_buy=='on')
-                    $can_buy=1;
-            else
-                    $can_buy=0;
-            
-            $images='./images/n6_1p.jpg';
-
-            echo "<br>".$id;
-            echo "<br>".$cat_id;echo "<br>".$name ;echo "<br>".$mrp ;
-            echo htmlspecialchars($description);echo "<br>".$tags;echo "<br>".$discount;echo "<br>".$qty;echo "<br>".$can_buy;
-           // $pro->updateProduct($name, $cat_id,$mrp, $discount, $description,$images,$qty,$can_buy,$tags,$pro_id);
-            //header('location:editProduct.php?pro_id='.$id);
-          
-    }
-    else
-    {
-        echo "<h1>UPDATE NAI THYU</h1>";
-    }
-?>
-<?php  $title = "Product"; ?>
-
-<!-- top-header -->
-    <?php	require_once('header.php');?>
-<!-- //top-header -->
-
-<!-- navigation -->
-<?php require_once('nevigation.php');?>
-<!-- //navigation -->
-<section id="ps-container" class="ps-container">
-
-<div class="tab-content ml-1" id="myTabContent">
-                                    <div class="<% Response.Write(classLink1); %>" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
-                                            <div style="margin:50px;">
-                                                <div style="width:98%; box-shadow:-1px 1px 1px 1px Gray;" class="table-responsive">
-                                                <table class="timetable_sub">
-                                                    <tr style="border-bottom:1px;"><H5 style="font-size:medium; margin:20px; margin-top:30px;">Order No. :</H5></tr>
-                                                    <tr>
-                                                        <td><div style="width:150px; margin:10px;"><a href="#"><img src="../images/products/" style="width:50%;"/></a></div></td>
-                                                        
-                                                        <td style="width:200px;"><b></b><br /><span style="color:Gray; font-size:x-small;">Type :</span></td>
-                                                        
-                                                        <td style="width:100px;"><b><br /> x &nbsp; <br />_____________<br /></b></td>
-                                                        
-                                                        <td> <br />____________________________________________________<br /><br />____________________________________________________<br /></td>
-                                                        <td style="width:100px;"><b><a href="">Edit Shipping Details</a></b></td>
-                                                        
-                                                    </tr>
-                                                </table>
-                                                </div>     
-                                            </div>
-
-
-                                            <div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4" style="width:98%">
-					<div class="row">
-					<div class="col-md-4 product-men">
-               
-                    <div class="col-md-4 product-men mt-md-0 mt-5">
-                <div class="men-pro-item simpleCart_shelfItem">
-					<div class="men-thumb-item text-center" >
-					<div style="height:250px; width:auto;">
-				<img src='../images/products/" +  "' style='height:auto; max-height:90%; width:auto; max-width: 90%;' alt=''>
-						</div><div class="men-cart-pro">
-						<div class="inner-men-cart-pro">
-				    		<a href="" class="link-product-add-cart">Quick Edit</a>
-						</div>
-						</div>
-					</div>
-					<div class="item-info-product text-center border-top mt-4">
-						<h4 class="pt-1">
-						</h4>
-						<div class="info-product-price my-2">
-							<span class="item_price"></span>
-							<del></del>
-						</div>
-						<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out" style="width:50%;">
-						<a href=""><input type="button" name="submit" value="Edit Product" class="button btn" /></a>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-        
-                </div>
-                </div>
-             </div>
-              </div>  
-
-                                        <!--
-                                        <div style="margin:50px;">
-                                            <div style="width:98%; box-shadow:-1px 1px 1px 1px Gray;" class="table-responsive">
-                                            <table class="timetable_sub">
-                                                <tr style="border-bottom:1px;"><H5 style="font-size:medium; margin:20px; margin-top:30px;">Order No. : 78945612123</H5></tr>
-                                                <tr>
-                                                    <td><div style="width:150px; margin:10px;"><a href="#"><img src="images/product images/p3.jpeg" style="width:50%;"/></a></div></td>
-                                                    
-                                                    <td style="width:200px;"><b>Oppo F7</b><br /><span style="color:Gray; font-size:x-small;">Color : Grey</span></td>
-                                                    
-                                                    <td style="width:100px;"><b>$12364 <br /> x &nbsp; 5<br />_____________<br />50005</b></td>
-                                                    
-                                                    <td>Kishan Jinjariya<br />____________________________________________________<br />"Shakti Nivas", Chamunda Soc., Opp. Ranchhoddas Ashram, Kuvadava Road, Rajkot.<br />____________________________________________________<br />9913829112</td>
-                                                    <td style="width:100px;"><b><a href="TrackOrder.aspx">Edit Shipping Details</a></b></td>
-                                                    
-                                                </tr>
-                                            </table>
-                                            </div>
-                                         </div>
-                                         -->
-                                    </div>
-    
-<!--<form action="#" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload" multiple="true">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
-///////////////////////////////////////////////////////
-     footer -->
-   
-and you must check your HTML code
-
+<body>
 <form action="temp.php" method="post" enctype="multipart/form-data">
     <table width="100%">
         <tr>
@@ -147,17 +11,200 @@ and you must check your HTML code
             <td colspan="2" align="center">Note: Supported image format: .jpeg, .jpg, .png, .gif</td>
         </tr>
         <tr>
-            <td colspan="2" align="center"><input type="submit" value="Create Gallery" id="selectedButton"/></td>
+            <td colspan="2" align="center"><input type="submit" name="submit"/></td>
         </tr>
     </table>
 </form>
 
 
-    <?php require_once('footer.php');?>
-	<!-- //footer -->
+    <!-- //footer -->
 </body>
 </html>	
 <?php
+$img_db=array();
+$i=0;
+    
+    print_r($img_db);
+    if(isset($_POST['submit']))
+    {
+        upload_image();
+    }
+
+function upload_image($image_for = "product")
+{
+    $dirname = "";
+    $filepath = "";
+
+    switch ($image_for){
+        case "product" :
+            $filepath = "\images\product\\";
+            $dirname = dirname(__DIR__)."\images\product\\";            
+            break;
+
+        case "profile_image" : 
+            $filepath = "\images\profile\\";
+            $dirname = dirname(__DIR__)."\images\profile\\";
+            break;
+
+        case "cover_image" :
+            $filepath = "\images\cover\\";
+            $dirname = dirname(__DIR__)."\images\cover\\";
+            break;
+
+        default :
+            $dirname = dirname(__DIR__)."\\";
+
+    }
+
+    $errors = array();
+    $uploadedFiles = array();
+    $extension = array("jpeg","jpg","png","gif");
+    $bytes = 1024;
+    $KB = 1024;
+    $totalBytes = $bytes * $KB;
+    $imagesDB="";
+    $counter = 0;
+    
+    foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
+        $temp = $_FILES["files"]["tmp_name"][$key];
+        //echo "<br/>".$temp;
+        $name = $_FILES["files"]["name"][$key];
+        //echo "<br/>".$name;
+        if(empty($temp)){break;}
+        
+        $counter++;
+        $UploadOk = true;
+        
+        if($_FILES["files"]["size"][$key] > $totalBytes)
+        {
+            $UploadOk = false;
+            array_push($errors, $name." file size is larger than the 1 MB.");
+        }
+        
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
+
+        $randomfilename = $image_for."_".rand(10000,1000000).".".$ext;
+
+        if(in_array($ext, $extension) == false){
+            $UploadOk = false;
+            array_push($errors, $name." is invalid file type.");
+        }
+        
+        if(file_exists($dirname.$randomfilename) == true){
+            $UploadOk = false;
+            array_push($errors, $randomfilename." file is already exist.");
+        }
+        
+        if($UploadOk == true){
+            ///echo $temp;
+            move_uploaded_file($temp,$dirname.$randomfilename);
+            array_push($uploadedFiles,$dirname.$randomfilename);
+        }
+
+    }
+    if($counter>0){
+        if(count($errors)>0)
+        {
+            echo "<b>Errors:</b>";
+            echo "<br/><ul>";
+            foreach($errors as $error)
+            {
+                echo "<li>".$error."</li>";
+            }
+            echo "</ul><br/>";
+        }
+
+        //print_r($uploadedFiles);
+        $imagesDB=serialize($uploadedFiles);
+        //print_r($imagesDB);
+        //return $imagesDB;
+        //echo "<br>";
+        //print_r($imagesDB);
+        //$imagesDB=Unserialize($imagesDB);echo "<br>";
+        //print_r($imagesDB);
+    }
+    else{
+        echo "Please, Select file(s) to upload.";
+    }
+}
+
+
+
+function upload_image1($file, $image_for = "product"){
+
+    $dirname = "";
+    $filepath = "";
+
+    switch ($image_for){
+        case "product" :
+            $filepath = "\images\product\\";
+            $dirname = dirname(__DIR__)."\images\product\\";            
+            break;
+
+        case "profile_image" : 
+            $filepath = "\images\profile\\";
+            $dirname = dirname(__DIR__)."\images\profile\\";
+            break;
+
+        case "cover_image" :
+            $filepath = "\images\cover\\";
+            $dirname = dirname(__DIR__)."\images\cover\\";
+            break;
+
+        default :
+            $dirname = dirname(__DIR__)."\\";
+
+    }
+
+    if (!file_exists($dirname)) {
+        mkdir($dirname, 0777, true);
+    }
+
+    
+
+    $errors = array();
+    $uploadedFiles = array();
+    $extension = array("jpeg","jpg","png","gif");
+    $bytes = 1024;
+    $KB = 1024;
+    $totalBytes = $bytes * $KB;
+    $imagesDB="";
+    $counter = 0;
+    $UploadOk = true;
+
+    $temp = $file["tmp_name"];
+    $name = $file["name"];
+
+
+    $ext = pathinfo($name, PATHINFO_EXTENSION);
+    $file_name = pathinfo($name, PATHINFO_FILENAME);
+
+    $randomfilename = $image_for."_".rand(10000,1000000).".".$ext;
+
+
+
+        if(in_array($ext, $extension) == false){
+            $UploadOk = false;
+            array_push($errors, $name." is invalid file type.");
+        }
+        
+        if(file_exists($dirname.$randomfilename) == true){
+            $UploadOk = false;
+            array_push($errors, $randomfilename." file is already exist.");
+        }
+        
+        if($UploadOk == true){
+            echo $temp;
+            //move_uploaded_file($temp,$dirname.$randomfilename);
+            
+        }
+
+        return $filepath.$randomfilename;
+
+}
+
+
+
 /*$target_dir = "../images/";
 $target_file = $target_dir .basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
@@ -205,7 +252,7 @@ if(isset($_POST["submit"])) {
         }
     }*/
 //////////////////////////////////////////////
-extract($_POST['submit']);
+/*extract($_POST['submit']);
 $error=array();
 $extension=array("jpeg","jpg","png","gif");
 foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name) {
@@ -230,7 +277,7 @@ foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name) {
         array_push($error,"$file_name, ");
     }
 }
-
+*/
 
 ?>
                                     
