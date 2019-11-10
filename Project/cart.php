@@ -78,7 +78,7 @@
                                             </a>
                                         </td>
                                         <td class="invert">
-                                            <input type='number' name='quantity' value="<?php echo $result_set[$i]['qty']; ?>" min="1" class='qty' style="width:auto; max-width:100px;" onclick='updateQty(this,<?php echo $p[$i]->pro_id;?>,<?php echo $p[$i]->mrp; ?>)' /><br />
+                                            <input type='number' name='quantity' value="<?php echo $result_set[$i]['qty']; ?>" min="1" class='qty' style="width:auto; max-width:100px;" onchange='updateQty(this,<?php echo $p[$i]->pro_id;?>,<?php echo $p[$i]->mrp; ?>);' /><br />
                                             <input type='hidden' name='pro_id' value='<?php echo $result_set[$i]['pro_id']; ?>' onclick='this' class='pro_id' />
                                             <input style="font-size:1em; margin:0; padding:0; border:0; background-color:White;" name="btnUpdateCart" type="submit" value="Restock" />
                                         </td>
@@ -143,7 +143,7 @@
                 	data:{action:action,qty:qty.value,cart_id:cart_id,user_id:user_id,pro_id:pro_id},
                 	success:function(data){
                         alert("Quantity Updated...!!!");
-                	},
+                    },
                 	error: function(errorThrown){
                 		alert(errorThrown);
                 		alert("There is an error with AJAX!");

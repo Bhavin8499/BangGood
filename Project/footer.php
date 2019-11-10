@@ -172,20 +172,27 @@
 				var action = 'insert_cart';
 				var type = 'cart';
 				var pro_id = pro_id.value;
-				//alert(user_id+"-"+pro_id.value);
+				var qty;
+				if(!document.getElementById("qty"))
+				{
+					qty=1;
+				}
+				else
+				{
+					qty=document.getElementById("qty").value;
+				}
+				//alert(qty);
 				$.ajax({
 				url:"model/Cart/Cart.php",
 				method:"POST",
-				data:{action:action,user_id:user_id,pro_id:pro_id,type:type},
+				data:{action:action,user_id:user_id,pro_id:pro_id,type:type,qty:qty},
 				success:function(data){
 					alert("Product Added To Your Cart List");
 				},
 				error: function(errorThrown){
         			alert(errorThrown);
         			alert("There is an error with AJAX!");
-    			}               
-
-			});
+    			}});	
 			}
 			else
 			{

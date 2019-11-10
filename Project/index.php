@@ -56,7 +56,7 @@
 												<del><?php echo "".$result_set[$i]['mrp']+500;?></del>
 											</div>
 											<div class="snipcart-details single-item hvr-outline-out">
-													<button type="button"  value='<?php echo $result_set[$i]['pro_id'];?>' onclick='addToCart(this)' >ADD TO CART</button>
+													<button onclick='addToCart(<?php echo $result_set[$i]["pro_id"];?>)'	>ADD TO CART</button>
 													<!--<input type="button" value="ADD TO CART" class="button btn">-->
 											</div>
 										</div>

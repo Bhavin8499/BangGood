@@ -90,10 +90,13 @@
 							<i class="fas fa-retweet mr-3"></i>Net banking & Credit/ Debit/ ATM card
 						</p>
 					</div>-->
+					<div class="input-group cm-number">
+						<input type="number" id="qty" name="qty" value="1" max="5" min="1" />
+					</div>
 					<div class="occasion-cart">
 						<div class="snipcart-details single-item hvr-outline-out">
-							<button type="button"  value='<?php echo $result_set[$i]['pro_id'];?>' onclick='addToCart(this)' >ADD TO CART</button>
-							<!--<input type="button" value="ADD TO CART" class="button btn">-->
+                            <button type="button"  value='<?php echo $pro->pro_id;?>' onclick="addToCart(this)" >ADD TO CART</button>
+                            <!--<input type="button" value="ADD TO CART" class="button btn">-->
 						</div>
 					</div>
 				</div>
