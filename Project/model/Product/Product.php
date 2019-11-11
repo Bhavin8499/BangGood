@@ -67,6 +67,12 @@
            
         }
 
+        function getPrice(){
+            if($this->discount > 0)
+                return $this->mrp - ($this->mrp/$this->discount);
+            return $this->mrp;
+        }
+
         function getProduct($columns="*"){
          
             $sql = "SELECT ".$columns." FROM  product ";
@@ -409,4 +415,3 @@ class Product{
 
 
 ?>
-

@@ -3,6 +3,10 @@
     {
          require_once(dirname(__FILE__)."\..\Database\Database.php");
     }
+    if(!class_exists('Product'))
+    {
+         require_once(dirname(__FILE__)."\..\Product\Product.php");
+    }
     if(!function_exists('generate_insert_query'))
     {
         require_once(dirname(__FILE__)."\..\helper_functions.php");
@@ -41,17 +45,11 @@ class Cart{
     }
     function getCart(){
          
-        $modelArr = array();
+        //$sql = "SELECT * FROM  cart WHERE name ='cart' AND cart_id =".$this->cart_id;
+     
+        //$result_set = $this->database->get_result($sql);
 
-        $cartArr = (array)json_decode($this->value,true);
-
-        foreach ($cartArr as $product) {
-            $cartItem = new CartProduct($product);
-            array_push($modelArr, $cartItem);
-        }
-
-
-        return $modelArr;
+        return (array)json_decode($this->value,true);
     }
     function deleteProduct($id){
         $value = (array)json_decode($this->value,true);
@@ -76,6 +74,16 @@ class Cart{
 
         return $update_id;  
     
+    }
+    function getQty($pro_id)
+    {
+        $value = (array)json_decode($this->value,true);
+        
+        foreach($value as $key=>$row){
+            if($row['pro_id'] == $pro_id){
+                return  $row['qty'];
+            }
+        }
     }
 
     function updateQuantity($cart_id,$proct_id,$qty)
@@ -112,32 +120,6 @@ class Cart{
 
         return $result_set;
     }
-
-    function getTotalProduct(){
-
-        $arr = $this->getCart();
-
-        $counter = 0;
-
-        foreach($arr as $prod){
-            $counter += $prod->qty;
-        }
-
-        return $counter;
-
-    }
-
-    function removeAllCartProduct(){
-
-        $query = "Delete from ". Cart::$table_name ." where cart_id=".$this->cart_id;
-
-        $dbObj = Database::getInstance();
-
-        $dbObj->run_query($query);
-
-    }
-
-
 }
 function addProductCart($user_id,$type,$product)
 {
@@ -192,9 +174,16 @@ function addProductCart($user_id,$type,$product)
         return $insert_id;  
     }
 }
+
+function getProductQty($pro_id)
+{
+    $p = new Product($pro_id);
+    return $p->qty;
+}
+
 /// --------------- DONT CHANGE THE BELLOW CODE ITS FOR AJAX -------------------////
 
-if(isset($_POST['action']))
+if(isset($_POST['action']) )
 {
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "ERROR";
     $pro_id = isset($_POST['pro_id']) ? $_POST['pro_id'] : "ERROR";
@@ -205,16 +194,17 @@ if(isset($_POST['action']))
         $cart_id = isset($_POST['cart_id']) ?  $_POST['cart_id'] : "ERROR";
         $cart = new Cart($user_id);
         $cart->updateQuantity($cart_id,$pro_id,$qty);
+       
     }
     if($_POST['action']=='insert_cart')
     {
         $type = isset($_POST['type']) ? $_POST['type'] : "ERROR" ;
-        $product=array("pro_id"=>$pro_id,"qty"=>1);
+        $qty = isset($_POST['qty']) ? $_POST['qty'] : 1;
+        $product=array("pro_id"=>$pro_id,"qty"=>$qty);
         $result_set=addProductCart($user_id,$type,$product);
         echo $result_set;
     }
 }
-
 
 /*
 $r=array("pro_id"=>3,"qty"=>2);
@@ -249,22 +239,10 @@ print_r($p);
 // $r=addProductCart(1,"cart",$p);
 // echo $r;
 
-//$cart = new Cart(1);
-//$r=$cart->getCart();
-//print_r($r);
-//$cart->deleteProduct(8);*/
-//$cart->updateQuantity(4,11,3);
-
-
-class CartProduct{
-
-    function __construct($args = array()){
-
-        $this->product_id = $args["pro_id"];
-        $this->qty = $args["qty"];
-
-    }
-
-}
-
+// $cart = new Cart(1);
+// $r=$cart->getCart();
+// print_r($r);
+// $r = $cart->getQty(8);
+// $p = getProductQty(8);
+// echo $r."=====".$p;
 ?>

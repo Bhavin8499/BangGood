@@ -1,19 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-	
-	<?php    $title = "Check out"; ?>
+
+<?php    $title = "Check out"; ?>
 
 
-	<!-- top-header -->
-	<?php
+<!-- top-header -->
+<?php
+
+
+		
+
+
 			require_once('model/Product/Product.php'); 
+			require_once('model/Cart/Cart.php'); 
+			require_once('model/Cart/Order.php'); 
 			require_once('header.php');
-	?>
-	<!-- //top-header -->
 
-	 <!-- navigation -->
-	 <?php require_once('nevigation.php');?>
-	<!-- //navigation -->
+
+		$cart = new Cart($_SESSION["user_id"]);
+
+		$arrCart = $cart->getCart();
+
+		if(count($arrCart) < 1){
+			echo "<script>alert('Your Cart Is Empty. You can Check Out our new products'); window.location='product.php';</script>";
+		}
+
+		if(isset($_POST["confirm_order"])){
+			
+			$name = $_POST["name"];
+			$mono = $_POST["mono"];
+			$adLine1 = $_POST["adLine1"];
+			$adLine2 = $_POST["adLine2"];
+			$pincode = $_POST["pincode"];
+			$city = $_POST["city"];
+			$adType = $_POST["adType"];
+			$state = "Gujarat";//$_POST["state"];
+			$orderNote = $_POST["order_note"];
+
+			$args = [
+				"user_id" => $_SESSION["user_id"],
+				"name" => $name,
+				"address" => 1,
+				"contact_num" => $mono,
+				"payment_type" => "COD",
+				"payment_status" => "Remain",
+				"order_note" => $orderNote,
+			];
+
+
+			$order = new Order();
+			$order->generateOrder($args);
+			$isChecked = $order->checkOutCart($arrCart);
+
+			if($isChecked){
+				$cart->removeAllCartProduct();
+			}
+			
+			echo "<script>alert('Order Placed Successfully'); window.location='cart.php';</script>";
+
+		}
+
+
+
+	?>
+<!-- //top-header -->
+
+<!-- navigation -->
+<?php require_once('nevigation.php');?>
+<!-- //navigation -->
 <?php
 //print_r($_POST);
 //echo count($_POST);
@@ -23,112 +77,100 @@
 ?>
 
 
-	<!-- checkout page -->
-	<div class="privacy py-sm-5 py-4">
-		<div class="container py-xl-4 py-lg-2">
-			<!-- tittle heading -->
-			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-				<span>C</span>heckout
-			</h3>
-			<!-- //tittle heading -->
-			<div class="checkout-right">
-				<h4 class="mb-sm-4 mb-3">Your shopping cart contains:
-					<span><?php echo (count($_POST)-4)/6;?> Products</span>
-				</h4>
-				<div class="table-responsive">
-					<table class="timetable_sub">
-						<thead>
-							<tr>
-								<th>SL No.</th>
-								<th>Product</th>
-								<th>Quality</th>
-								<th>Product Name</th>
+<!-- checkout page -->
+<div class="privacy py-sm-5 py-4">
+	<div class="container py-xl-4 py-lg-2">
+		<!-- tittle heading -->
+		<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
+			<span>C</span>heckout
+		</h3>
+		<!-- //tittle heading -->
+		<div class="checkout-right">
+			<h4 class="mb-sm-4 mb-3">Your shopping cart contains:
+				<span><?php echo $cart->getTotalProduct();?> Products</span>
+			</h4>
 
-								<th>Price</th>
-							
-							</tr>
-						</thead>
-						<tbody>
-						<?php 
-							for($i=1;$i<=(count($_POST)-4)/6;$i++){
-								?>
-							<tr class="rem1">
-								<td class="invert"><?php echo $i ;?></td>
-								<td class="invert-image">
-									<a href="single.html">
-										<img src="<?php echo $_POST['image_path_'.$i];?>" alt="" class="img-responsive">
-									</a>
-								</td>
-								<td class="invert">
-									<div class="quantity">
-										<div class="quantity-select">
-											<div class="entry value-minus">&nbsp;</div>
-											<div class="entry value">
-												<span><?php echo $_POST['quantity_'.$i];?></span>
-											</div>
-											<div class="entry value-plus active">&nbsp;</div>
+		</div>
+		<div class="checkout-left">
+			<div class="address_form_agile mt-sm-5 mt-4">
+				<h4 class="mb-sm-4 mb-3">Add a new Details</h4>
+				<form method="post" class="creditly-card-form agileinfo_form">
+					<div class="creditly-wrapper wthree, w3_agileits_wrapper">
+						<div class="information-wrapper">
+							<div class="first-row">
+								<div class="controls form-group">
+									<input class="billing-address-name form-control" type="text" name="name"
+										placeholder="Full Name" required="">
+								</div>
+								<div class="w3_agileits_card_number_grids">
+									<div class="w3_agileits_card_number_grid_left form-group">
+										<div class="controls">
+											<input type="text" class="form-control" placeholder="Mobile Number"
+												name="mono" required="">
 										</div>
 									</div>
-								</td>
-								<td class="invert"><?php echo $_POST['item_name_'.$i];?></td>
-								<td class="invert"><?php echo $_POST['amount_'.$i];?></td>
-							</tr>
-							<?php } ?>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="checkout-left">
-				<div class="address_form_agile mt-sm-5 mt-4">
-					<h4 class="mb-sm-4 mb-3">Add a new Details</h4>
-					<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
-						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
-							<div class="information-wrapper">
-								<div class="first-row">
-									<div class="controls form-group">
-										<input class="billing-address-name form-control" type="text" name="name" placeholder="Full Name" required="">
-									</div>
-									<div class="w3_agileits_card_number_grids">
-										<div class="w3_agileits_card_number_grid_left form-group">
-											<div class="controls">
-												<input type="text" class="form-control" placeholder="Mobile Number" name="number" required="">
-											</div>
+									<div class="w3_agileits_card_number_grid_right form-group">
+										<div class="controls">
+											<input type="text" class="form-control" placeholder="Address Line 1"
+												name="adLine1" required="">
 										</div>
-										<div class="w3_agileits_card_number_grid_right form-group">
-											<div class="controls">
-												<input type="text" class="form-control" placeholder="Landmark" name="landmark" required="">
-											</div>
-										</div>
-									</div>
-									<div class="controls form-group">
-										<input type="text" class="form-control" placeholder="Town/City" name="city" required="">
-									</div>
-									<div class="controls form-group">
-										<select class="option-w3ls">
-											<option>Select Address type</option>
-											<option>Office</option>
-											<option>Home</option>
-											<option>Commercial</option>
-
-										</select>
 									</div>
 								</div>
-								<button class="submit check_out btn">Delivery to this Address</button>
+
+								<div class="controls form-group">
+									<input type="text" class="form-control" placeholder="Address Line 2" name="adLine2"
+										required="">
+								</div>
+
+								<div class="controls form-group">
+									<input type="number" class="form-control" placeholder="Pincode" maxlength="6"
+										name="pincode" required="">
+								</div>
+
+								<div class="controls form-group">
+									Order Note : 
+									<textarea name="order_note" class="form-control"></textarea>
+								</div>
+
+								<div class="controls form-group">
+									<select class="option-w3ls" name="city">
+										<option>Select City</option>
+										<option>Rajkot</option>
+										<option>Ahmedabad</option>
+										<option>Surat</option>
+
+									</select>
+								</div>
+
+								<div class="controls form-group">
+									<select class="option-w3ls" name="adType">
+										<option>Select Address Type</option>
+										<option>Home</option>
+										<option>Office</option>
+									</select>
+								</div>
+
+								<div class="controls form-group">
+									<input type="text" class="form-control" placeholder="State" value="Gujarat"
+										disabled name="state" required="">
+								</div>
 							</div>
+							<input type="submit" class="form-control" value="Confirm Order" name="confirm_order"/> 
 						</div>
-					</form>
-					<div class="checkout-right-basket">
+					</div>
+				</form>
+				<!--<div class="checkout-right-basket">
 						<a href="payment.php">Make a Payment
 							<span class="far fa-hand-point-right"></span>
-						</a>
-					</div>
-				</div>
+						</a>-->
 			</div>
 		</div>
 	</div>
-	<!-- //checkout page -->
+</div>
+</div>
+<!-- //checkout page -->
 
-	<!-- middle section 
+<!-- middle section 
 	<div class="join-w3l1 py-sm-5 py-4">
 		<div class="container py-xl-4 py-lg-2">
 			<div class="row">
@@ -163,54 +205,54 @@
 			</div>
 		</div>
 	</div>-->
-	<!-- middle section -->
+<!-- middle section -->
 
-    <!-- footer -->
-        <?php require_once('footer.php')?>
-	<!-- //footer -->
-		<!-- quantity -->
-	<script>
-		$('.value-plus').on('click', function () {
-			var divUpd = $(this).parent().find('.value'),
-				newVal = parseInt(divUpd.text(), 10) + 1;
-			divUpd.text(newVal);
-		});
+<!-- footer -->
+<?php require_once('footer.php')?>
+<!-- //footer -->
+<!-- quantity -->
+<script>
+	$('.value-plus').on('click', function () {
+		var divUpd = $(this).parent().find('.value'),
+			newVal = parseInt(divUpd.text(), 10) + 1;
+		divUpd.text(newVal);
+	});
 
-		$('.value-minus').on('click', function () {
-			var divUpd = $(this).parent().find('.value'),
-				newVal = parseInt(divUpd.text(), 10) - 1;
-			if (newVal >= 1) divUpd.text(newVal);
-		});
-	</script>
-	<!--quantity-->
-	<script>
-		$(document).ready(function (c) {
-			$('.close1').on('click', function (c) {
-				$('.rem1').fadeOut('slow', function (c) {
-					$('.rem1').remove();
-				});
+	$('.value-minus').on('click', function () {
+		var divUpd = $(this).parent().find('.value'),
+			newVal = parseInt(divUpd.text(), 10) - 1;
+		if (newVal >= 1) divUpd.text(newVal);
+	});
+</script>
+<!--quantity-->
+<script>
+	$(document).ready(function (c) {
+		$('.close1').on('click', function (c) {
+			$('.rem1').fadeOut('slow', function (c) {
+				$('.rem1').remove();
 			});
 		});
-	</script>
-	<script>
-		$(document).ready(function (c) {
-			$('.close2').on('click', function (c) {
-				$('.rem2').fadeOut('slow', function (c) {
-					$('.rem2').remove();
-				});
+	});
+</script>
+<script>
+	$(document).ready(function (c) {
+		$('.close2').on('click', function (c) {
+			$('.rem2').fadeOut('slow', function (c) {
+				$('.rem2').remove();
 			});
 		});
-	</script>
-	<script>
-		$(document).ready(function (c) {
-			$('.close3').on('click', function (c) {
-				$('.rem3').fadeOut('slow', function (c) {
-					$('.rem3').remove();
-				});
+	});
+</script>
+<script>
+	$(document).ready(function (c) {
+		$('.close3').on('click', function (c) {
+			$('.rem3').fadeOut('slow', function (c) {
+				$('.rem3').remove();
 			});
 		});
-	</script>
-	<!-- //quantity -->
+	});
+</script>
+<!-- //quantity -->
 
 </body>
 

@@ -70,7 +70,7 @@
 
 							
 						<!-- second section -->
-						<?php// require_once("second_section.php")?>
+						<!--- <?php //require_once("second_section.php"); ?> -->
 				<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
 						<h3 class="heading-tittle text-center font-italic">Tv & Audio</h3>
 					<div class="row">
