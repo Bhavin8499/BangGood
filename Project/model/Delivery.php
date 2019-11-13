@@ -27,7 +27,11 @@ class Delivery{
 
         }
         else{
-            
+            $this->genrate($user_id, $order_id);
+            $this->user_id = $user_id;	
+            $this->ord_id = $order_id;	
+            $this->status_list = serialize(array());	
+            $this->is_delivered = false;
         }
         
     }

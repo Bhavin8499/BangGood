@@ -9,7 +9,16 @@
     <!-- //header -->
     
     <!-- navigation -->
-    <?php require_once('nevigation.php');?>
+    <?php require_once('nevigation.php');
+    
+    $id = $_GET['id'];
+
+    include("model/Cart/Order.php");
+    $order = getOrderByID($id);
+
+    //print_r($order);
+
+    ?>
 	<!-- //navigation -->
     <?php $status="c1";?>
 
@@ -57,11 +66,11 @@
                         </div>
                     </div>  
                     <p class="text-info">
-                        Oreder Number :<span class="text-dark"><?php echo ""; ?></span>
+                        Oreder Number :<span class="text-dark"><?php echo $order->order_id; ?></span>
                     </p>
                     <hr />
                     <p class="text-secondary">
-                        Number Of Items:<span class="text-dark"><?php echo ""; ?></span>  </p>
+                        Number Of Items:<span class="text-dark"><?php echo $order->getOrderProductCount(); ?></span>  </p>
                     <div class="table-responsive">
 					<table class="timetable_sub">
 						<thead>
@@ -76,11 +85,13 @@
 						</thead>
 						<tbody>
                         <?php 
+
+                        $result_set = $order->getProducts();
                         if (!empty($result_set))
                         {
                           for($i=0;$i<count($result_set);$i++)
                            {
-                               $p[$i] = new Product($result_set[$i]['pro_id']);
+                               $p[$i] = new Product($result_set[$i]->pro_id);
                                ?>
                                         <tr class="rem1">
                                         <td class="invert"><?php echo $i+1;?></td>
@@ -91,29 +102,17 @@
                                             </a>
                                         </td>
                                         <td class="invert">
-                                            <input type='number' name='quantity' value="<?php echo $result_set[$i]['qty']; ?>" min="1" class='qty' style="width:auto; max-width:100px;" onchange='updateQty(this,<?php echo $p[$i]->pro_id;?>,<?php echo $p[$i]->mrp; ?>);' /><br />
-                                            <input type='hidden' name='pro_id' value='<?php echo $result_set[$i]['pro_id']; ?>' onclick='this' class='pro_id' />
-                                            <input style="font-size:1em; margin:0; padding:0; border:0; background-color:White;" name="btnUpdateCart" type="submit" value="Restock" />
+                                            <?php echo $result_set[$i]->qty; ?><br>
+                                            <input type='hidden' name='pro_id' value='<?php echo $result_set[$i]->pro_id; ?>' onclick='this' class='pro_id' />
                                         </td>
                                         <td class="invert"><?php echo $p[$i]->name; ?></td>
                                         <td class="invert"><?php echo $p[$i]->mrp; ?></td>
-                                        <td class="invert"> <p><span id="tot_mrp<?php echo $p[$i]->pro_id;?>"> <?php echo $result_set[$i]['qty']*$p[$i]->mrp; ?> </span></p></td>
-                                        <td class="invert">
-                                        <a href="cart.php?delProduct=YES&pro_id=<?php echo $p[$i]->pro_id; ?>"> <div class="rem">
-                                        <div class="close1"> </div>
-                                        </div></a>
+                                        <td class="invert"> <p><span id="tot_mrp<?php echo $p[$i]->pro_id;?>"> <?php echo $p[$i]->mrp*$result_set[$i]->qty; ?> </span></p></td>
+                                       
                                         </td>
                                         </tr>
                                 <?php } ?>
-                                <tr>
-                                    <td colspan="7">
-                                    <div class="right-w3l">
-                                     <form method=post action="checkout.php">
-                                      <input type="submit" class="form-control" value="Check Out" >
-                                      </form>
-                                    </div>
-                                    </td>
-                                    </tr>
+                                
                                 <?php }?>
                         </tbody>
 					</table>

@@ -9,9 +9,19 @@ if(!class_exists("Order")){
     include("../model/Cart/Order.php");
 }
 
-
-
+$order = getOrderByID($_GET['id']);
+$addre= $order->getAddress();
 $title = "Home | BangGood";
+
+if(isset($_PSOT["up_status"])){
+
+    $key = $_POST["txtKey"];
+    $desc = $_POST["txtDesc"];
+
+
+
+}
+
 
 include("header.php");
 include("nevigation.php");
@@ -47,33 +57,59 @@ include("nevigation.php");
                 </td>
 
                 <td style="min-width:200px;"><b>Payment Staus : </b><?php echo $order->payment_status; ?><hr/>
+                <b>Payment Method : </b><?php echo $order->payment_type; ?><hr/>
                 <b>Contact Number : </b><?php echo $order->contact_num; ?><hr/><b>Order Staus :</b> <?php echo $order->order_status; ?>
                 </td>
             </tr>
             <tr>
-                <td>
+                <td colspan=2>
                     <div class="text-center">
                         <b>Address</b>
                         <hr style="margin:2px;">
-                        <p><?php echo $addre->add_line1; ?></p>
+                        <p>Address Line 1 : <?php echo $addre->add_line1; ?></p>
                         <hr style="margin:2px;">
-                        <p><?php echo $addre->add_line2; ?></p>
+                        <p>Address Line 2 : <?php echo $addre->add_line2; ?></p>
                         <hr style="margin:2px;">
-                        <p><?php echo $addre->pincode; ?></p>
+                        <p>Pincode : <?php echo $addre->pincode; ?></p>
                         <hr style="margin:2px;">
-                        <p><?php echo $addre->city; ?></p>
+                        <p>City : <?php echo $addre->city; ?></p>
                         <hr style="margin:2px;">
-                        <p><?php echo $addre->state; ?></p>
+                        <p>State : <?php echo $addre->state; ?></p>
                     </div>
                    
                 </td>
                 </tr>
                 <tr>
-                    <td>
-                    
+                    <td colspan=2>                    
+                        <div class="text-center" style="margin-top:20px; margin-bottom:20px;"><h3>Current Tracking Order Details</h3></div>
                         
-
+                        <textarea style="width:100%; min-height:250px;" disabled>Hello World Replace This</textarea>
+                        
                     </td>
+                </tr>
+
+                <tr>
+                <td colspan=2>
+                <form action="#" method="post"  enctype="multipart/form-data">
+                        <div class="form-group form-inline">
+                            <label class="col-form-label">Status :&nbsp;</label>
+                            <select class="form-control custom-select form-control-sm" name="pro_cat" id="" required="true">
+                               <option value="">Select Status</option>
+                               <option value=1>In progress</option>
+                               <option value=2>Reach Near Hub</option>
+                               <option value=3>Out Of Delivery</option>
+                               <option value=4>Delivered</option>
+                             </select>
+                        </div>
+						<div class="form-group ">
+                            <label class="col-form-label">Description : </label>                                           
+                            <textarea style="width:100%; min-height:250px;" name="txtKey">Hello World Replace This</textarea>
+                        
+						</div>
+                        <div class="right-w3l">
+							<input type="submit" class="form-control" name="up_status" value="Update">
+						</div>
+                        </td>
                 </tr>
 
 

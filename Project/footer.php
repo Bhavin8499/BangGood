@@ -165,14 +165,15 @@
 	</script>
 	<!-- //popup modal (for location)-->
 	<script>
-	function addToCart(pro_id){
+	function addToCart(pro_id1){
 			var user_id = '<?php if(isset($_SESSION['user_id'])) { echo $_SESSION['user_id'] ;}else{ echo "abc" ;}?>';
 			if(user_id!='abc')
 			{
 				var action = 'insert_cart';
 				var type = 'cart';
-				var pro_id = pro_id.value;
+				var pro_id = pro_id1;
 				var qty;
+				alert(pro_id);
 				if(!document.getElementById("qty"))
 				{
 					qty=1;

@@ -36,6 +36,8 @@ class Order{
 
     function setOrderDetails($args = array()){
 
+        if(is_array($args)){
+
         $def_args = [
             "oid" => 0,
             "user_id" => 0,
@@ -61,7 +63,8 @@ class Order{
         $this->payment_type = $args["payment_type"];
         $this->payment_status = $args["payment_status"];
         $this->order_note = $args["order_note"];
-
+    }
+   
 
     }
 
@@ -211,7 +214,40 @@ function getAllOrders(){
 
 }
 
+function getOrderByUserID( $id = 0){
 
+    $query = "select * from ". Order::$TABLE_NAME_ORDER ." where user_id=".$id." order by oid desc";
+
+    $orders = array();
+
+    $dbObj = Database::getInstance();
+
+    $result = $dbObj->get_results($query);
+
+    foreach ($result as $orderArgs) {
+        
+        $order = new Order();
+        $order->setOrderDetails($orderArgs);
+        array_push($orders, $order);
+
+    }
+
+    return $orders;
+
+}
+
+function getOrderByID($order_id=0){
+
+    $query = "select * from ". Order::$TABLE_NAME_ORDER ." where oid=".$order_id;
+    $dbObj = Database::getInstance();
+    $result = $dbObj->get_result($query);
+
+    $order = new Order();
+
+    $order->setOrderDetails($result);
+
+    return $order;
+}
 
 
 ?>
