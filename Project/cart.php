@@ -10,10 +10,6 @@
 <!-- //top-header -->
 
 
-<!-- log in -->
-<?php require_once('login.php');?>
-<!-- // log in -->
-
 <!-- register -->
 <?php //require_once('register.php');?>
 <!-- //register -->

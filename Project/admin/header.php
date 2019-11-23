@@ -5,7 +5,10 @@
 	<title> <?php echo $title; ?> </title>
 	
 	<link rel = "icon" type = "image/png" href = "../images/logo2.png">
-    
+	<link rel="stylesheet" href="./dist/font-awesome.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	
+	
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />

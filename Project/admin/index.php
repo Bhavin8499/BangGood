@@ -18,7 +18,7 @@
 	<div class="ads-grid col-md-12 col-xs-12">
 		<div class="container-fluid">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l text-center col-md-12 col-xs-12">
+			<h3 class="tittle-w3l text-center col-md-12 col-xs-12" style="margin:20px;">
 				<span>N</span>ew
 				<span>P</span>roducts</h3>
 			<!-- //tittle heading -->

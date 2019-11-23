@@ -1,5 +1,7 @@
 <?php
 
+include("header.php");
+include("nevigation.php");
 	if(!class_exists('User')){
 		include(dirname(__File__)."/model/User/User.php");
 	}
@@ -19,38 +21,37 @@
 	//		$user = login_user($username, $password, "email");
 	//	else
 	
-	if(filter_var($username, FILTER_VALIDATE_EMAIL)) {
-        $user = login_user($username, $password, "email");
-    }
-    else {
-        $user = login_user($username, $password);
-    }
-	
-	$_SESSION["user_id"] = $user->user_id;
-	if($user->role=="customer")
-	{
-		echo "<script>window.location = \"index.php\";</script>";
+		if(filter_var($username, FILTER_VALIDATE_EMAIL)) {
+			$user = login_user($username, $password, "email");
+		}
+		else {
+			$user = login_user($username, $password);
+		}
+		
+		$_SESSION["user_id"] = $user->user_id;
+		if($user->role=="customer")
+		{
+			echo "<script>window.location = \"index.php\";</script>";
+		}
+		else if($user->role=="admin")
+		{
+			echo "<script>window.location = \"admin\/index.php\";</script>";
+		}
+		
+		unset($_POST['login_user']);
+		
 	}
-	else if($user->role=="admin")
-	{
-		echo "<script>window.location = \"admin\/index.php\";</script>";
-	}
-	
-	unset($_POST['login_user']);
 
 	
-}
 ?>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title text-center">Log In</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
+<div class="ads-grid col-md-12 col-xs-12">
+		<div class="container-fluid">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l text-center col-md-12 col-xs-12">
+				<span>L</span>ogin
+			</h3>
+
 				<div class="modal-body">
 					<form action="#" method="post">
 						<div class="form-group">
@@ -79,3 +80,8 @@
 		</div>
 	</div>
 	
+	<?php
+
+		include("footer.php");
+
+	?>

@@ -15,6 +15,7 @@
 			require_once('model/Cart/Cart.php'); 
 			require_once('model/Cart/Order.php'); 
 			require_once('header.php');
+			require_once("model/Address.php");
 
 
 		$cart = new Cart($_SESSION["user_id"]);
@@ -29,18 +30,14 @@
 			
 			$name = $_POST["name"];
 			$mono = $_POST["mono"];
-			$adLine1 = $_POST["adLine1"];
-			$adLine2 = $_POST["adLine2"];
-			$pincode = $_POST["pincode"];
-			$city = $_POST["city"];
-			$adType = $_POST["adType"];
-			$state = "Gujarat";//$_POST["state"];
 			$orderNote = $_POST["order_note"];
+			$add_id = $_POST["address_id"];
+
 
 			$args = [
 				"user_id" => $_SESSION["user_id"],
 				"name" => $name,
-				"address" => 1,
+				"address" => $add_id,
 				"contact_num" => $mono,
 				"payment_type" => "COD",
 				"payment_status" => "Remain",
@@ -60,7 +57,7 @@
 
 		}
 
-
+		$add = getAllAddress($_SESSION["user_id"]);
 
 	?>
 <!-- //top-header -->
@@ -98,6 +95,59 @@
 					<div class="creditly-wrapper wthree, w3_agileits_wrapper">
 						<div class="information-wrapper">
 							<div class="first-row">
+
+								<?php
+        $counter = 0;
+        foreach ($add as $address) {
+            $counter++;
+    ?>
+								<div class="wrapper col-md-12 col-xs-12" id="addDiv<?php echo $counter; ?>">
+									<div class="product-sec1 px-3  py-3 mb-4">
+										<table style="width:100%;" class="table table-striped table-bordered"
+											data-page-length='10'>
+											<tr>
+												<td style="vertical-align: middle; width:1%;">
+													
+													<input  class="form-control" type="radio"  name="address_id" <?php echo $counter == 1 ? "checked='checked'" : ""; ?> value="<?php echo $address->id; ?>">
+
+												</td>
+
+												<td style="width:22%;vertical-align: middle;">
+													<p class="text-info">Address Line 1 :<span
+															class="text-dark"><?php echo $address->add_line1; ?></span>
+													</p>
+													<hr style="margin-top:10px; margin-bottom:10px;" />
+													<p class="text-info">Address Line 2 :<span
+															class="text-dark "><?php echo $address->add_line2; ?></span>
+													</p>
+
+													<hr style="margin-top:10px; margin-bottom:10px;" />
+													<p class="text-info">Pincode :<span
+															class="text-dark"><?php echo $address->pincode; ?></span>
+													</p>
+													<hr style="margin-top:10px; margin-bottom:10px;" />
+													<p class="text-info">City :<span
+															class="text-dark"><?php echo $address->city; ?></span></p>
+													<hr style="margin-top:10px; margin-bottom:10px;" />
+													<p class="text-info">State :<span
+															class="text-dark"><?php echo $address->state; ?></span>
+													</p>
+
+												</td>
+
+												
+											</tr>
+										</table>
+									</div>
+								</div>
+
+
+								<?php 
+    
+        }
+
+    ?>
+
 								<div class="controls form-group">
 									<input class="billing-address-name form-control" type="text" name="name"
 										placeholder="Full Name" required="">
@@ -109,53 +159,19 @@
 												name="mono" required="">
 										</div>
 									</div>
-									<div class="w3_agileits_card_number_grid_right form-group">
-										<div class="controls">
-											<input type="text" class="form-control" placeholder="Address Line 1"
-												name="adLine1" required="">
-										</div>
-									</div>
+									
 								</div>
 
-								<div class="controls form-group">
-									<input type="text" class="form-control" placeholder="Address Line 2" name="adLine2"
-										required="">
-								</div>
+								
 
 								<div class="controls form-group">
-									<input type="number" class="form-control" placeholder="Pincode" maxlength="6"
-										name="pincode" required="">
-								</div>
-
-								<div class="controls form-group">
-									Order Note : 
+									Order Note :
 									<textarea name="order_note" class="form-control"></textarea>
 								</div>
 
-								<div class="controls form-group">
-									<select class="option-w3ls" name="city">
-										<option>Select City</option>
-										<option>Rajkot</option>
-										<option>Ahmedabad</option>
-										<option>Surat</option>
-
-									</select>
-								</div>
-
-								<div class="controls form-group">
-									<select class="option-w3ls" name="adType">
-										<option>Select Address Type</option>
-										<option>Home</option>
-										<option>Office</option>
-									</select>
-								</div>
-
-								<div class="controls form-group">
-									<input type="text" class="form-control" placeholder="State" value="Gujarat"
-										disabled name="state" required="">
-								</div>
+								
 							</div>
-							<input type="submit" class="form-control" value="Confirm Order" name="confirm_order"/> 
+							<input type="submit" name="confirm_order" class="btn btn-primary" value="Confirm Order">
 						</div>
 					</div>
 				</form>

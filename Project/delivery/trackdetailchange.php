@@ -8,23 +8,32 @@ if(!class_exists("Order")){
 if(!class_exists("Order")){
     include("../model/Cart/Order.php");
 }
+if(!class_exists("Delivery")){
+    include("../model/Delivery.php");
+}
 
 $order = getOrderByID($_GET['id']);
 $addre= $order->getAddress();
 $title = "Home | BangGood";
+include("header.php");
+include("nevigation.php");
 
-if(isset($_PSOT["up_status"])){
+if(isset($_POST["up_status"])){
 
     $key = $_POST["txtKey"];
     $desc = $_POST["txtDesc"];
 
+    $del = new Delivery($_GET['id'], $_SESSION["user_id"]);
+
+    $del->insert_new_track_detail($key, $desc);
+
+    
 
 
 }
 
+$del = new Delivery($_GET['id'], $_SESSION["user_id"]);
 
-include("header.php");
-include("nevigation.php");
 
 ?>
 
@@ -83,7 +92,7 @@ include("nevigation.php");
                     <td colspan=2>                    
                         <div class="text-center" style="margin-top:20px; margin-bottom:20px;"><h3>Current Tracking Order Details</h3></div>
                         
-                        <textarea style="width:100%; min-height:250px;" disabled>Hello World Replace This</textarea>
+                        <div><?php $del->print_delivery_status(); ?></div>
                         
                     </td>
                 </tr>
@@ -93,7 +102,7 @@ include("nevigation.php");
                 <form action="#" method="post"  enctype="multipart/form-data">
                         <div class="form-group form-inline">
                             <label class="col-form-label">Status :&nbsp;</label>
-                            <select class="form-control custom-select form-control-sm" name="pro_cat" id="" required="true">
+                            <select class="form-control custom-select form-control-sm" name="txtKey" id="" required="true">
                                <option value="">Select Status</option>
                                <option value=1>In progress</option>
                                <option value=2>Reach Near Hub</option>
@@ -103,7 +112,7 @@ include("nevigation.php");
                         </div>
 						<div class="form-group ">
                             <label class="col-form-label">Description : </label>                                           
-                            <textarea style="width:100%; min-height:250px;" name="txtKey">Hello World Replace This</textarea>
+                            <textarea style="width:100%; min-height:250px;" name="txtDesc">Hello World Replace This</textarea>
                         
 						</div>
                         <div class="right-w3l">

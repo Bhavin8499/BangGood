@@ -13,19 +13,27 @@
     
     $id = $_GET['id'];
 
-    include("model/Cart/Order.php");
-    $order = getOrderByID($id);
 
-    //print_r($order);
+    include("model/Cart/Order.php");
+    include("model/Delivery.php");
+    $order = getOrderByID($id);
+    $delivery = getDeliveryFromOrderID($id);
+    
+    $del_status = $delivery->getDeliveryStatus();
+
+    $last_status = get_default_status();
+    if(count($del_status) > 0){
+        $last_status = $del_status[count($del_status)-1];
+    }
 
     ?>
 	<!-- //navigation -->
-    <?php $status="c1";?>
+    <?php $status="c".($last_status->key -1);?>
 
     <div class="ads-grid col-md-12 col-xs-12">
-		<div class="container-fluid">
+		<div class="container-fluid" >
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l text-center col-md-12 col-xs-12">
+			<h3 class="tittle-w3l text-center col-md-12 col-xs-12" style="margin:10px;;">
 				<span>T</span>rack
 				<span>O</span>rder</h3>
 			<!-- //tittle heading -->
@@ -116,7 +124,26 @@
                                 <?php }?>
                         </tbody>
 					</table>
+                
+                
+                    <div style="margin: 10px;">
+                    <div class="text-center" style="font-size:x-large"> Current Order Status</div>
+                                <?php $delivery->print_delivery_status(); ?> 
+                    </div>
+                
                 </div>
+
+                <?php
+
+                    if($last_status->key != 5){
+                        ?>
+                        <button class="btn btn-danger" style="width:100%;" >Cancel Order</button>
+                        <?php
+                    }
+
+                ?>  
+                            
+
                 </div>
                 </diV>
             </diV>

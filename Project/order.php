@@ -40,9 +40,7 @@ if(!isset($_SESSION['user_id'])){
 				<span>O</span>rders</h3>
             <!-- //tittle heading -->
             <?php 
-                foreach ($orders as $order) {
-                    # code...
-                }
+                foreach ($orders as $order) 
                 {?>
 			<div class="row">
 				<div class="wrapper col-md-12 col-xs-12">
@@ -83,6 +81,9 @@ if(!isset($_SESSION['user_id'])){
                 <?php } ?>
             </div>
             
+           
+
+
         </div>
     </div>     
     <?php require_once('footer.php');?>
