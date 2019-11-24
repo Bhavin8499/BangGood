@@ -1,6 +1,6 @@
 <?php
 if(!class_exists("Database")){
-    include(dirname(__FILE__)."/../Database/Database.php");
+    require_once(dirname(__FILE__)."\..\Database\Database.php");
 }
 class Adderss{
     public $user_id = 0;

@@ -10,7 +10,7 @@ if(!class_exists("Order")){
 
 
 
-$title = "Home | BangGood";
+$title = "Delivery | BangGoods";
 
 include("header.php");
 include("nevigation.php");
@@ -18,7 +18,7 @@ include("nevigation.php");
 $orders = getAllOrders();
 
 $ord = $orders[0];
-echo $ord->getOrderProductCount();
+//echo $ord->getOrderProductCount();
 
 ?>
 
@@ -47,23 +47,24 @@ foreach ($orders as $order) {
                 <H5 style="font-size:medium; margin:10px; margin-top:20px;">Order ID. : <?php echo $order->order_id; ?> </H5>
             </tr>
             <tr>
-                <td>
+                <td style="width:5%;">
                     <div class="text-center">  <?php echo $counter; ?>
                     </div>
                 </td>
 
-                <td style="width:200px;"><b>Buyer : </b><?php echo $order->name; ?><br />
+                <td style="width:20%;">
+                    <b>Buyer : </b><?php echo $order->name; ?><br />
                     <span style="color:Gray; font-size:x-small;">Number Of Items : <?php echo $order->getOrderProductCount() ?>
                         <!--<% Response.Write(readerProduct["Type"].ToString()); %>--></span><br />
                     <span style="color:Gray; font-size:x-small;">Price : <?php echo $order->getTotalPriceOfProducts() ?>
                         <!--<% Response.Write(readerProduct["Type"].ToString()); %>--></span>
                 </td>
 
-                <td style="min-width:200px;"><b>Payment Staus : </b><?php echo $order->payment_status; ?><hr/>
+                <td style="width:45%;"><b>Payment Staus : </b><?php echo $order->payment_status; ?><hr/>
                 <b>Contact Number : </b><?php echo $order->contact_num; ?><hr/><b>Order Staus :</b> <?php echo $order->order_status; ?>
                 </td>
 
-                <td>
+                <td style="width:15%;">
                     <div class="text-center">
                         <b>Address</b>
                         <hr style="margin:2px;">
@@ -80,16 +81,13 @@ foreach ($orders as $order) {
                    
                 </td>
 
-                <td>
+                <td style="width:13%;">
                     <div class="text-center" style="height: 100%;">
                         <a href="trackdetailchange.php?id=<?php echo $order->order_id; ?>" >
                         <button type="button" class="btn btn-primary" style="width:100%; max-width:150px;" >Tracking<br>Details</button></a><br /> 
                     </div>
                 </td>
-
             </tr>
-
-
         </table>
     </div>
 </div>

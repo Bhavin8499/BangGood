@@ -34,9 +34,9 @@
 						<ul class="slides">
 								<?php $image=Unserialize($pro->images);
 									for($i=0;$i<count($image);$i++){?>
-								<li data-thumb="<?php echo '.'.$image[$i];?>" >
+								<li data-thumb="<?php echo '../'.$image[$i];?>" >
 									<div class="thumb-image">
-										<img src="<?php echo '.'.$image[$i];?>"  data-imagezoom="true" class="img-fluid" alt="" > </div>
+										<img src="<?php echo '../'.$image[$i];?>"  data-imagezoom="true" class="img-fluid" alt="" > </div>
 									</li><?php } ?>
 							</ul>
 							<div class="clearfix"></div>

@@ -10,21 +10,6 @@
         <?php require_once('nevigation.php')?>
 	<!-- //navigation -->
 
-	<!-- page -->
-	<div class="services-breadcrumb">
-		<div class="agile_inner_breadcrumb">
-			<div class="container">
-				<ul class="w3_short">
-					<li>
-						<a href="index.html">Home</a>
-						<i>|</i>
-					</li>
-					<li>Help</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- //page -->
 
 	<!-- help -->
 	<div class="faqs-w3l py-sm-5 py-4">
@@ -38,13 +23,9 @@
 			<!-- help content -->
 			<div class="wthree-help mb-sm-5 mb-4">
 				<div class="agile-left-help">
-					<h3 class="w3-head">How Can We help you</h3>
-					<form action="#" method="get">
-						<textarea placeholder="Your Query" name="Message" required=""></textarea>
-						<input type="submit" value="Submit">
-					</form>
-					<h5 class="my-sm-4 my-3">OR</h5>
-					<a href="contact.html">Contact Us</a>
+					<h3 class="w3-head">How Can We help you tell us....</h3>
+					<br/>
+					<a href="contact.php">Contact Us</a>
 				</div>
 			</div>
 			<!-- //help content -->

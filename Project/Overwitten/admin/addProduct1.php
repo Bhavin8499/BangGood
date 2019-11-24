@@ -1,37 +1,24 @@
 <!doctype html>
 <html lang="en">
 <?php
-   
-    if(!class_exists('Product'))
-    {
-     require_once(dirname(__FILE__)."/../model/Product/Product.php");
+    if(!class_exists("Product")){
+        require_once(dirname(__FILE__)."/../model/Product/Product.php");
     }
-    if(!class_exists('Categories'))
+    if(!function_exists('upload_image'))
     {
-     require_once(dirname(__FILE__)."/../model/Categories/Categories.php");
+        include(dirname(__FILE__)."/../helper_functions.php");
     }
-
-    if(isset($_REQUEST['pro_id']))
+    
+    if(isset($_POST['pro_submit']))
     {
-        if(!empty($_REQUEST['pro_id']))
-         {   
-            $pro=new Product($_REQUEST['pro_id']);
-            $brand =  get_child_category($pro->cat_id);
-             //$pro_id=(int)$_REQUEST['pro_id'];
-             //$result_set = $pro->getProduct($_REQUEST['pro_id']);
-             //$result_set = $pro->getProduct();
-         }
-       
-    }
-    else{
-        echo "<center><h3>Please come from proper way</h3></center>";
-        }
-
-
-    if(isset($_POST['pro_update']))
-    {
-            $pro=new Product($_POST['id']);
-
+            //$pro=new Product();
+            // $cat_id     =$_POST['pro_cat'];
+            // $name       =$_POST['pro_name'];
+            // $mrp        =$_POST['pro_price'];
+            // //echo htmlspecialchars($description);
+            // $tags       =$_POST['pro_tags'];
+            // $discount   =$_POST['pro_discount'];
+            // $qty        =$_POST['pro_quantity'];
             $errors = array();
             $uploadedFiles = array();
             $extension = array("jpeg","jpg","png","gif");
@@ -94,43 +81,35 @@
             else{
                 echo "Please, Select file(s) to upload.";
             }
+			
+            $description=$_POST['pro_discription'];
+            $description = preg_replace("/\s+|\n+|\r/", ' ', $description);
+            $can_buy    =$_POST['pro_canbuy'];
+            if($can_buy=='on') $can_buy=1;
 
-
-
-            $pro->cat_id     = $_POST['pro_cat'];
-            $pro->brand     =$_POST['pro_brand'];
-            $pro->name       = $_POST['pro_name'];
-            $pro->mrp        = $_POST['pro_price'];
-
-            $description    = $_POST['pro_discription'];
             
-            $description =  preg_replace("/\s+|\n+|\r/",' ', $description);
-            // //echo htmlspecialchars($description);
-            
-            $pro->description = $description;
+            $args = [
+                "name" =>$_POST['pro_name'],
+                "cat_id" =>$_POST['pro_cat'],
+                "mrp" =>$_POST['pro_price'],
+                "discount" => $_POST['pro_discount'],
+                "description" => ".".$description,
+                "images" => $imagesDB,
+                "qty" => $_POST['pro_quantity'],
+                "can_buy" => $can_buy,
+                "tags"=> $_POST['pro_tags'],
+                "brand"=>$_POST['pro_brand']
+            ];
 
-            $pro->tags       = $_POST['pro_tags'];
-            $pro->discount   = $_POST['pro_discount'];
-            $pro->qty        = $_POST['pro_quantity'];
-            $can_buy    = $_POST['pro_canbuy'];
-
-            if($can_buy=='on')
-                    $pro->can_buy=1;
-            else
-                    $pro->can_buy=0;
-            
-            $pro->images=$imagesDB;
-
-            $result_set=$pro->updateProduct();
-            
+            //print_r($args);
+            /*secho "<br>".$cat_id     ;echo "<br>".$name       ;echo "<br>".$mrp        ;
+            echo htmlspecialchars($strDesc);echo "<br>".$tags       ;echo "<br>".$discount   ;echo "<br>".$qty        ;echo "<br>".$can_buy    ;*/
+            //$pro->addProduct($name,$cat_id,$mrp,$discount,$description,$images,$qty,$can_buy,$tags);
+           $result_set=addProduct($args);
             //echo $result_set;
-            header('location:editProduct.php?pro_id='.$pro->pro_id);
-          
     }
-    
-    
 ?>
-		<?php  $title = "Edit Product"; ?>
+		<?php  $title = "Add Product"; ?>
 
 	<!-- top-header -->
 		<?php	require_once('header.php');?>
@@ -144,85 +123,76 @@
 	<div class="ads-grid col-md-12 col-xs-12">
 		<div class="container-fluid">
         <h3 class="tittle-w3l text-center col-md-12 col-xs-12">
-            <span>E</span>dit 
+            <span>A</span>dd 
+            <span>N</span>ew 
             <span>P</span>roduct</h3>
              <div class="row">
 				<div class="wrapper col-md-12 col-xs-12">
                    <div class="product-sec1 px-sm-4 px-4 py-sm-4 py-4 mb-4">
 				        <div class="row">
 					    <div class="col-md-12 product-men mt-5">		
-                    <form action="editProduct.php" method="post" enctype="multipart/form-data">
+                        <form action="addProduct.php" method="post"  enctype="multipart/form-data">
                         <div class="form-group form-inline">
-                            <label class="col-form-label">Category&nbsp;</label>
-                            <select class="form-control custom-select form-control-sm-2" name="pro_cat" id="" required="true">
+                            <label class="col-form-label">Category :</label>
+                            <select class="form-control form-control-sm-2 custom-select " name="pro_cat" id="" onChange="brandLoad(this)" required="true">
                                <option value=NULL>Select Category</option>
-                               <option value=1 <?php echo ($pro->cat_id =='1' ? 'selected' : '');?>>Mobile</option>
-                               <option value=2 <?php echo ($pro->cat_id =='2' ? 'selected' : '');?>>Laptop</option>
-                               <option value=3 <?php echo ($pro->cat_id =='3' ? 'selected' : '');?>>Accessories</option>
+                               <option value=1>Mobile</option>
+                               <option value=2>Laptop</option>
+                               <option value=3>Accessories</option>
                              </select>
-                             <div id="brand_dropdown" class="form-group form-inline" > 
+                            <div id="brand_dropdown" class="form-group form-inline" > 
                             &nbsp;
                             <label for="" class="col-form-label"> Brand :</label>
                             <select class="form-control form-control-sm-2 custom-select" name="pro_brand" id="" required="true">
                                 <option selected>Select Brand</option>
-                                <?php for($i=0;$i<count($brand);$i++)
-                                    {   ?>
-                                        <option value="<?php echo $brand[$i]->cateID; ?>"<?php echo ($pro->brand == $brand[$i]->cateID ? 'selected' : '');?>><?php echo $brand[$i]->cateName; ?></option>
-                                    <?php } ?>
+                                <option value=""></option>
+                                <option value=""></option>
                             </select> 
                             </div>
                         </div>
 						<div class="form-group ">
 							<label class="col-form-label">Name</label>
-							<input type="text" class="form-control" placeholder=" " name="pro_name" value="<?php echo $pro->name;?>" required="">
+							<input type="text" class="form-control" placeholder=" " name="pro_name" required="">
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Price</label>
-							<input type="number" class="form-control" placeholder=" " min=0  name="pro_price" value="<?php echo $pro->mrp;?>" required="true"></div>
+							<input type="number" class="form-control" placeholder=" " name="pro_price" required="">
+                        </div>
                         <div class="form-group">
 							<label class="col-form-label">Discription</label>
-							<textarea  type="text" class="form-control"  name="pro_discription" value="<?php echo $pro->description;?>" required="true"></textarea>
-                            
+							<textarea  type="text" class="form-control"  name="pro_discription"  required=""></textarea>
                             <script type="text/javascript">             
-
-                                            CKEDITOR.replace( 'pro_discription',
+                                        CKEDITOR.replace( 'pro_discription',
                                             {   //fullPage : true,
                                                 //uiColor : '#efe8ce'
-                                            });
-                                            var data="<?php echo $pro->description;?>";
-                                            CKEDITOR.instances.pro_discription.setData(data, function()
-                                            {
-                                                this.checkDirty();  // true
                                             });
                             </script>
                         </div>
                         <div class="form-group">
 							<label class="col-form-label">Tags</label>
-							<input type="text" class="form-control" placeholder=" " name="pro_tags" value="<?php echo $pro->tags;?>"  required="">
+							<input type="text" class="form-control" placeholder=" " name="pro_tags"  required="">
                         </div>
 						<div class="form-group">
 							<label class="col-form-label">Images</label>
-                            <input type="file" class="form-control" placeholder=" " multiple="true" name="files[]" value="<?php echo Unserialize($pro->images);?>" id="fileupload" >
-                            <div id="dvPreview"></div>
+							<input type="file" class="form-control" placeholder=" " multiple="multiple" name="files[]" id="fileupload"  required="">
+								<div id="dvPreview"></div>
 						</div>
                         
                         <div class="form-group form-inline col-md-4 col-md-12">
                            <label class="col-form-label  px-sm-0">Disount&nbsp;</label>
-                            <input type="number" class="form-control" placeholder=" " min="0" max="80" name="pro_discount" value="<?php echo $pro->discount;?>" required="">
+                            <input type="number" class="form-control" placeholder=" " min="0" max="80" name="pro_discount"  required="">
                             
                             <label class="col-form-label px-sm-4">Quantity</label>
-                            <input type="number" class="form-control" placeholder=" " min="1" max="80" name="pro_quantity" value="<?php echo $pro->qty;?>" required="">
+                            <input type="number" class="form-control" placeholder=" " min="1" max="80" name="pro_quantity"  required="">
                     
                             <div class="form-check">
                               <label class="form-check-label px-sm-4">Can Buy - 
-                                <input type="checkbox" class="form-control  form-check-input" name="pro_canbuy" id="" <?php echo ($pro->can_buy =='1' ? 'checked' : '');?> />
+                                <input type="checkbox" class="form-control  form-check-input" name="pro_canbuy" id="" required="">
                               </label>
                             </div>
                         </div>
-						<div class="form-group form-inline col-md-6 col-md-12 ">
-							<input type="submit" class="form-control button btn btn-primary" name="pro_update" value="Update">&nbsp;
-                            <input type="hidden" name="id" value="<?php echo $pro->pro_id;?>">
-                            <a href="showallProduct.php"><input type="button" name="return" value="Cancel" class="button btn btn-danger" /></a>
+						<div class="right-w3l">
+							<input type="submit" class="form-control" name="pro_submit" value="Submit">
 						</div>
 					</form>
                     </div>
@@ -236,8 +206,8 @@
 
     <!-- footer -->
     <?php require_once('footer.php');?>
-    <!-- //footer -->
-    <script language="javascript" type="text/javascript">
+	<!-- //footer -->
+	<script language="javascript" type="text/javascript">
         window.onload = function () {
             var fileUpload = document.getElementById("fileupload");
             fileUpload.onchange = function () {
@@ -268,6 +238,24 @@
                 }
             }
         };
+
+ 
+        function brandLoad(cate_id) {
+            var action='brand_load';
+            //alert(cate_id.value)
+            jQuery.ajax({
+            url: "../model/Categories/Categories.php",
+            type: "POST",
+            data:{action:action,cate_id:cate_id.value},
+            success:function(data){
+            //alert(data);
+            $("#brand_dropdown").html(data);
+            },
+            error:function (){
+                alert("ERROR");
+            }
+            });
+        }
     </script>
 </body>
 </html>	

@@ -3,18 +3,47 @@
 	<?php    $title = "Contact Us"; ?>
 	
 	<!-- top-header -->
-	<?php require_once('header.php');?>
+	<?php require_once('header.php');
+		if(!class_exists("Contact")){
+			require_once(dirname(__FILE__)."/model/Contact/Contact.php");
+		}
+	?>
 	<!-- //top-header -->
     
-	<!-- log in -->
-    <?php require_once('login.php');?>
-    <!-- // log in -->
 	
 	<!-- navigation -->
         <?php require_once('nevigation.php')?>
 	<!-- //navigation -->
-	
 
+	<!-- Posting data -->
+	<?php 
+		if(isset($_POST['submit']) && !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['contact_no'])
+		&& !empty($_POST['subject']) && !empty($_POST['message']))
+		{
+			$args = [
+                "name" => $_POST['name'],
+                "email" => $_POST['email'],
+                "contact_no" => $_POST['contact_no'],
+                "subject" => $_POST['subject'],
+                "message" => $_POST['message']
+			];
+			
+			$contact = new Contact($args);
+
+			$result_set = '';
+
+			$result_set = $contact->addContact();
+
+			if($result_set != '')
+			{
+				echo "<script class='alert alert-info'>alert('Thank You...!');</script>";
+			}
+			
+		}
+
+
+	?>
+	<!-- //Posting data -->
 	<!-- contact -->
 	<div class="contact py-sm-5 py-4">
 		<div class="container py-xl-4 py-lg-2">
@@ -42,9 +71,7 @@
 							<i class="fas fa-phone rounded-circle"></i>
 						</div>
 						<h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Call Us</h4>
-						<p>+(0121) 121 121
-							<label>+(0121) 121 122</label>
-						</p>
+						<p>+(0121) 121 121</p>
 					</div>
 				</div>
 				<div class="col-sm-4 contact-grid agileinfo-6">
@@ -55,32 +82,40 @@
 						<h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Email</h4>
 						<p>
 							<a href="mailto:info@example.com">info@example1.com</a>
-							<label>
-								<a href="mailto:info@example.com">info@example2.com</a>
-							</label>
+							
 						</p>
 					</div>
 				</div>
 			</div>
 			<!-- form -->
-			<form action="#" method="post">
+			<form action="contact.php" method="POST">
 				<div class="contact-grids1 w3agile-6">
 					<div class="row">
 						<div class="col-md-6 col-sm-6 contact-form1 form-group">
 							<label class="col-form-label">Name</label>
-							<input type="text" class="form-control" name="Name" placeholder="" required="">
+							<input type="text" class="form-control" name="name" placeholder="" required="">
 						</div>
 						<div class="col-md-6 col-sm-6 contact-form1 form-group">
 							<label class="col-form-label">E-mail</label>
-							<input type="email" class="form-control" name="Email" placeholder="" required="">
+							<input type="email" class="form-control" name="email" placeholder="" required="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-sm-6 contact-form1 form-group">
+							<label class="col-form-label">Mobile</label>
+							<input type="tel" class="form-control" name="contact_no" placeholder="" required="true" onKeyPress="return isnumkey(this);" maxlength="10">
+						</div>
+						<div class="col-md-6 col-sm-6 contact-form1 form-group">
+							<label class="col-form-label">Subject</label>
+							<input type="text" class="form-control" name="subject" placeholder="" required="">
 						</div>
 					</div>
 					<div class="contact-me animated wow slideInUp form-group">
 						<label class="col-form-label">Message</label>
-						<textarea name="Message" class="form-control" placeholder="" required=""> </textarea>
+						<textarea name="message" class="form-control" placeholder="" required=""> </textarea>
 					</div>
 					<div class="contact-form">
-						<input type="submit" value="Submit">
+						<input type="submit" name="submit" value="Submit">
 					</div>
 				</div>
 			</form>
@@ -89,17 +124,9 @@
 	</div>
 	<!-- //contact -->
 
-	<!-- map 
-	<div class="map mt-sm-0 mt-4">
-		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805196.5077734194!2d144.49270863101745!3d-37.97015423820711!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne+VIC%2C+Australia!5e0!3m2!1sen!2sin!4v1474020956974"
-		    allowfullscreen></iframe>
-	</div>-->
-	<!-- //map -->
-
     <!-- footer -->
-           <?php require_once('footer.php')?>
+	<?php require_once('footer.php')?>
 	<!-- //footer -->
-
 </body>
 
 </html>

@@ -8,22 +8,16 @@
 						<h3 class="text-white font-weight-bold mb-3">Categories</h3>
 						<ul>
 							<li class="mb-3">
-								<a href="product.html">Mobiles </a>
+								<a href="product.php?search=All Mobile">Mobile Phones</a>
 							</li>
 							<li class="mb-3">
-								<a href="product.html">Computers</a>
+								<a href="product.php?search=All Laptop">Laptops</a>
 							</li>
 							<li class="mb-3">
-								<a href="product.html">TV, Audio</a>
+								<a href="product.php?search=Computer Accessories">Computer Accessories</a>
 							</li>
 							<li class="mb-3">
-								<a href="product2.html">Smartphones</a>
-							</li>
-							<li class="mb-3">
-								<a href="product.html">Washing Machines</a>
-							</li>
-							<li>
-								<a href="product2.html">Refrigerators</a>
+							<a href="product.php?search=All Accessories">All Accessories</a>
 							</li>
 						</ul>
 					</div>
@@ -112,8 +106,8 @@
 		</div>
 		<!-- //footer fourth section (text) -->
 	</footer>
-		<!-- copyright -->
-		<div class="copy-right py-3">
+	<!-- copyright -->
+	<div class="copy-right py-3">
 		<div class="container">
 			<p class="text-center text-white">© 2019 BangGoods. All rights reserved .
 			</p>
@@ -122,12 +116,8 @@
 	<!-- //copyright -->
 
 	<!-- js-files -->
-	<!-- jquery -->
-	<script src="js/jquery-2.2.3.min.js"></script>
-	<script src = "js/jquery-ui.js"></script>
-      
-	<!-- //jquery -->
 
+	
 	<!-- nav smooth scroll -->
 	<script>
 		$(document).ready(function () {
@@ -164,7 +154,9 @@
 		});
 	</script>
 	<!-- //popup modal (for location)-->
-	<script>
+
+	<!-- cart-js -->
+	<script class="alert alert-info">
 	function addToCart(pro_id1){
 			var user_id = '<?php if(isset($_SESSION['user_id'])) { echo $_SESSION['user_id'] ;}else{ echo "abc" ;}?>';
 			if(user_id!='abc')
@@ -173,7 +165,7 @@
 				var type = 'cart';
 				var pro_id = pro_id1;
 				var qty;
-				alert(pro_id);
+				//alert(pro_id);
 				if(!document.getElementById("qty"))
 				{
 					qty=1;
@@ -202,30 +194,7 @@
 	 }
 	</script>
 
-	<!-- cart-js -->
-	<script src="js/minicart.js"></script>
-	<script>
-		// paypals.minicarts.render(); 
-		// //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
-
-		// paypals.minicarts.cart.on('checkout', function (evt) {
-		// 	var items = this.items(),
-		// 		len = items.length,
-		// 		total = 0,
-		// 		i;
-
-		// 	// Count the number of each item in the cart
-		// 	for (i = 0; i < len; i++) {
-		// 		total += items[i].get('quantity');
-		// 	}
-
-		// 	if (total < 1) {
-		// 		alert('The minimum order quantity is 1. Please add more to your shopping cart before checking out');
-		// 		evt.preventDefault();
-		// 	}
-		// });
-	</script>
-	<script>
+	<script class="alert alert-success">
 	$(document).ready(function(){
 		$('#submit_cart').click(function(){
 			var session = '<?php if(isset($_SESSION['user_id'])) { echo $_SESSION['user_id'] ;}else{ echo "abc" ;}?>';
@@ -241,28 +210,39 @@
 		});
 	});
 	</script>
-
 	<!-- //cart-js -->
-
-	<!-- password-script -->
-	<script>
-		window = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
-
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
-	<!-- //password-script -->
 	
+	<script>
+	function isnumkey(a)
+		{
+				var cc=(a.which)?a.which:event.keyCode
+				//alert(cc);
+				if(cc>=48 && cc<=57)
+					return true;
+			return false;						
+		}
+	// $(document).ready(function(){			
+	// 	$("#mobile-num").on("blur", function(){
+	// 			var mobNum = $(this).val();
+	// 			var filter = /^\d*(?:\.\d{1,2})?$/;
+
+	// 			if (filter.test(mobNum)) {
+	// 				if(mobNum.length==10){
+	// 					alert("Valid Number");
+	// 				} else {
+	// 					alert('Please put 10  digit mobile number');
+	// 					return false;
+	// 				}
+	// 				}
+	// 				else {
+	// 				alert('Not a valid number');
+	// 				return false;
+	// 			}
+			
+	// 	});
+	// });
+	
+	</script>
 	<!-- scroll seller -->
 	<script src="js/scroll.js"></script>
 	<!-- //scroll seller -->

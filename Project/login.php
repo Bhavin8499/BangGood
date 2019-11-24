@@ -1,7 +1,7 @@
 <?php
-
-include("header.php");
-include("nevigation.php");
+	$title = "Login";
+	include("header.php");
+	include("nevigation.php");
 	if(!class_exists('User')){
 		include(dirname(__File__)."/model/User/User.php");
 	}
@@ -23,21 +23,33 @@ include("nevigation.php");
 	
 		if(filter_var($username, FILTER_VALIDATE_EMAIL)) {
 			$user = login_user($username, $password, "email");
+			$_SESSION["user_id"] = $user->user_id;
 		}
 		else {
 			$user = login_user($username, $password);
+			$_SESSION["user_id"] = $user->user_id;
 		}
-		
-		$_SESSION["user_id"] = $user->user_id;
-		if($user->role=="customer")
+	
+	 if(isset($_SESSION['user_id']))
+	 {	
+		if($user->role=="CUSTOMER")
 		{
 			echo "<script>window.location = \"index.php\";</script>";
 		}
-		else if($user->role=="admin")
+		else if($user->role=="ADMIN")
 		{
 			echo "<script>window.location = \"admin\/index.php\";</script>";
 		}
-		
+		else if($user->role=="DELIVERY")
+		{
+			echo "<script>window.location = \"delivery\/index.php\";</script>";
+		}
+	}	
+	else
+	{
+		echo "<script>window.location = \"login.php\";</script>";
+	}
+	
 		unset($_POST['login_user']);
 		
 	}

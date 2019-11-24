@@ -84,9 +84,9 @@
 			$images_uploaded = array();
 			
 			$images_uploaded = upload_multiple_image($_FILES["fileUpload"]);
-			print_r($images_uploaded);
+			//print_r($images_uploaded);
 			$imagesDB = serialize($images_uploaded);
-			echo "<br>".$imagesDB;
+			//echo "<br>".$imagesDB;
             $description=$_POST['pro_discription'];
             $description = preg_replace("/\s+|\n+|\r/", ' ', $description);
             $can_buy    =$_POST['pro_canbuy'];
@@ -102,7 +102,8 @@
                 "images" => $imagesDB,
                 "qty" => $_POST['pro_quantity'],
                 "can_buy" => $can_buy,
-                "tags"=> $_POST['pro_tags']
+                "tags"=> $_POST['pro_tags'],
+                "brand"=>$_POST['pro_brand']
             ];
 
             /*secho "<br>".$cat_id     ;echo "<br>".$name       ;echo "<br>".$mrp        ;
@@ -141,13 +142,22 @@
                             <form action="addProduct.php" method="post" enctype="multipart/form-data">
                                 <div class="form-group form-inline">
                                     <label class="col-form-label">Category&nbsp;</label>
-                                    <select class="form-control custom-select form-control-sm" name="pro_cat" id=""
+                                    <select class="form-control custom-select form-control-sm-2" name="pro_cat" id="" onChange="brandLoad(this)"
                                         required="true">
                                         <option value=NULL>Select Category</option>
                                         <option value=1>Mobile</option>
                                         <option value=2>Laptop</option>
                                         <option value=3>Accessories</option>
                                     </select>
+                                    <div id="brand_dropdown" class="form-group form-inline" > 
+                                    &nbsp;
+                                    <label for="" class="col-form-label"> Brand :</label>
+                                    <select class="form-control form-control-sm-2 custom-select" name="pro_brand" id="" required="true">
+                                        <option selected>Select Brand</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
                                 </div>
                                 <div class="form-group ">
                                     <label class="col-form-label">Name</label>
@@ -185,7 +195,6 @@
                                         name="files[]" id="fileupload" required="">
                                     <div id="dvPreview"></div>-->
 
-                                </div>
 
                                 <div class="form-group form-inline col-md-4 col-md-12">
                                     <label class="col-form-label  px-sm-0">Disount&nbsp;</label>
@@ -199,7 +208,7 @@
                                     <div class="form-check">
                                         <label class="form-check-label px-sm-4">Can Buy -
                                             <input type="checkbox" class="form-control  form-check-input"
-                                                name="pro_canbuy" id="" required>
+                                                name="pro_canbuy" id="">
                                         </label>
                                     </div>
                                 </div>
@@ -286,7 +295,22 @@
         //     }
         // }
     };
+    function brandLoad(cate_id) {
+            var action='brand_load';
+            //alert(cate_id.value)
+            jQuery.ajax({
+            url: "../model/Categories/Categories.php",
+            type: "POST",
+            data:{action:action,cate_id:cate_id.value},
+            success:function(data){
+            //alert(data);
+            $("#brand_dropdown").html(data);
+            },
+            error:function (){
+                alert("ERROR");
+            }
+            });
+        }
 </script>
 </body>
-
 </html>

@@ -84,6 +84,18 @@ class User{
 
         return false;
     }
+    
+    function updateRole()
+    {
+        $sql = "UPDATE user SET role='".$this->role."' WHERE user_id=".$this->user_id;
+
+        $dbObj = Database::getInstance();
+
+        //echo $sql;
+        $update_id = $dbObj->run_query($sql);
+        
+        return $update_id;
+    }
 
     function isValidPassword($password = ''){
 
@@ -106,12 +118,12 @@ class User{
 
 
     function change_password($old_pass = '', $new_password = ''){
-
-        if(isValidPassword( $old_pass )){
+        
+        if($this->isValidPassword( $old_pass )){
             
             $dbObj = Database::getInstance();
 
-            $result = $dbObj->run_query("update ".$this->table_name." set password='".$new_password."' where user_id =".$this->user_id);
+            $result = $dbObj->run_query("update ".User::$table_name." set password='".$new_password."' where user_id =".$this->user_id);
 
             if($result){
                 return "Passowrd Changed Successfully.";
@@ -186,12 +198,8 @@ function get_user_by_username($name = ''){
     if(count($result) < 1 ){
         return FALSE;
     }
-
-
     $user = new User($result);
-
     return $user;
-
 }
 
 function get_user_by_id($id = ''){
@@ -274,6 +282,27 @@ function register_new_user($args = array(), $args_profile = array()){
     return $user;
 
 }
+/**************************************************************************************************/
+function getAllUser($columns='*')
+{
+    $sql = "SELECT ".$columns." FROM user";
 
+    $dbObj = Database::getInstance();
 
+ 	$result_set = $dbObj->get_results($sql);
+   
+	return $result_set;
+}
+/*-----------------------------------------------------------------------------------------------------------------------*/
+if(isset($_POST['action']) && $_POST['action']=="update_role" )
+{
+    if(!empty($_POST['user_id']) && !empty($_POST['role']))
+    {
+        $user=get_user_by_id($_POST['user_id']);
+        $user->role=$_POST['role'];
+        $user->updateRole();
+    }
+    unset($_POST['action']);
+}
+/*-----------------------------------------------------------------------------------------------------------------------*/
 ?>

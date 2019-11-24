@@ -1,4 +1,12 @@
 <?php
+if(!class_exists('Database')){
+    require(dirname(__FILE__)."/../Database/Database.php");
+    }
+if(!function_exists('generate_insert_query'))
+    {
+        require_once(dirname(__FILE__)."\..\helper_functions.php");
+    }
+
 class Categories{
     public $cateID = 0;
     public $cateName = "";
@@ -14,8 +22,8 @@ class Categories{
         
         $this->cateID = $args["cate_id"];
         $this->cateName = $args["name"];
-        $this->cateDesc = $args["parent"];
-        $this->cateParent = $args["description"];
+        $this->cateDesc = $args["description"];
+        $this->cateParent = $args["parent"];
 
     }
 
@@ -24,22 +32,38 @@ class Categories{
 
         $args = array_replace_recursive($default,$args);
         
-        
-        
         //return $args;
     }
+    
 
     function update_category(){
 
     }
 }
+function addBrand($args=array())
+{
+    $dbObj = Database::getInstance();
 
+    $def_arr = [
+        "name" => 0,
+        "parent" => 0,
+        "description" => "",  
+    ];
+
+    $args = array_replace_recursive($def_arr, $args);
+
+    $query = generate_insert_query($args, Categories::$table_name);
+
+    //echo $query;
+
+    $insert_id = $dbObj->run_query($query);
+
+    return $insert_id;
+
+}
 function get_parent_categories(){
     
-    if(!class_exists('Database')){
-        require("../Database/Database.php");
-    }
-
+    
     $db = Database::getInstance();
 
     $query = "select * from ".Categories::$table_name." where parent = 0"; 
@@ -53,7 +77,7 @@ function get_parent_categories(){
         foreach ($arr as $row) {
             $model = new Categories();
             $model->set_data($row);
-            echo $model->cateID;
+            //echo $model->cateID;
             array_push($arrModel,$model);
         }
 
@@ -64,14 +88,77 @@ function get_parent_categories(){
     else $arr;
 
 }
+function get_child_category($cateID)
+{
+    $db = Database::getInstance();
 
-$arr = get_parent_categories();
+    $query = "select * from ".Categories::$table_name." where parent =".$cateID; 
+    
+    $arr = $db->get_results($query);
 
-$model = $arr[0];
- 
-if(is_array($model))
-    print_r($model);
-else
-    echo "No Data Found";
+    $arrModel = array();
+    
+    if(is_array($arr)){
+
+        foreach ($arr as $row) {
+            $model = new Categories();
+            $model->set_data($row);
+            //echo $model->cateID;
+            array_push($arrModel,$model);
+        }
+
+        return $arrModel;
+
+    }
+
+    else $arr;
+
+}
+/*----------------------------------------------------------------------*/
+if(isset($_POST['action']))
+{
+    //echo $_POST['cate_id'];
+    if(isset($_POST['cate_id']) && !empty($_POST['cate_id']))
+    {
+        $arr = get_child_category($_POST['cate_id']);
+        $ret = "&nbsp;
+        <label for='' class='col-form-label'> Brand :</label>
+        <select class='form-control form-control-sm-2 custom-select' name='pro_brand' id='' required='true'>
+        <option selected>Select Brand</option>
+        ";
+        for($i=0;$i<count($arr);$i++)
+        {
+        $ret .="<option value=".$arr[$i]->cateID.">".$arr[$i]->cateName."</option>";
+        }
+        $ret .="</select>";
+        echo $ret;
+    }
+}
+
+// $arr = get_parent_categories();
+// print_r($arr);
+// foreach($arr as $row)
+// {
+//     echo "<br>";
+//     print_r($row);
+//     $arr1 = get_child_category($row->cateID);    
+//     foreach($arr1 as $row1)
+//     {
+//         echo "<br><hr>";
+//         print_r($row1);
+//         echo "<br><hr>";
+//     }    
+    
+//     echo "<br>";
+// }
+
+
+// $model = $arr[0];
+// print_r($model);
+
+// if(is_array($model))
+//     print_r($model);
+// else
+//     echo "No Data Found";
 
 ?>

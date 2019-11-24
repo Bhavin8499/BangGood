@@ -38,6 +38,11 @@
 	<link href = "css/jquery-ui.css" rel="stylesheet" type="text/css" media="all" />
 	<!--jquery style-->
 	<!-- //Custom-Files -->
+	<!-- jquery -->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script src = "js/jquery-ui.js"></script>  
+	<!-- //jquery -->
+
 
 	<!-- web fonts -->
 	<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=latin-ext" rel="stylesheet">
@@ -63,7 +68,7 @@
 					<ul>
 						<li class="text-center border-right text-white">
 							<a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">
-								<i class="fas fa-map-marker mr-2"></i>Select Location</a>
+							</a>
 						</li>
 						<li class="text-center border-right text-white">
 							<a href="order.php" class="text-white">
@@ -74,7 +79,7 @@
 						</li>
 					
 						<li class="text-center border-right text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
+							<a href="login.php"  class="text-white">
 								<i class="fas fa-sign-in-alt mr-2"></i> Log In </a>
 						</li>
 						<li class="text-center text-white">
@@ -89,20 +94,20 @@
 				else
 				{
 				?>
-				<div class="col-lg-6 header-most-top">
+				<div class="col-lg-4 header-header-most-top">
 					<p class="text-white text-lg-left text-center">Offer Zone Top Deals & Discounts
 						<i class="fas fa-shopping-cart ml-1"></i>
 					</p>
 				</div>
-				<div class="col-lg-6 header-right mt-lg-0 mt-2">
+				<div class="col-lg-8 header-right mt-lg-0 mt-2">
 					<!-- header lists -->
 					<ul>
-					<li class="text-center border-right text-white">
-							
-						</li>
 						<li class="text-center border-right text-white">
-							
 						</li>
+						<!-- <li class="text-center border-right text-white">
+							<a href="#" data-toggle="modal" data-target="#resetpass" class="text-white">
+								<i class="fas fa-sign-in-alt mr-2"></i> Reset Password </a>
+						</li> -->
 						<li class="text-center border-right text-white">
 							<a href="order.php" class="text-white">
 							<i class="fas fa-truck mr-2"></i>Track Order</a>
@@ -113,11 +118,21 @@
 						<li class="text-center border-right text-white">
 							<a href="logout.php"  class="text-white"><i class="fas fa-sign-in-alt mr-2"></i> Log Out </a>
 						</li>
+						<li class="text-center text-white nav-item dropdown">
+							<a class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<img src="images/user.jpg" alt="profile pic"   style='height:20px; width:20px;border-radius:35px;' />
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="editprofile.php">Edit Profile</a>
+								<a class="dropdown-item" href=".php">View Profile</a>
+								<div class="dropdown-divider"></div>
+								<a href="#" data-toggle="modal" data-target="#resetpass" class="dropdown-item">Reset Password</a>							</div>	
+						</li>
 					</ul>
 					<!-- //header lists -->
 				</div>
 
-				<?php } ?>
+			<?php 	} ?>
 			</div>
 		</div>
 	</div>
@@ -127,7 +142,7 @@
 		<div class="container">
 			<div class="row header-bot_inner_wthreeinfo_header_mid">
 				<!-- logo -->
-				<div class="col-md-3 logo_agile">
+				<div class="col-md-4 logo_agile">
 					<h1 class="text-center">
 						<a href="index.html" class="font-weight-bold font-italic">
 							<img src="images/logo2.png" alt="logo" class="img-fluid">BangGoods
@@ -136,7 +151,7 @@
 				</div>
 				<!-- //logo -->
 				<!-- header-bot -->
-				<div class="col-md-9 header mt-4 mb-md-0 mb-4">
+				<div class="col-md-8 header mt-4 mb-md-0 mb-4">
 					<div class="row">
 						<!-- search -->
 						<div class="col-10 agileits_search" >
@@ -162,4 +177,4 @@
 			</div>
 		</div>
 	</div>
-	
+	<?php require_once("resetPassword.php");?>

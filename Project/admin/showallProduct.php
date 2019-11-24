@@ -59,14 +59,14 @@
                         </div>
                     </div>     
                     
-                <div class="row" id="product" >
+                <div class="row" id="product">
                 <?php for($i=0;$i<count($result_set);$i++){ ?>
                 <div class="col-md-3 product-men  mt-5" >
                 <div class="men-pro-item simpleCart_shelfItem">
 					<div class="men-thumb-item text-center" >
                             <?php $image=Unserialize($result_set[$i]['images']);?>
 					<div style="height:250px; width:auto;">
-			            	<img src=<?php echo '.'.$image[0];?>  style='height:auto; max-height:90%; width:auto; max-width: 90%;' alt=''>
+			            	<img src=<?php echo '../'.$image[0];?>  style='height:auto; max-height:90%; width:auto; max-width: 90%;' alt=''>
 						</div>  
 					</div>
 					<div class="item-info-product text-center border-top mt-4">

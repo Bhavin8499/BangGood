@@ -1,7 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <?php 
 $title="Register";
 include("header.php");
-//include("login.php"); ?>
+include("login.php"); ?>
 <?php include("nevigation.php"); ?>
 <?php
 if(!function_exists("register_new_user")){
@@ -23,7 +26,7 @@ if(!function_exists("register_new_user")){
 		];
 
 		$user = register_new_user($args, $args_profile);
-		echo $user->user_id;
+		//echo $user->user_id;
 	}
 
 ?>
@@ -41,7 +44,7 @@ if(!function_exists("register_new_user")){
 					
 						<div class="contact-form1 form-group">
 							<label class="col-form-label">Username : </label>
-							<input type="text" class="form-control" name="username" id="username" placeholder="" required="" onblur="checkAvailability()">
+							<input type="text" class="form-control" name="username" id="username" placeholder="" required="" onblur="checkAvailability()"/>
 							<span id="user-availability-status"></span> 
 						</div>
 						<div class=" contact-form1 form-group">
@@ -58,19 +61,21 @@ if(!function_exists("register_new_user")){
 						</div>
 						<div class="contact-form1 form-group">
 							<label class="col-form-label">Mobile No : </label>
-							<input type="text" class="form-control" name="mobno" placeholder="" required="true" onKeyPress="return isnumkey(this);" maxlength="10">
+							<input type="tel" class="form-control" name="mobno" id="mobile-num" placeholder="" required="true" onKeyPress="return isnumkey(this);" maxlength="10">
 						</div>
 
 						<div class="contact-form1 form-group">
 							<label class="col-form-label">Name : </label>
 							<input type="text" class="form-control" name="name" placeholder="" required="">
 						</div>
+
 						<label class="col-form-label" for="gender_title">Gender :</label>
 						<div class="form-check form-check-inline">
 						
 							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender_male" value="Male">
 							<label class="form-check-label" for="gender_male">Male</label>
 						</div>
+						
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender_female" value="Female">
 							<label class="form-check-label" for="gender_female">Female</label>
@@ -101,6 +106,8 @@ if(!function_exists("register_new_user")){
 	</div>
 </div>
 
+<?php include("footer.php"); ?>
+
 <script>
 
 function previewImage() {
@@ -124,7 +131,6 @@ function isPasswordSame(){
 	else
 		$("#pass_error").remove();
 }
-
 function checkAvailability() {
 	var uname=$("#username").val();
 	var action='username_check';
@@ -133,55 +139,9 @@ function checkAvailability() {
 	type: "POST",
 	data:{action:action,username:uname},
 	success:function(data){
-		$("#user-availability-status").html(data);
+	$("#user-availability-status").html(data);
 	},
 	error:function (){}
 	});
 }
-
 </script>
-
-<?php include("footer.php"); ?>
-
-<!--<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Register</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="#" method="post">
-						<div class="form-group">
-							<label class="col-form-label">Your Name</label>
-							<input type="text" class="form-control" placeholder=" " name="Name" required="">
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Email</label>
-							<input type="email" class="form-control" placeholder=" " name="Email" required="">
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Password</label>
-							<input type="password" class="form-control" placeholder=" " name="Password" id="password1" required="">
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Confirm Password</label>
-							<input type="password" class="form-control" placeholder=" " name="Confirm Password" id="password2" required="">
-						</div>
-						<div class="right-w3l">
-							<input type="submit" class="form-control" value="Register">
-						</div>
-						<div class="sub-w3l">
-							<div class="custom-control custom-checkbox mr-sm-2">
-								<input type="checkbox" class="custom-control-input" id="customControlAutosizing2">
-								<label class="custom-control-label" for="customControlAutosizing2">I Accept to the Terms & Conditions</label>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
--->

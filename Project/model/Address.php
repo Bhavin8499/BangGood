@@ -1,9 +1,9 @@
 <?php
 
 if(!class_exists("Database"))
-    include("model\Database\Database.php");
+    include("Database\Database.php");
 if(!function_exists("generate_insert_query"))
-    include("model\helper_functions.php");
+    include("helper_functions.php");
 
 class Address{
 

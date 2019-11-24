@@ -2133,7 +2133,9 @@ div#testimonials h4.m-title {
 }
 
 .contact-form1 input[type="text"],
-.contact-form1 input[type="email"],
+.contact-form1 input[type="email"], 
+.contact-form1 input[type="tel"],
+.contact-form1 input[type="password"],
 .contact-me textarea {
     outline: none;
     padding: 10px;

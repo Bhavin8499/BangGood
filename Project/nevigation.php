@@ -37,16 +37,7 @@
 													<a href="product.php?search=PowerBank Accessories">Power Banks</a>
 												</li>
 												<li>
-													<a href="product.html">All Certified Refurbished</a>
-												</li>
-												<li>
 													<a href="product.php?serch=Tablet">Tablets</a>
-												</li>
-												<li>
-													<a href="product.html">Wearable Devices</a>
-												</li>
-												<li>
-													<a href="product.html">Smart Home</a>
 												</li>
 											</ul>
 										</div>
@@ -59,19 +50,8 @@
 													<a href="product.php?search=MemoryCard HardDisk">Drives & Storage</a>
 												</li>
 												<li>
-													<a href="product.php?search=">Printers & Ink</a>
-												</li>
-												<li>
-													<a href="product.php?seach=">Networking Devices</a>
-												</li>
 												<li>
 													<a href="product.php?search=Computer Accessories">Computer Accessories</a>
-												</li>
-												<li>
-													<a href="product.html">Game Zone</a>
-												</li>
-												<li>
-													<a href="product.html">Software</a>
 												</li>
 											</ul>
 										</div>
@@ -83,11 +63,12 @@
 							<a class="nav-link" href="about.php">About Us</a>
 						</li>
 						<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
-							<a class="nav-link" href="product.html">New Arrivals</a>
+							<a class="nav-link" href="product.php?search=New Arrivals">New Arrivals</a>
 						</li>
 						<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
 							<a class="nav-link" href="contact.php">Contact Us</a>
 						</li>
+						<li class="nav-item mr-lg-5 mb-lg-0 mb-2"></li>
 					</ul>
 				</div>
 			</nav>

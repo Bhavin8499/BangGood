@@ -60,24 +60,21 @@
 				<div class="col-md-6 header-right mt-lg-0 mt-2">
 					<!-- header lists -->
 					<ul>
-						<!--<li class="text-center border-right text-white">
-							<a class="play-icon popup-with-zoom-anim text-white" href="#small-dialog1">
-								<i class="fas fa-map-marker mr-2"></i>Add Somting</a>
+					<li class="text-center border-right text-white">
+							
 						</li>
 						<li class="text-center border-right text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal" class="text-white">
-								<i class="fas fa-truck mr-2"></i>Add </a>
+							
 						</li>
 						<li class="text-center border-right text-white">
-							<i class="fas fa-phone mr-2"></i> 001 234 5678
-						</li>-->
+							
+						</li>
+						<li class="text-center border-right text-white">
+						
+						</li>
 						<li class="text-center border-right text-white">
 							<a href="logout.php" class="text-white">
 								<i class="fas fa-sign-out-alt mr-2"></i> Log Out </a>
-						</li>
-						<li class="text-center text-white">
-							<a href="#" data-toggle="modal" data-target="#exampleModal2" class="text-white">
-								<i class="fas fa-acc-alt mr-2"></i> Profile </a>
 						</li>
 					</ul>
 					<!-- //header lists -->

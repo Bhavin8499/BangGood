@@ -10,10 +10,7 @@
 	<!-- //top-header -->
 
     
-    <!-- log in -->
-    <?php require_once('login.php');?>
-    <!-- // log in -->
-
+    
     <!-- register -->   
           <?php //require_once('register.php');?>
     <!-- //register -->   
@@ -62,6 +59,7 @@
                                         <div class="men-thumb-item text-center">
                                         <?php $image=Unserialize($result_set[$i]['images']);                                        ?>
 											<img src="<?php echo $image[0];?>" alt=""  style="height:275px; max-width:250px;" >
+										
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
@@ -72,7 +70,7 @@
 												<del><?php echo $result_set[$i]['mrp']+500;?></del>
 											</div>
 											<div class="snipcart-details single-item hvr-outline-out">
-													<button type="button"  value='<?php echo $result_set[$i]['pro_id'];?>' onclick='addToCart(this)' >ADD TO CART</button>
+													<button type="button"  value='<?php echo $result_set[$i]['pro_id'];?>' onclick='addToCart(<?php echo $result_set[$i]["pro_id"];?>)' >ADD TO CART</button>
 													<!--<input type="button" value="ADD TO CART" class="button btn">-->
 											</div>
 										</div>
@@ -85,8 +83,9 @@
 						<!-- //first section -->
 					</div>
 				</div>
+				<?php require_once('filters.php'); ?>
 				<!-- product right -->
-				<div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
+				<!-- <div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
 					<div class="side-bar p-sm-4 p-3">
 					
 						<div class="border-bottom py-2">
@@ -137,7 +136,7 @@
 								</div>		   	
 						</div>	
 					</div>
-				</div>
+				</div> -->
 				<!-- //product left -->
 				<!-- product right 
 				<div class="col-lg-3 mt-lg-0 mt-4 p-lg-0">
@@ -396,8 +395,7 @@
 	<?php require_once('footer.php');?>
 	<!-- //footer -->
 	<script >
-$(document).ready(function(){
-	
+	$(document).ready(function(){
 		function filter_data()
 		{
 			$('.filter_data').html('<div id="loading" ></div>');

@@ -3,6 +3,7 @@
           prod_id , name , price ,discount , discription , stock	
           
          /* pro_id,name,cat_id,mrp,discount,description,images,qty,can_buy,tags
+          pro_id,name,cat_id,brand,mrp,discount,description,images,qty,can_buy,tags
 */
 
     if(!class_exists('Database'))
@@ -27,6 +28,7 @@
             public $images="";
             public $can_buy=0;
             public $tags="";
+            public $brand="";
             
         
             public $connection;
@@ -48,6 +50,7 @@
                 $this->images=$args['images'];
                 $this->can_buy = $args['can_buy'];
                 $this->tags = $args['tags'];
+                $this->brand = $args['brand'];
             }
             else 
             {
@@ -63,6 +66,7 @@
                 $this->images=$result_set['images'];
                 $this->can_buy=$result_set['can_buy'];
                 $this->tags=$result_set['tags'];
+                $this->brand = $result_set['brand'];
             }
            
         }
@@ -84,7 +88,7 @@
 
         function updateProduct()
         {
-            $query = "UPDATE ".Product::$table_name." SET name='".$this->name."',cat_id=".$this->cat_id.",mrp=".$this->mrp.",discount='".$this->discount."',description='".$this->description."',images='".$this->images."',qty=".$this->qty.",can_buy=".$this->can_buy.",tags='".$this->tags."' WHERE pro_id =".$this->pro_id;
+            $query = "UPDATE ".Product::$table_name." SET name='".$this->name."',cat_id=".$this->cat_id.",brand=".$this->brand.",mrp=".$this->mrp.",discount='".$this->discount."',description='".$this->description."',images='".$this->images."',qty=".$this->qty.",can_buy=".$this->can_buy.",tags='".$this->tags."' WHERE pro_id =".$this->pro_id;
 
             $update_id = $this->database->run_query($query);        
             
@@ -151,7 +155,8 @@ function addProduct($args=array())
         "images" => "",
         "qty" => 0,
         "can_buy" => 0,
-        "tags"=>""
+        "tags"=>"",
+        "brand"=>0
     ];
 
     $args = array_replace_recursive($def_arr, $args);
@@ -169,6 +174,10 @@ function getSearchedProduct($columns='*',$tag,$query)
    if($query=="All Mobile")
    {
     $sql = "SELECT ".$columns." FROM  product WHERE cat_id = 1 ORDER BY pro_id";    
+   }
+   else if($query=="New Arrivals")
+   {
+    $sql = "SELECT ".$columns." FROM  product ORDER BY pro_id  DESC LIMIT 15";    
    }
    else if($query=="All Laptop")
    {
@@ -259,7 +268,7 @@ if(isset($_POST["action"]))
                             <del>'.($result_set[$i]['mrp']+500).'</del>
                         </div>
                         <div class="snipcart-details single-item hvr-outline-out">
-                            <button type="button"  value='.$result_set[$i]['pro_id'].' onclick="addToCart(this)" >ADD TO CART</button>
+                            <button type="button"  value='.$result_set[$i]['pro_id'].' onclick="addToCart('.$result_set[$i]['pro_id'].')" >ADD TO CART</button>
                             <!--<input type="button" value="ADD TO CART" class="button btn">-->
                         </div>
                     </div>
@@ -299,6 +308,7 @@ if(isset($_POST["action"]))
         "qty" => 10,
         "can_buy" => 1,
         "tags"=>"GOOGLE MOBILE"
+        "brand"=>0
     ];*/
 
     //  addProduct($args);
