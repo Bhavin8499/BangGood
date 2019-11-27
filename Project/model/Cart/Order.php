@@ -249,5 +249,29 @@ function getOrderByID($order_id=0){
     return $order;
 }
 
+function getRemainingPaymentOrder($deli_id = 0){
+
+    $sql = "select * from  orders where deli_id=".$deli_id." and payment_status='Remain' and payment_type='COD' order by oid desc";
+
+    $orders = array();
+
+    $dbObj = Database::getInstance();
+
+    $result = $dbObj->get_results($sql);
+
+    if(!is_array($result))
+        return $orders;
+
+    foreach ($result as $orderArgs) {
+        
+        $order = new Order();
+        $order->setOrderDetails($orderArgs);
+        array_push($orders, $order);
+
+    }
+
+    return $orders;
+
+}
 
 ?>

@@ -137,7 +137,7 @@
 
                     if($last_status->key != 5){
                         ?>
-                        <button class="btn btn-danger" style="width:100%;" >Cancel Order</button>
+                        <button class="btn btn-danger" style="width:100%;" onclick="cancel_order(<?php echo $order->order_id; ?>)" >Cancel Order</button>
                         <?php
                     }
 
@@ -150,9 +150,38 @@
         </diV>
     </diV>
 
+    <script type="text/javascript">
+    function cancel_order(order_id) {
+       
+            
+            //alert(mrp);
+            //alert(qty.value+"*--*"+pro_id+"*--*"+user_id+"**--*"+cart_id);
+            $.ajax({
+                url: "ajax/cancel_order.php",
+                method: "POST",
+                data: {
+                    order_id: order_id
+                },
+                success: function (data) {
+                   
+                    alert("Ordered Canceled Successfully!!!");
+                },
+                error: function (errorThrown) {
+                    alert(errorThrown);
+                    alert("There is an error with AJAX!");
+                }
+            });
+           
+
+        
+    }
+    </script>
+   
     <!-- footer -->
     <?php require_once('footer.php');?>
     <!-- footer -->
+    
+    
     <style>
         .shop-tracking-status .form-horizontal{margin-bottom:50px}
         .shop-tracking-status .order-status{margin-top:80px;position:relative;margin-bottom:80px}
@@ -175,7 +204,6 @@
         .shop-tracking-status .image-order-status-completed .status{top:45px;left:-180px;text-align:right}.shop-tracking-status .image-order-status-completed .status:before{display:none}
         .shop-tracking-status .image-order-status-completed .status:after{font-family:FontAwesome;content:"-";padding-left:5px;vertical-align:middle}
     </style>
-    
-    </body>
+  
 
 </html>

@@ -53,21 +53,19 @@ function upload_image($img, $image_for = "product")
     $dirname = "";
     $filepath = "";
 
-	print_r($img);
-
     switch ($image_for){
         case "product" :
-            $filepath = "\images\product\\";
+            $filepath = "images\product\\";
             $dirname = dirname(__DIR__)."\images\product\\";            
             break;
 
         case "profile_image" : 
-            $filepath = "\images\profile\\";
+            $filepath = "images\profile\\";
             $dirname = dirname(__DIR__)."\images\profile\\";
             break;
 
         case "cover_image" :
-            $filepath = "\images\cover\\";
+            $filepath = "images\cover\\";
             $dirname = dirname(__DIR__)."\images\cover\\";
             break;
 
@@ -123,6 +121,9 @@ function upload_image($img, $image_for = "product")
 		array_push($uploadedFiles,$dirname.$randomfilename);
 	}
 
+    $str = str_replace('\\', '/', $filepath.$randomfilename);
+
+    return $str;
   
 }
 

@@ -14,7 +14,6 @@ class Profile{
     public $name = "";
     public $birthdate = "00-00-0000";
     public $profile_img = "";
-    public $cover_img = "";
     public $gender = 0;
     public static $table_name = "profile";
 
@@ -26,7 +25,6 @@ class Profile{
             $this->name = $args["name"];
             $this->birthdate = $args["birthdate"];
             $this->profile_img = $args["profile_img"];
-            $this->cover_img = $args["cover_img"];
             $this->gender = $args["gender"];
 
         }
@@ -39,7 +37,6 @@ class Profile{
             $this->name = $result["name"];
             $this->birthdate = $result["birthdate"];
             $this->profile_img = $result["profile_img"];
-            $this->cover_img = $result["cover_img"];
             $this->gender = $result["gender"];
 
         }
@@ -55,7 +52,6 @@ class Profile{
         $args["name"] = $this->name;
         $args["birthdate"] = $this->birthdate;
         $args["profile_img"] = $this->profile_img;
-        $args["cover_img"] = $this->cover_img;
         $args["gender"] = $this->gender;
 
         $query = "update ".Profile::$table_name." set ".generate_update_query($args)." where user_id='".$this->user_id."'";
@@ -130,11 +126,11 @@ function get_user_profile_by_id($id = ''){
 function add_new_profile($user_id = 0, $args = array()){
 
     $def_arr = [
-        "user_id" => "$user_id",
+        "id" => "$user_id",
         "name" => "",
-        "birthdate" => "00-00-0000",
+        "birth_date" => "00-00-0000",
         "profile_img" => "def_profile_img.jpg",
-        "cover_img" => "def_cover_img.jpg"
+        "gender" => "Male"
     ];
 
     $args = array_replace_recursive($def_arr, $args);
@@ -145,7 +141,6 @@ function add_new_profile($user_id = 0, $args = array()){
     $dbObj = Database::getInstance();
 
     $res = $dbObj->run_query($query);
-
     return true;
 
 }

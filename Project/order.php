@@ -67,12 +67,21 @@ if(!isset($_SESSION['user_id'])){
                                              Order Staus : <?php echo $order->order_status; ?>
                                          </b>
                                 </td>
+
+                                <?php
+                                
+                                    if(!($order->order_status == "Canceled" || $order->order_status == "Rejected")){
+                                ?>
+
                                 <td style="width:20%;vertical-align: middle;">
                                     <div class="text-center" style="height: 100%;">
                                         <a href="viewOrder.php?id=<?php echo $order->order_id; ?>"><button type="button" class="btn btn-primary" style="width:100%; max-width:150px; " >Track Order</button></a><br />
                                         <button type="button" class="btn btn-danger" style="margin-top:10px; width:100%; max-width:150px;">Cancel</button>
                                     </div>
                                 </td>
+                                <?php
+                                    }
+                                ?>
                             </tr>
                         </table>
                     </div >
