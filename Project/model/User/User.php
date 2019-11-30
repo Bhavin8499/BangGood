@@ -258,13 +258,13 @@ function register_new_user($args = array(), $args_profile = array()){
         "email" => "",
         "mobile_no" => "",
         "creation_date" => date('Y-m-d H:i:s'),
-        "role" => "customer",
+        "role" => "CUSTOMER",
     ];
 
     $args = array_replace_recursive($def_arr, $args);
 
 
-    $query = generate_insert_query($args, Product::$table_name);
+    $query = generate_insert_query($args, User::$table_name);
 
     $user_id = $dbObj->run_query($query);
 

@@ -6,14 +6,19 @@
 	if(!class_exists('Product'))
     {
      require_once(dirname(__FILE__)."/model/Product/Product.php");
+	}
+	if(!class_exists('Categories'))
+    {
+     require_once(dirname(__FILE__)."/model/Categories/Categories.php");
     }
     if(isset($_REQUEST['pro_id']))
     {
             $pro=new Product($_REQUEST['pro_id']);
             //$pro_id=$_REQUEST['pro_id'];
             //$result_set = $pro->getProduct($pro_id);
-    }	
+    }		$category = get_category($pro->cat_id);
 	?>
+
 	<!-- //header-bottom -->
     <!-- navigation -->
     <?php require_once('nevigation.php');?>
@@ -24,9 +29,10 @@
 	<div class="banner-bootom-w3-agileits py-5">
 		<div class="container py-xl-4 py-lg-2">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l text-center mb-lg-5 mb-sm-4 mb-3">
-				<span>S</span>ingle
-				<span>P</span>age</h3>
+			<h3 class="tittle-w3l text-center mb-sm-4 mb-4">
+				<span><?php echo  ucfirst($category[0]['name'][0]);?></span><?php echo  substr(strtolower($category[0]['name']),1);?>
+				<span>P</span>roduct
+				</h3>
 			<!-- //tittle heading -->
 			<div class="row">
 				<div class="col-lg-5 col-md-8 single-right-left ">
@@ -50,8 +56,8 @@
 				<div class="col-lg-7 single-right-left simpleCart_shelfItem">
 					<h3 class="mb-3"><?php echo $pro->name;?></h3>
 					<p class="mb-3">
-						<span class="item_price">INR <?php echo $pro->mrp;?></span>
-						<del class="mx-2 font-weight-light"><?php echo $pro->mrp+500;?></del>
+						<span class="item_price">INR <?php echo round($pro->getPrice());?></span>
+						<del class="mx-2 font-weight-light"><?php echo $pro->mrp;?></del>
 						<label>Free delivery</label>
 					</p>
 					<div class="product-single-w3l">

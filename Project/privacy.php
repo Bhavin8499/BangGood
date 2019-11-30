@@ -6,9 +6,6 @@
 		<?php require_once('header.php');?>
 	<!-- //header-->
 
-	<!-- log in -->
-    <?php require_once('login.php');?>
-    <!-- // log in -->
 	
     <!-- navigation -->
     <?php require_once('nevigation.php');?>

@@ -114,8 +114,8 @@
                                             <input type='hidden' name='pro_id' value='<?php echo $result_set[$i]->pro_id; ?>' onclick='this' class='pro_id' />
                                         </td>
                                         <td class="invert"><?php echo $p[$i]->name; ?></td>
-                                        <td class="invert"><?php echo $p[$i]->mrp; ?></td>
-                                        <td class="invert"> <p><span id="tot_mrp<?php echo $p[$i]->pro_id;?>"> <?php echo $p[$i]->mrp*$result_set[$i]->qty; ?> </span></p></td>
+                                        <td class="invert"><?php echo $p[$i]->getPrice(); ?></td>
+                                        <td class="invert"> <p><span id="tot_mrp<?php echo $p[$i]->pro_id;?>"> <?php echo $p[$i]->getPrice()*$result_set[$i]->qty; ?> </span></p></td>
                                        
                                         </td>
                                         </tr>

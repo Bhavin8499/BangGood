@@ -77,17 +77,17 @@
                             <td class="invert">
                                 <input type='number' name='quantity' value="<?php echo $result_set[$i]->qty; ?>" min="1"
                                     class='qty' style="width:auto; max-width:100px;"
-                                    onclick='updateQty(this,<?php echo $p[$i]->pro_id;?>,<?php echo $p[$i]->mrp; ?>)' /><br />
+                                    onclick='updateQty(this,<?php echo $p[$i]->pro_id;?>,<?php echo round($p[$i]->getPrice()); ?>)' /><br />
                                 <input type='hidden' name='pro_id' value='<?php echo $p[$i]->pro_id; ?>' onclick='this'
                                     class='pro_id' />
                                 <input style="font-size:1em; margin:0; padding:0; border:0; background-color:White;"
                                     name="btnUpdateCart" type="submit" value="Restock" />
                             </td>
                             <td class="invert"><?php echo $p[$i]->name; ?></td>
-                            <td class="invert"><?php echo $p[$i]->mrp; ?></td>
+                            <td class="invert"><?php echo round($p[$i]->getPrice()); ?></td>
                             <td class="invert">
                                 <p><span id="tot_mrp<?php echo $p[$i]->pro_id;?>">
-                                        <?php echo $result_set[$i]->qty*$p[$i]->mrp; ?> </span></p>
+                                        <?php echo $result_set[$i]->qty*round($p[$i]->getPrice());; ?> </span></p>
                             </td>
                             <td class="invert">
                                 <a href="cart.php?delProduct=YES&pro_id=<?php echo $p[$i]->pro_id; ?>">

@@ -104,10 +104,10 @@ $del = new Delivery($_GET['id'], $_SESSION["user_id"]);
                             <label class="col-form-label">Status :&nbsp;</label>
                             <select class="form-control custom-select form-control-sm" name="txtKey" id="" required="true">
                                <option value="">Select Status</option>
-                               <option value=1>In progress</option>
-                               <option value=2>Reach Near Hub</option>
-                               <option value=3>Out Of Delivery</option>
-                               <option value=4>Delivered</option>
+                               <option value=2>In progress</option>
+                               <option value=3>Reach Near Hub</option>
+                               <option value=4>Out Of Delivery</option>
+                               <option value=5>Delivered</option>
                              </select>
                         </div>
 						<div class="form-group ">

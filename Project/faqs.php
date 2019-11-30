@@ -7,11 +7,7 @@
     <?php require_once('header.php');?>
 	<!-- //top-header -->
 	
-	<!-- log in -->
-	<?php require_once('login.php');?>
-    <!-- // log in -->
-	<
-
+	
    <!-- navigation -->
     <?php require_once('nevigation.php');?>
 	<!-- //navigation -->

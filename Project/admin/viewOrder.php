@@ -98,7 +98,7 @@
                                         <td class="invert-image" >
                                             <a href="single.php?pro_id=<?php echo $p[$i]->pro_id;?>">
                                                 <?php $image = Unserialize($p[$i]->images);?>
-                                                <img src="<?php echo ".".$image[0]; ?>" alt=" " class="img-responsive" style="max-height:200px; width:auto;">
+                                                <img src="<?php echo "../".$image[0]; ?>" alt=" " class="img-responsive" style="max-height:200px; width:auto;">
                                             </a>
                                         </td>
                                         <td class="invert">
@@ -106,8 +106,8 @@
                                             <input type='hidden' name='pro_id' value='<?php echo $result_set[$i]->pro_id; ?>' onclick='this' class='pro_id' />
                                         </td>
                                         <td class="invert"><?php echo $p[$i]->name; ?></td>
-                                        <td class="invert"><?php echo $p[$i]->mrp; ?></td>
-                                        <td class="invert"> <p><span id="tot_mrp<?php echo $p[$i]->pro_id;?>"> <?php echo $p[$i]->mrp*$result_set[$i]->qty; ?> </span></p></td>
+                                        <td class="invert"><?php echo $p[$i]->getPrice(); ?></td>
+                                        <td class="invert"> <p><span id="tot_mrp<?php echo $p[$i]->pro_id;?>"> <?php echo $p[$i]->getPrice()*$result_set[$i]->qty; ?> </span></p></td>
                                        
                                         </td>
                                         </tr>

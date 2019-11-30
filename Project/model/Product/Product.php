@@ -73,7 +73,7 @@
 
         function getPrice(){
             if($this->discount > 0)
-                return $this->mrp - ($this->mrp/$this->discount);
+                return round($this->mrp - ($this->mrp*$this->discount/100));
             return $this->mrp;
         }
 
@@ -264,8 +264,8 @@ if(isset($_POST["action"]))
                             <a href="./single.php?pro_id='.$result_set[$i]['pro_id'].'">'.ucfirst($result_set[$i]['name']).'</a>
                         </h4>
                         <div class="info-product-price my-2">
-                            <span class="item_price">'.$result_set[$i]['mrp'].'</span>
-                            <del>'.($result_set[$i]['mrp']+500).'</del>
+                            <span class="item_price">'.round($result_set[$i]['mrp']-($result_set[$i]['mrp']*$result_set[$i]['discount']/100)).'</span>
+                            <del>'.$result_set[$i]['mrp'].'</del>
                         </div>
                         <div class="snipcart-details single-item hvr-outline-out">
                             <button type="button"  value='.$result_set[$i]['pro_id'].' onclick="addToCart('.$result_set[$i]['pro_id'].')" >ADD TO CART</button>
@@ -342,9 +342,7 @@ if(isset($_POST["action"]))
 /*
     $result_set=getAllProduct();
     print_r($result_set);
-*/
-
-
+function*/
 
 //////////////////////////////////////////////////////////////////////////////////////
 /*

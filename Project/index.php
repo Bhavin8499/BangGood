@@ -11,44 +11,7 @@
 	<!-- //top-header -->
 
     
-    <!-- log in -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title text-center">Log In</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form action="#" method="post">
-						<div class="form-group">
-							<label class="col-form-label">Username</label>
-							<input type="text" class="form-control" placeholder=" " name="username" required="">
-						</div>
-						<div class="form-group">
-							<label class="col-form-label">Password</label>
-							<input type="password" class="form-control" placeholder=" " name="password" required="">
-						</div>
-						<div class="right-w3l">
-							<input type="submit" name="login_user" class="form-control" value="Log in">
-						</div>
-						<!--<div class="sub-w3l">
-							<div class="custom-control custom-checkbox mr-sm-2">
-								<input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-								<label class="custom-control-label" for="customControlAutosizing">Remember me?</label>
-							</div>
-						</div>-->
-						<p class="text-center dont-do mt-3">Don't have an account?
-							<a href="register.php">	Register Now</a>
-						</p>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-    <!-- // log in -->
+  <!-- // log in -->
 
     <!-- register -->   
           <?php //require_once('register.php');?>
@@ -66,7 +29,7 @@
 	<div class="ads-grid col-md-12 col-xs-12">
 		<div class="container-fluid">
 			<!-- tittle heading -->
-			<h3 class="tittle-w3l text-center col-md-12 col-xs-12">
+			<h3 class="tittle-w3l text-center col-md-12 col-xs-12 mt-2 mb-3	">
 				<span>N</span>ew
 				<span>P</span>roducts</h3>
 			<!-- //tittle heading -->
@@ -83,13 +46,18 @@
 										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">			
 												<?php $image = unserialize($result['images']); ?>
 											<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result['name']);?>"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' />
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a href="./single.php?pro_id=<?php echo $result['pro_id'];?>" class="link-product-add-cart">Quick View</a>
+												</div>
+											</div>
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
 												<a href="./single.php?pro_id=<?php echo $result['pro_id'];?>"><?php echo "".ucfirst($result['name']);?></a>
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price"><?php echo "".$result['mrp'];?></span> INR
+												<span class="item_price"><?php echo "".round($result['mrp']-($result['mrp']*$result['discount']/100));?></span> INR
 												<del><?php echo "".$result['mrp'];?></del>
 											</div>
 											<div class="snipcart-details single-item hvr-outline-out">
@@ -114,21 +82,26 @@
 								<div class="col-md-3 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">
-												
-												<?php $image=Unserialize($result_set[$i]['images']);?>
+											<?php $image=Unserialize($result_set[$i]['images']);?>
 											<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' />
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a href="single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>" class="link-product-add-cart">Quick View</a>
+												</div>
+											</div>
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
 												<a href="./single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price"><?php echo "".$result_set[$i]['mrp'];?></span> INR
-												<del><?php echo "".$result_set[$i]['mrp']+500;?></del>
+												
+												<span class="item_price"><?php echo "".round($result_set[$i]['mrp']-($result_set[$i]['mrp']*$result_set[$i]['discount']/100));?></span> INR
+												<del><?php echo "".$result_set[$i]['mrp'];?></del>
 											</div>
 											<div class="snipcart-details single-item hvr-outline-out">
 													<button type="button"  value='<?php echo $result_set[$i]['pro_id'];?>' onclick='addToCart(<?php echo $result_set[$i]["pro_id"];?>)' >ADD TO CART</button>
-													<!--<input type="button" value="ADD TO CART" class="button btn">-->
+													<!--<input type="button" value="ADD TO CART" class="button btn">-($result_set[$i]['mrp']*$result_set[$i]['discount']/100)-->
 											</div>
 										</div>
 									</div>
@@ -159,17 +132,21 @@
 								<div class="col-md-3 product-men mt-5">
 									<div class="men-pro-item simpleCart_shelfItem">
 										<div class="men-thumb-item text-center"  style="height:275px; width:auto;">
-												
-												<?php $image=Unserialize($result_set[$i]['images']);?>
+											<?php $image=Unserialize($result_set[$i]['images']);?>
 											<img src="<?php echo $image[0];?>" alt="<?php echo "".ucfirst($result_set[$i]['name']);?>"   style='height:auto; max-height:90%; width:auto; max-width: 90%;' />
+											<div class="men-cart-pro">
+												<div class="inner-men-cart-pro">
+													<a href="./single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>" class="link-product-add-cart">Quick View</a>
+												</div>
+											</div>
 										</div>
 										<div class="item-info-product text-center border-top mt-4">
 											<h4 class="pt-1">
 												<a href="./single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price"><?php echo "".$result_set[$i]['mrp'];?></span> INR
-												<del><?php echo "".$result_set[$i]['mrp']+500;?></del>
+												<span class="item_price"><?php echo "".round($result_set[$i]['mrp']-($result_set[$i]['mrp']*$result_set[$i]['discount']/100));?></span> INR
+												<del><?php echo "".$result_set[$i]['mrp'];?></del>
 											</div>
 											<div class="snipcart-details single-item hvr-outline-out">
 													<button type="button"  value='<?php echo $result_set[$i]['pro_id'];?>' onclick='addToCart(<?php echo $result_set[$i]["pro_id"];?>)' >ADD TO CART</button>

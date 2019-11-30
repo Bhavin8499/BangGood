@@ -17,6 +17,7 @@ class Categories{
     function __construct(){
 
     }
+    
 
     function set_data($args){
         
@@ -61,6 +62,13 @@ function addBrand($args=array())
     return $insert_id;
 
 }
+function get_category($cat_id)
+{
+    $query = "select * from ".Categories::$table_name." where cate_id=".$cat_id; 
+    $db = Database::getInstance();
+    $arr = $db->get_results($query);
+    return $arr;
+}
 function get_parent_categories(){
     
     
@@ -88,6 +96,7 @@ function get_parent_categories(){
     else $arr;
 
 }
+
 function get_child_category($cateID)
 {
     $db = Database::getInstance();
@@ -135,7 +144,7 @@ if(isset($_POST['action']))
     }
 }
 
-// $arr = get_parent_categories();
+// $arr = get_category(1);
 // print_r($arr);
 // foreach($arr as $row)
 // {

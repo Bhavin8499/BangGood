@@ -60,8 +60,8 @@
 							<i class="fas fa-map-marker-alt rounded-circle"></i>
 						</div>
 						<h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Address</h4>
-						<p>1PO Box 8568954 Melbourne
-							<label>Australia.</label>
+						<p>Marwadi Edu,Morbi Road
+							<label>Rajkot.</label>
 						</p>
 					</div>
 				</div>
@@ -71,7 +71,7 @@
 							<i class="fas fa-phone rounded-circle"></i>
 						</div>
 						<h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Call Us</h4>
-						<p>+(0121) 121 121</p>
+						<p>+(91)12345 67890</p>
 					</div>
 				</div>
 				<div class="col-sm-4 contact-grid agileinfo-6">
@@ -81,7 +81,7 @@
 						</div>
 						<h4 class="font-weight-bold mt-sm-4 mt-3 mb-3">Email</h4>
 						<p>
-							<a href="mailto:info@example.com">info@example1.com</a>
+							<a href="mailto:info@example.com">admin@banggoods.com</a>
 							
 						</p>
 					</div>

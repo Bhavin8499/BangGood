@@ -10,6 +10,11 @@
     {
      require_once(dirname(__FILE__)."/../model/Categories/Categories.php");
     }
+    if(!function_exists('upload_image'))
+    {
+        include(dirname(__FILE__)."/../helper_functions.php");
+    }
+
 
     if(isset($_REQUEST['pro_id']))
     {
@@ -32,71 +37,78 @@
     {
             $pro=new Product($_POST['id']);
 
-            $errors = array();
-            $uploadedFiles = array();
-            $extension = array("jpeg","jpg","png","gif");
-            $bytes = 1024;
-            $KB = 1024;
-            $totalBytes = $bytes * $KB;
-            $UploadFolder = "./images";
-            $imagesDB="";
-            $counter = 0;
+            // $errors = array();
+            // $uploadedFiles = array();
+            // $extension = array("jpeg","jpg","png","gif");
+            // $bytes = 1024;
+            // $KB = 1024;
+            // $totalBytes = $bytes * $KB;
+            // $UploadFolder = "./images";
+            // $imagesDB="";
+            // $counter = 0;
             
-            foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
-                $temp = $_FILES["files"]["tmp_name"][$key];
-                $name = $_FILES["files"]["name"][$key];
-                if(empty($temp)){break;}
+            // foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
+            //     $temp = $_FILES["files"]["tmp_name"][$key];
+            //     $name = $_FILES["files"]["name"][$key];
+            //     if(empty($temp)){break;}
                 
-                $counter++;
-                $UploadOk = true;
+            //     $counter++;
+            //     $UploadOk = true;
                 
-                if($_FILES["files"]["size"][$key] > $totalBytes)
-                {
-                    $UploadOk = false;
-                    array_push($errors, $name." file size is larger than the 1 MB.");
-                }
+            //     if($_FILES["files"]["size"][$key] > $totalBytes)
+            //     {
+            //         $UploadOk = false;
+            //         array_push($errors, $name." file size is larger than the 1 MB.");
+            //     }
                 
-                $ext = pathinfo($name, PATHINFO_EXTENSION);
-                if(in_array($ext, $extension) == false){
-                    $UploadOk = false;
-                    array_push($errors, $name." is invalid file type.");
-                }
+            //     $ext = pathinfo($name, PATHINFO_EXTENSION);
+            //     if(in_array($ext, $extension) == false){
+            //         $UploadOk = false;
+            //         array_push($errors, $name." is invalid file type.");
+            //     }
                 
-                if(file_exists($UploadFolder."/".$name) == true){
-                    $UploadOk = false;
-                    array_push($errors, $name." file is already exist.");
-                }
+            //     if(file_exists($UploadFolder."/".$name) == true){
+            //         $UploadOk = false;
+            //         array_push($errors, $name." file is already exist.");
+            //     }
                 
-                if($UploadOk == true){
-                    move_uploaded_file($temp,".".$UploadFolder."/".$name);
-                    //echo $UploadFolder."/".$name;
-                    array_push($uploadedFiles, $UploadFolder."/".$name);
-                }
-            }
-            if($counter>0){
-                if(count($errors)>0)
-                {
-                    echo "<b>Errors:</b>";
-                    echo "<br/><ul>";
-                    foreach($errors as $error)
-                    {
-                        echo "<li>".$error."</li>";
-                    }
-                    echo "</ul><br/>";
-                }
-                //print_r($uploadedFiles);
-                $imagesDB=serialize($uploadedFiles);
-                //echo "<br>";
-                //print_r($imagesDB);
-                //$imagesDB=Unserialize($imagesDB);echo "<br>";
-                //print_r($imagesDB);
-            }
-            else{
-                echo "Please, Select file(s) to upload.";
-            }
+            //     if($UploadOk == true){
+            //         move_uploaded_file($temp,".".$UploadFolder."/".$name);
+            //         //echo $UploadFolder."/".$name;
+            //         array_push($uploadedFiles, $UploadFolder."/".$name);
+            //     }
+            // }
+            // if($counter>0){
+            //     if(count($errors)>0)
+            //     {
+            //         echo "<b>Errors:</b>";
+            //         echo "<br/><ul>";
+            //         foreach($errors as $error)
+            //         {
+            //             echo "<li>".$error."</li>";
+            //         }
+            //         echo "</ul><br/>";
+            //     }
+            //     //print_r($uploadedFiles);
+            //     $imagesDB=serialize($uploadedFiles);
+            //     //echo "<br>";
+            //     //print_r($imagesDB);
+            //     //$imagesDB=Unserialize($imagesDB);echo "<br>";
+            //     //print_r($imagesDB);
+            // }
+            // else{
+            //     echo "Please, Select file(s) to upload.";
+            // }
 
-
-
+            // /$img=  array_push($img);
+            $images_uploaded = array();
+			
+			$images_uploaded = upload_multiple_image($_FILES["fileUpload"]);
+            //print_r($images_uploaded);
+            
+			$imagesDB = serialize($images_uploaded);
+			
+            
             $pro->cat_id     = $_POST['pro_cat'];
             $pro->brand     =$_POST['pro_brand'];
             $pro->name       = $_POST['pro_name'];
@@ -123,7 +135,7 @@
 
             $result_set=$pro->updateProduct();
             
-            //echo $result_set;
+           // echo $result_set;
             header('location:editProduct.php?pro_id='.$pro->pro_id);
           
     }
@@ -183,29 +195,35 @@
 							<label class="col-form-label">Discription</label>
 							<textarea  type="text" class="form-control"  name="pro_discription" value="<?php echo $pro->description;?>" required="true"></textarea>
                             
-                            <script type="text/javascript">             
-
-                                            CKEDITOR.replace( 'pro_discription',
-                                            {   //fullPage : true,
-                                                //uiColor : '#efe8ce'
-                                            });
-                                            var data="<?php echo $pro->description;?>";
-                                            CKEDITOR.instances.pro_discription.setData(data, function()
-                                            {
-                                                this.checkDirty();  // true
-                                            });
+                            <script type="text/javascript">           
+                                CKEDITOR.replace( 'pro_discription',
+                                {   //fullPage : true,
+                                    //uiColor : '#efe8ce'
+                                });
+                                var data="<?php echo $pro->description;?>";
+                                CKEDITOR.instances.pro_discription.setData(data, function()
+                                {
+                                    this.checkDirty();  // true
+                                });
                             </script>
                         </div>
                         <div class="form-group">
 							<label class="col-form-label">Tags</label>
 							<input type="text" class="form-control" placeholder=" " name="pro_tags" value="<?php echo $pro->tags;?>"  required="">
                         </div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label class="col-form-label">Images</label>
                             <input type="file" class="form-control" placeholder=" " multiple="true" name="files[]" value="<?php echo Unserialize($pro->images);?>" id="fileupload" >
-                            <div id="dvPreview"></div>
-						</div>
-                        
+						</div> -->
+                                <span id="fileupload" value="<?php print_r(Unserialize($pro->images));?>"></span>
+                           <div id="dvPreview"></div>
+                        <div class="form-group">
+                                <label class="control-label col-md-8">Upload Image</label>
+                                <div class="col-md-12">
+                                    <div class="row" id="coba">
+                                    </div>
+                                </div>
+                        </div>
                         <div class="form-group form-inline col-md-4 col-md-12">
                            <label class="col-form-label  px-sm-0">Disount&nbsp;</label>
                             <input type="number" class="form-control" placeholder=" " min="0" max="80" name="pro_discount" value="<?php echo $pro->discount;?>" required="">
@@ -235,12 +253,15 @@
     <!-- //form -->
 
     <!-- footer -->
-    <?php require_once('footer.php');?>
+    <?php require_once('footer.php');
+        $img=Unserialize($pro->images);
+    ?>
     <!-- //footer -->
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript" src="dist/js/spartan-multi-image-picker.js"></script>
+     <script language="javascript" type="text/javascript">
         window.onload = function () {
             var fileUpload = document.getElementById("fileupload");
-            fileUpload.onchange = function () {
+            fileUpload.onload = function () {
                 if (typeof (FileReader) != "undefined") {
                     var dvPreview = document.getElementById("dvPreview");
                     dvPreview.innerHTML = "";
@@ -268,6 +289,40 @@
                 }
             }
         };
+        
+
+
+		$("#coba").spartanMultiImagePicker({
+				fieldName:        'fileUpload[]',
+				maxCount:         5,
+				rowHeight:        '200px',
+				groupClassName:   'col-md-4 col-sm-4 col-xs-6',
+				maxFileSize:      '',
+				placeholderImage: {
+				    image: 'placeholder.png',
+                	width : '100%'
+				},
+				dropFileLabel : "Drop Here",
+				onAddRow:       function(index){
+					console.log(index);
+					console.log('add new row');
+				},
+				onRenderedPreview : function(index){
+					console.log(index);
+					console.log('preview rendered');
+				},
+				onRemoveRow : function(index){
+					console.log(index);
+				},
+				onExtensionErr : function(index, file){
+					console.log(index, file,  'extension err');
+					alert('Please only input png or jpg type file')
+				},
+				onSizeErr : function(index, file){
+					console.log(index, file,  'file size too big');
+					alert('File size too big');
+				}
+			});
     </script>
 </body>
 </html>	

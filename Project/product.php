@@ -9,13 +9,6 @@
 		?>
 	<!-- //top-header -->
 
-    
-    
-    <!-- register -->   
-          <?php //require_once('register.php');?>
-    <!-- //register -->   
-
-	
     <!-- navigation -->
     <?php require_once('nevigation.php');?>
 	<!-- //navigation -->
@@ -66,8 +59,8 @@
 												<a href="./single.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><?php echo "".ucfirst($result_set[$i]['name']);?></a>
 											</h4>
 											<div class="info-product-price my-2">
-												<span class="item_price"><?php echo $result_set[$i]['mrp'];?></span>
-												<del><?php echo $result_set[$i]['mrp']+500;?></del>
+												<span class="item_price"><?php echo round($result_set[$i]['mrp']-($result_set[$i]['mrp']*$result_set[$i]['discount']/100));?></span>
+												<del><?php echo $result_set[$i]['mrp'];?></del>
 											</div>
 											<div class="snipcart-details single-item hvr-outline-out">
 													<button type="button"  value='<?php echo $result_set[$i]['pro_id'];?>' onclick='addToCart(<?php echo $result_set[$i]["pro_id"];?>)' >ADD TO CART</button>

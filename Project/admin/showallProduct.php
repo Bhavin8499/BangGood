@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="en">
 <?php
+
      require_once(dirname(__FILE__)."/../model/Product/Product.php");
+     
     global  $result_set; 
     if(isset($_REQUEST['pro_del']))
     {
