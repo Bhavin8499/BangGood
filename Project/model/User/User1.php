@@ -198,13 +198,14 @@ function get_user_by_id($id = ''){
     $dbObj = Database::getInstance();
     $result = $dbObj->get_result("select * from ". User::$table_name ." where user_id=".$id);
 
+    
 
     if(count($result) < 1 ){
         return FALSE;
     }
 
     $user = new User($result);
-
+    
     return $user;
 
 }
@@ -250,7 +251,7 @@ function register_new_user($args = array(), $args_profile = array()){
         "email" => "",
         "mobile_no" => "",
         "creation_date" => date('Y-m-d H:i:s'),
-        "role" => "customer",
+        "role" => "CUSTOMER",
     ];
 
     $args = array_replace_recursive($def_arr, $args);

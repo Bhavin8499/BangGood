@@ -1,5 +1,12 @@
 <?php 
 	session_start();
+
+	if(isset($_SESSION['user_id'])){
+		if(!class_exists('Profile')){
+			include("model/User/Profile.php");
+		}
+		$profile_user = get_user_profile_by_id($_SESSION['user_id']);
+	}
 ?>
 <head>
 
@@ -120,13 +127,16 @@
 						</li>
 						<li class="text-center text-white nav-item dropdown">
 							<a class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<img src="images/user.jpg" alt="profile pic"   style='height:20px; width:20px;border-radius:35px;' />
+							<img src="<?php echo isset($profile_user->profile_img) ? $profile_user->profile_img : 'images/user.jpg'; ?>" alt="profile pic"   style='height:20px; width:20px;border-radius:35px;' />
 							</a>
-							<div class="dropdown-menu">
+							<div class="dropdown-menu" >
+								<div style="margin-left:10%; margin-right:10%;"><?php echo $profile_user->name; ?></div>
+								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="editprofile.php">Edit Profile</a>
 								<a class="dropdown-item" href=".php">View Profile</a>
 								<div class="dropdown-divider"></div>
-								<a href="#" data-toggle="modal" data-target="#resetpass" class="dropdown-item">Reset Password</a>							</div>	
+								<a href="#" data-toggle="modal" data-target="#resetpass" class="dropdown-item">Reset Password</a>	
+								<a class="dropdown-item" href="logout.php">Logout</a>						</div>	
 						</li>
 					</ul>
 					<!-- //header lists -->

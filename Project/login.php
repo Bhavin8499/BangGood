@@ -34,20 +34,20 @@
 	 {	
 		if($user->role=="CUSTOMER")
 		{
-			echo "<script>window.location = \"index.php\";</script>";
+			echo "<script>window.location = 'index.php';</script>";
 		}
 		else if($user->role=="ADMIN")
 		{
-			echo "<script>window.location = \"admin\/index.php\";</script>";
+			echo "<script>window.location = 'admin/index.php';</script>";
 		}
 		else if($user->role=="DELIVERY")
 		{
-			echo "<script>window.location = \"delivery\/index.php\";</script>";
+			echo "<script>window.location = 'delivery/index.php';</script>";
 		}
 	}	
 	else
 	{
-		echo "<script>window.location = \"login.php\";</script>";
+		echo "<script>window.location = 'login.php';</script>";
 	}
 	
 		unset($_POST['login_user']);

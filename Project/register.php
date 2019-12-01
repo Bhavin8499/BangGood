@@ -119,7 +119,7 @@ function isPasswordSame(){
 	if(pass != cpass){
 		//alert(pass + "  " + cpass);
 		if(document.getElementById("pass_error") == null)
-			$("<div id='pass_error' class='contact-form1 form-group alert-danger'><label class='col-form-label' style='margin-left: 1%;'>Both Password Are Not Same </label></div>").insertAfter("#cpass_box");
+			$("<div id='pass_error' class='contact-form1 form-group alert-danger' style='margin-top:10px;'><label class='col-form-label' style='margin-left: 1%;'>Both Password Are Not Same </label></div>").insertAfter("#cpass_box");
 	}
 	else
 		$("#pass_error").remove();

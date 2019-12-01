@@ -1,4 +1,7 @@
-<?php include("header.php"); 
+<?php
+
+$title = "Edit Profile | Banggood";
+include("header.php"); 
     if(!in_array("user_id", array_keys($_SESSION))){
         echo "<script>alert('You Are not logged in.'); location='index.php';</script>";
     }
@@ -11,10 +14,27 @@
 		include("model/User/Profile.php");
 	}
 
-	
-
 	$user = get_user_by_id($_SESSION['user_id']);
 	$profile = get_user_profile_by_id($_SESSION['user_id']);
+
+	
+
+	if(isset($_POST['btn_prof_update'])){
+		$args = [
+			"name" => $_POST["name"],
+			"birth_date" => $_POST["birthdate"],
+			"gender" => $_POST["Gender"],
+		];
+		
+		
+		if(isset($_FILES["profile_img"])){
+			$img = upload_image($_FILES["profile_img"],"profile_image");
+			$args["profile_img"] = $img;
+		}
+		$profile->update_profile($args);
+	}
+
+
 ?>
 <div class="faqs-w3l py-sm-5 py-4">
 			<!-- tittle heading -->
@@ -27,13 +47,13 @@
 						                    
 						                    <div class="form-group">
 							                    <label class="col-form-label">Your Name</label>
-							                    <input type="text" class="form-control" name="name" required="" value="<?php echo $user->username; ?>">
+							                    <input type="text" class="form-control" name="name" required="" value="<?php echo $profile->name; ?>">
 											</div>
 											
 						                   
 						                    <div class="form-group">
 							                    <label class="col-form-label">Mobile Number</label>
-							                    <input type="text" maxlength="10" onkeypress='validate(event)' class="form-control" name="Mobile" value="<?php echo $user->mobile_no; ?>" required="">
+							                    <input type="text" maxlength="10" onkeypress='validate(event)' readonly class="form-control" name="Mobile" value="<?php echo $user->mobile_no; ?>" required="">
 											</div>
 											
 						                    <div class="form-group">
@@ -43,35 +63,36 @@
 											
 											<div>
 												<label class="col-form-label">Birth date</label>
-							                    <input type="date" class="form-control" name="birthdate" >
+							                    <input type="date" class="form-control" name="birthdate" value="<?php echo $profile->birthdate; ?>">
 												
 											</div>
 
 						                    <div class="form-group">
 							                    <label class="col-form-label">Gender</label><br />
-						                        <input type="radio" value="Male" name="Gender"   /><label class="col-form-label">Male</label>
-						                        <input type="radio" value="Female" name="Gender" /><label class="col-form-label">Female</label>
+						                        <input type="radio" value="Male" name="Gender" <?php echo $profile->gender == "Male" ? "checked" : ""; ?>  /><label class="col-form-label">Male</label>
+						                        <input type="radio" value="Female" name="Gender" <?php echo $profile->gender == "Female" ? "checked" : ""; ?>  /><label class="col-form-label">Female</label>
 						                    </div>		
 						                    <div>
 												      <label class="file">
-                                                              <input type="file" id="file" name="file" aria-label="File browser example" accept="image/*" onchange="loadFile(event)">
+                                                              <input type="file" id="file" name="profile_img" aria-label="File browser example" accept="image/*" onchange="loadFile(event)" class="form-input">
                                                               <span class="file-custom"></span>
                                                             </label>
-						                                    <div>
-						                                        <img id="output"  style="margin:5px; height:300px; border-radius:10%;"/>
-						                                    </div>
+						                                    	<div align="center">
+						                                        <img id="output"  style="margin:5px; border-radius:10%;"/>
+																</div>
 						                                        <script>
 						                                        var loadFile = function(event)
 						                                        {
-						                                            var width = document.getElementById('file').offsetWidth;
-                                                                   var output = document.getElementById('output');
+						                                          var width = document.getElementById('file').offsetWidth;
+																  document.getElementById('output').style.height = 300;
+                                                                  var output = document.getElementById('output');
                                                                   output.src = URL.createObjectURL(event.target.files[0]);
-                                                                  output.width = width;
+                                                                  output.style.width = "auto";
                                                                 };
                                                                 </script>
                                                         </div>
                                                         <div class="right-w3l">
-							<input type="submit" class="form-control" id="btnSubmit" name="btnEditProfile" value="Update Profile" />
+							 <input type="submit" class="form-control" id="btnSubmit" name="btn_prof_update" value="Update Profile" />
 						</div>
 						
 					</form>

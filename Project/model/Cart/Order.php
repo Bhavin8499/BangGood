@@ -163,6 +163,9 @@ function getAddress(){
 
                 $dbObj->run_query($query);
 
+                $query = "update product set qty=qty-".$qty." where pro_id=".$cart_product->product_id;
+                $dbObj->run_query($query);
+
             }
             return true;
         } 

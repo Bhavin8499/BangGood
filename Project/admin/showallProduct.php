@@ -81,9 +81,9 @@
 							 Quantity:   <span><?php echo $result_set[$i]['qty'];?></span>
 						</div>
                     </div>
-                    <div class='col-md-6 col-md-12 mb-2'>
-					<a href="editProduct.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="edit_Pro" value="Edit Product" class="button btn btn-secondary btn-sm" /></a>
-                    <a href="?pro_del=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="pro_del" value="Delete Product" class="button btn btn-danger btn-sm" /></a>
+                    <div class='col-md-6 col-md-12 mb-2' align="center">
+					    <a href="editProduct.php?pro_id=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="edit_Pro" value="Edit Product" class="button btn btn-secondary btn-sm" /></a>
+                        <a href="?pro_del=<?php echo $result_set[$i]['pro_id'];?>"><input type="button" name="pro_del" value="Delete Product" class="button btn btn-danger btn-sm" /></a>
                     </div>
 				    </div>
 			        </div>

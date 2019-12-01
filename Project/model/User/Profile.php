@@ -21,9 +21,9 @@ class Profile{
 
         if(is_array($args)){
 
-            $this->user_id = $args["user_id"];
+            $this->user_id = $args["id"];
             $this->name = $args["name"];
-            $this->birthdate = $args["birthdate"];
+            $this->birthdate = $args["birth_date"];
             $this->profile_img = $args["profile_img"];
             $this->gender = $args["gender"];
 
@@ -31,11 +31,11 @@ class Profile{
         else{
             $dbObj = Database::getInstance();
 
-            $result = $dbObj->get_result("select * from ".Profile::$table_name." where user_id=$this->user_id");
+            $result = $dbObj->get_result("select * from ".Profile::$table_name." where id=$this->user_id");
 
-            $this->user_id = $result["user_id"];
+            $this->user_id = $result["id"];
             $this->name = $result["name"];
-            $this->birthdate = $result["birthdate"];
+            $this->birthdate = $result["birth_date"];
             $this->profile_img = $result["profile_img"];
             $this->gender = $result["gender"];
 
@@ -44,17 +44,9 @@ class Profile{
     }
     
     //setter Methods
-    function update_profile(){
+    function update_profile($args = array()){
 
-        $args = array();
-
-        $args["user_id"] = $this->user_id;
-        $args["name"] = $this->name;
-        $args["birthdate"] = $this->birthdate;
-        $args["profile_img"] = $this->profile_img;
-        $args["gender"] = $this->gender;
-
-        $query = "update ".Profile::$table_name." set ".generate_update_query($args)." where user_id='".$this->user_id."'";
+        $query = "update ".Profile::$table_name." set ".generate_update_query($args)." where id='".$this->user_id."'";
 
         $dbObj = Database::getInstance();
 
@@ -109,9 +101,9 @@ class Profile{
 
 function get_user_profile_by_id($id = ''){
     $dbObj = Database::getInstance();
-    $sql = "select * from ".Profile::$table_name." where user_id=".$id;
+    $sql = "select * from ".Profile::$table_name." where id=".$id;
     $result = $dbObj->get_result($sql);
-
+    
 
     if(count($result) < 1 ){
         return FALSE;

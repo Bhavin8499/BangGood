@@ -35,7 +35,17 @@
 
     if(isset($_POST['pro_update']))
     {
+        
             $pro=new Product($_POST['id']);
+
+            $removeImages = array_diff(unserialize($pro->images), $_POST["old_images"]);
+            print_r($removeImages);
+
+            foreach($removeImages as $imgs){
+                if (file_exists("../".$imgs)) {
+                    unlink("../".$imgs);                    
+                }
+            }
 
             // $errors = array();
             // $uploadedFiles = array();
@@ -103,7 +113,14 @@
             // /$img=  array_push($img);
             $images_uploaded = array();
 			
-			$images_uploaded = upload_multiple_image($_FILES["fileUpload"]);
+            $images_uploaded = upload_multiple_image($_FILES["fileUpload"]);
+            
+            foreach($_POST["old_images"] as $img){
+                array_push($images_uploaded, $img);
+            }
+
+            
+
             //print_r($images_uploaded);
             
 			$imagesDB = serialize($images_uploaded);
@@ -231,17 +248,36 @@
                             <label class="col-form-label px-sm-4">Quantity</label>
                             <input type="number" class="form-control" placeholder=" " min="1" max="80" name="pro_quantity" value="<?php echo $pro->qty;?>" required="">
                     
-                            <div class="form-check">
-                              <label class="form-check-label px-sm-4">Can Buy - 
+                            <div class="form-check" style="margin-left:5%;">                              
                                 <input type="checkbox" class="form-control  form-check-input" name="pro_canbuy" id="" <?php echo ($pro->can_buy =='1' ? 'checked' : '');?> />
-                              </label>
+                                <label class="form-check-label px-sm-4">&nbsp; Can Buy </label>
                             </div>
                         </div>
-						<div class="form-group form-inline col-md-6 col-md-12 ">
-							<input type="submit" class="form-control button btn btn-primary" name="pro_update" value="Update">&nbsp;
-                            <input type="hidden" name="id" value="<?php echo $pro->pro_id;?>">
-                            <a href="showallProduct.php"><input type="button" name="return" value="Cancel" class="button btn btn-danger" /></a>
-						</div>
+						
+                        <div class="form-group form-inline col-md-6 col-md-12 ">
+                        
+                          <?php 
+    foreach(unserialize($pro->images) as $imgName){
+
+    ?>
+    <div class="col-sm-3 col-md-3 col-lg-3" align="center">
+        <div>
+            <img src="<?php echo "../".$imgName; ?>" class="img-fluid"  style="max-height:250px; width:auto;"> 
+        </div>
+        <div>
+            <input type="checkbox" name="old_images[]" value="<?php echo $imgName; ?>" checked="checked" ">&nbsp;Uncheck To Remove
+        </div>
+    </div>
+           
+    <?php
+        }
+    ?></div>
+ <input type="hidden" name="id" value="<?php echo $pro->pro_id;?>">
+
+ <div class="form-group form-inline col-md-12 col-md-12">
+							<input type="submit" class="form-control button btn btn-primary" name="pro_update" value="Update">&nbsp;                            
+                            <a href="showallProduct.php"><input type="button" name="return"  value="Cancel" class="button btn btn-danger" /></a>
+                        </div>
 					</form>
                     </div>
                     </div>
@@ -252,6 +288,7 @@
     </div>  
     <!-- //form -->
 
+   
     <!-- footer -->
     <?php require_once('footer.php');
         $img=Unserialize($pro->images);

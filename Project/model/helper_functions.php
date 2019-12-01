@@ -44,7 +44,7 @@ function generate_update_query($args)
 
     //implode(",",$keys)." values ".implode(',', $values);
 
-    return $strItem;
+    return $str;
 
 }
 
@@ -114,16 +114,17 @@ function upload_image($img, $image_for = "product")
 		$UploadOk = false;
 		array_push($errors, $randomfilename." file is already exist.");
 	}
-	
+	echo $filepath;
 	if($UploadOk == true){
-		///echo $temp;
-		move_uploaded_file($temp,$dirname.$randomfilename);
-		array_push($uploadedFiles,$dirname.$randomfilename);
-	}
+        ///echo $temp;
+        move_uploaded_file($temp,$dirname.$randomfilename);
+        
+        $newName = str_replace('\\', '/', $filepath.$randomfilename);
 
-    $str = str_replace('\\', '/', $filepath.$randomfilename);
+        return $newName;
+    }
 
-    return $str;
+    return "";
   
 }
 
@@ -208,7 +209,7 @@ function upload_multiple_image($img, $image_for = "product")
 			
     }
 
-    print_r($uploadedFiles);
+    
   	return $uploadedFiles;
 }
 
