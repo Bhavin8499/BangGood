@@ -217,6 +217,50 @@ function getAllOrders(){
 
 }
 
+function getRemainingOrders(){
+
+    $query = "select * from ". Order::$TABLE_NAME_ORDER ." where oid in (select ord_id from delivery where is_delivered='No') order by oid desc";
+
+    $orders = array();
+
+    $dbObj = Database::getInstance();
+
+    $result = $dbObj->get_results($query);
+
+    foreach ($result as $orderArgs) {
+        
+        $order = new Order();
+        $order->setOrderDetails($orderArgs);
+        array_push($orders, $order);
+
+    }
+
+    return $orders;
+
+}
+
+function getAllDeliveredOrders(){
+
+    $query = "select * from ". Order::$TABLE_NAME_ORDER ." where oid in (select ord_id from delivery where is_delivered='Yes') order by oid desc";
+
+    $orders = array();
+
+    $dbObj = Database::getInstance();
+
+    $result = $dbObj->get_results($query);
+
+    foreach ($result as $orderArgs) {
+        
+        $order = new Order();
+        $order->setOrderDetails($orderArgs);
+        array_push($orders, $order);
+
+    }
+
+    return $orders;
+
+}
+
 function getOrderByUserID( $id = 0){
 
     $query = "select * from ". Order::$TABLE_NAME_ORDER ." where user_id=".$id." order by oid desc";

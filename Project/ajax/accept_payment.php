@@ -4,7 +4,7 @@ include("../model/Database/Database.php");
 
 if(isset($_POST["order_id"])){
 
-    $sql = "select * from order where oid=".$_POST["order_id"];
+    $sql = "select * from orders where oid=".$_POST["order_id"];
 
     $dbObj = Database::getInstance();
 
@@ -15,7 +15,7 @@ if(isset($_POST["order_id"])){
     $dbObj->run_query($sql);
 
 
-    $sql = "update orders set payment_status='Done' where oid".$_POST["order_id"];
+    $sql = "update orders set payment_status='Done' where oid=".$_POST["order_id"];
     $dbObj->run_query($sql);
 
 

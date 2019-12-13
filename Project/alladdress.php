@@ -46,7 +46,7 @@ $add = getAllAddress($_SESSION["user_id"]);
         foreach ($add as $address) {
             $counter++;
     ?>
-    <div class="wrapper col-md-12 col-xs-12" id="addDiv<?php echo $counter; ?>">
+    <div class="wrapper col-md-12 col-xs-12" id="addDiv<?php echo $address->id; ?>">
         <div class="product-sec1 px-3  py-3 mb-4">
             <table style="width:100%;" class="table table-striped table-bordered" data-page-length='10'>
                 <tr>
@@ -75,9 +75,12 @@ $add = getAllAddress($_SESSION["user_id"]);
 
                     <td style="width:1%;vertical-align: middle;">
                         <div class="text-center" style="height: 100%;">
-                            <button type="button" class="btn btn-danger"
+                            <button type="button" class="btn btn-primary"
+                                onClick="window.location='addupdateaddress.php?add_id=<?php echo $address->id; ?>';"
+                                style="width:100%; max-width:150px; ">Edit</button><br />
+                            <button  type="button" class="btn btn-danger"
                                 onClick="removerAddress(<?php echo $address->id; ?>);"
-                                style="width:100%; max-width:150px; ">Delete</button><br />
+                                style="width:100%; max-width:150px; margin-top:10px;">Delete</button><br />
 
                         </div>
                     </td>
@@ -104,7 +107,7 @@ $add = getAllAddress($_SESSION["user_id"]);
             if (confirmId == true) {
                 var action = 'removeAddress';
                 var divId = '#addDiv' + add_id;
-                $(divId).fadeOut(500);
+                $(divId).fadeOut(1);
             }
             $.ajax({
                 url: "ajax/remove_address.php",
@@ -113,7 +116,6 @@ $add = getAllAddress($_SESSION["user_id"]);
                     address_id: add_id
                 },
                 success: function (data) {
-                    alert(data);
                     alert("Address Deleted Successfully");
                 },
                 error: function (errorThrown) {

@@ -124,12 +124,12 @@ function getAllAddress($user_id = -1){
         return $arr;
     }*/
 
-    foreach ($result as $singleAdd) {
-        $add = new Address($singleAdd);
-        array_push($arr,$add);
+    if(is_array($result)){
+        foreach ($result as $singleAdd) {
+            $add = new Address($singleAdd);
+            array_push($arr,$add);
+        }
     }
-
-    
 
     return $arr;
 

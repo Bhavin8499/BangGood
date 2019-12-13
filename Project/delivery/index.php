@@ -15,7 +15,7 @@ $title = "Delivery | BangGoods";
 include("header.php");
 include("nevigation.php");
 
-$orders = getAllOrders();
+$orders = getRemainingOrders();
 
 $ord = $orders[0];
 //echo $ord->getOrderProductCount();

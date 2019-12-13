@@ -59,6 +59,18 @@
 								</div>
 							</div>
 						</li>
+
+						<li class=" mr-lg-5 mb-lg-0 mb-2 nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="alladdress.php" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="False">
+								Address
+							</a>
+							<div class="dropdown-menu" >
+								<a class="dropdown-item" href="alladdress.php">All Address</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="addupdateaddress.php">Add New Address</a>
+								
+						</li>
+
 						<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
 							<a class="nav-link" href="about.php">About Us</a>
 						</li>

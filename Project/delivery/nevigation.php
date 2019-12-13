@@ -10,21 +10,21 @@
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Orders		
 							</a>
 							<div class="dropdown-menu">
-								<a class="dropdown-item" href="addProduct.php">Remain Orders</a>	
-								<a class="dropdown-item" href="addProduct.php">Deliverd Orders</a>	
+								<a class="dropdown-item" href="index.php">Remain Orders</a>	
+								<a class="dropdown-item" href="delivered_order.php">Deliverd Orders</a>	
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="showallProduct.php">Show All Order</a>
+								<a class="dropdown-item" href="showallorder.php">Show All Order</a>
 							</div>	
 						</li>
 						<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
 						</li>
-						<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
+						<!--<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
 							<a class="nav-link" href="product.html">Return Order</a>
-						</li>
+						</li>-->
 						<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
 						</li>
 						<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
-							<a class="nav-link" href="contact.php">Accept Payment</a>
+							<a class="nav-link" href="accept_payment.php">Accept Payment</a>
 						</li>
 						<li class="nav-item mr-lg-5 mb-lg-0 mb-2">
 						</li>
