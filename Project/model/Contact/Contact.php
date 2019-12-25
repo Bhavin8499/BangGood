@@ -2,11 +2,11 @@
 
 if(!class_exists('Database'))
 {
-     require_once(dirname(__FILE__)."\..\Database\Database.php");
+     require_once(dirname(__FILE__)."/../Database/Database.php");
 }
 if(!function_exists('generate_insert_query'))
 {
-    require_once(dirname(__FILE__)."\..\helper_functions.php");
+    require_once(dirname(__FILE__)."/../helper_functions.php");
 }
 class Contact{
 

@@ -1,7 +1,7 @@
 <?php
 
 if(!class_exists("Database"))
-    include("Database\Database.php");
+    include("Database/Database.php");
 if(!function_exists("generate_insert_query"))
     include("helper_functions.php");
 

@@ -1,7 +1,7 @@
 <?php 
  if(!class_exists('Database'))
  {
-      require_once(dirname(__FILE__)."\..\Database\Database.php");
+      require_once(dirname(__FILE__)."/../Database/Database.php");
  }
  if(isset($_POST["action_from_filter"]))
  {

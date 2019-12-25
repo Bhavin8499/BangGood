@@ -1,6 +1,6 @@
 <?php
 if(!class_exists("Database")){
-    require_once(dirname(__FILE__)."\..\Database\Database.php");
+    require_once(dirname(__FILE__)."/../Database/Database.php");
 }
 class Adderss{
     public $user_id = 0;
@@ -16,7 +16,7 @@ class Adderss{
         
        $dbObj = Database::getInstance();
 
-       $result = $dbObj->get_result("select * from ".Address::$table_name." where user_id = ".$this->user_id);
+       $result = $dbObj->get_result("select * from ". Address::$table_name ." where user_id = ".$this->user_id);
 
             
 

@@ -55,22 +55,22 @@ function upload_image($img, $image_for = "product")
 
     switch ($image_for){
         case "product" :
-            $filepath = "images\product\\";
-            $dirname = dirname(__DIR__)."\images\product\\";            
+            $filepath = "images/product//";
+            $dirname = dirname(__DIR__)."/images/product//";            
             break;
 
         case "profile_image" : 
-            $filepath = "images\profile\\";
-            $dirname = dirname(__DIR__)."\images\profile\\";
+            $filepath = "images/profile//";
+            $dirname = dirname(__DIR__)."/images/profile//";
             break;
 
         case "cover_image" :
-            $filepath = "images\cover\\";
-            $dirname = dirname(__DIR__)."\images\cover\\";
+            $filepath = "images/cover//";
+            $dirname = dirname(__DIR__)."/images/cover//";
             break;
 
         default :
-            $dirname = dirname(__DIR__)."\\";
+            $dirname = dirname(__DIR__)."//";
 
     }
 
@@ -119,7 +119,7 @@ function upload_image($img, $image_for = "product")
         ///echo $temp;
         move_uploaded_file($temp,$dirname.$randomfilename);
         
-        $newName = str_replace('\\', '/', $filepath.$randomfilename);
+        $newName = str_replace('//', '/', $filepath.$randomfilename);
 
         return $newName;
     }
@@ -136,22 +136,22 @@ function upload_multiple_image($img, $image_for = "product")
 
     switch ($image_for){
         case "product" :
-            $filepath = "images\product\\";
-            $dirname = dirname(__DIR__)."\images\product\\";            
+            $filepath = "images/product//";
+            $dirname = dirname(__DIR__)."/images/product//";            
             break;
 
         case "profile_image" : 
-            $filepath = "images\profile\\";
-            $dirname = dirname(__DIR__)."\images\profile\\";
+            $filepath = "images/profile//";
+            $dirname = dirname(__DIR__)."/images/profile//";
             break;
 
         case "cover_image" :
-            $filepath = "images\cover\\";
-            $dirname = dirname(__DIR__)."\images\cover\\";
+            $filepath = "images/cover//";
+            $dirname = dirname(__DIR__)."/images/cover//";
             break;
 
         default :
-            $dirname = dirname(__DIR__)."\\";
+            $dirname = dirname(__DIR__)."//";
 
     }
 
@@ -202,7 +202,7 @@ function upload_multiple_image($img, $image_for = "product")
 				///echo $temp;
                 move_uploaded_file($temp,$dirname.$randomfilename);
                 
-                $newName = $str = str_replace('\\', '/', $filepath.$randomfilename);
+                $newName = $str = str_replace('//', '/', $filepath.$randomfilename);
 
 				array_push($uploadedFiles,$newName);
 			}

@@ -232,7 +232,7 @@ function forgot_password($username = ''){
 
         $dbObj->query("insert into bg_resetpass (user_id, reset_id, is_reset) values ($user->user_id, $reset_id, 0)");
 
-        $link = "~\resetPassword.php";
+        $link = "~/resetPassword.php";
 
         $mail = mail($user->email, "Reset Password - BangGood's", "For Reseting Password Please Visit Following Link : ".$link);
 

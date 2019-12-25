@@ -4,7 +4,7 @@ if(!class_exists('Database')){
     }
 if(!function_exists('generate_insert_query'))
     {
-        require_once(dirname(__FILE__)."\..\helper_functions.php");
+        require_once(dirname(__FILE__)."/../helper_functions.php");
     }
 
 class Categories{
