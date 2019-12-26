@@ -17,7 +17,6 @@ include("nevigation.php");
 
 $orders = getAllDeliveredOrders();
 
-$ord = $orders[0];
 //echo $ord->getOrderProductCount();
 
 ?>
@@ -36,6 +35,7 @@ $ord = $orders[0];
 
 <?php
 $counter = 0;
+
 foreach ($orders as $order) {
     $counter += 1;
     $addre = $order->getAddress();

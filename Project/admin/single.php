@@ -36,7 +36,7 @@
 									for($i=0;$i<count($image);$i++){?>
 								<li data-thumb="<?php echo '../'.$image[$i];?>" >
 									<div class="thumb-image">
-										<img src="<?php echo '../'.$image[$i];?>"  data-imagezoom="true" class="img-fluid" alt="" > </div>
+										<img src="<?php echo '../'.$image[$i];?>"  data-imagezoom="true" class="img-fluid" alt="" style='height:450px; max-height:90%; width:auto; max-width: 90%;' > </div>
 									</li><?php } ?>
 							</ul>
 							<div class="clearfix"></div>

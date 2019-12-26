@@ -126,6 +126,7 @@ function get_child_category($cateID)
 /*----------------------------------------------------------------------*/
 if(isset($_POST['action']))
 {
+    $arr=array();
     //echo $_POST['cate_id'];
     if(isset($_POST['cate_id']) && !empty($_POST['cate_id']))
     {

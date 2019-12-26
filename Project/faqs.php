@@ -39,7 +39,7 @@
 							<li class="subitem1">
 								<p> The instructions to activate your account will be sent to your email once you have submitted the registration form.
                                      If you did not receive this email, your email service provider’s mailing software may be blocking it.
-                                     You can try checking your junk / spam folder or contact us at help@samplestore.com</p>
+                                     You can try checking your junk / spam folder or contact us at bangGoods@store.com</p>
 							</li>
 						</ul>
 					</li>
@@ -48,7 +48,7 @@
 						<ul>
 							<li class="subitem1">
 								<p>After logging into your account, the status of your checkout history can be found under Order History. 
-                                    For orders via registered postage, a tracking number (article tracking number) will be given to you after the receipt </p>
+                                    For orders via registered postage, a tracking number  will be given to you after the receipt </p>
 							</li>
 						</ul>
 					</li>
@@ -65,7 +65,7 @@
 						<a href="#" title="click here">HOW LONG WILL IT TAKE FOR MY ORDER TO ARRIVE AFTER I MAKE PAYMENT?</a>
 						<ul>
 							<li class="subitem1">
-								<p>Members who ship their orders within Singapore should expect to receive their orders within five (5) to ten (10) working days upon payment verification depending on the volume of orders received.
+								<p>Members who ship their orders within Rajkot should expect to receive their orders within five (5) to ten (10) working days upon payment verification depending on the volume of orders received.
                                     If you experience delays in receiving your order, contact us immediately and we will help to confirm the status of your order.</p>
 							</li>
 						</ul>

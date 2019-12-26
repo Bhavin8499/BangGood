@@ -42,7 +42,7 @@
 								<?php $image=Unserialize($pro->images);
 									for($i=0;$i<count($image);$i++){?>
 								<li data-thumb="<?php echo $image[$i];?>"  >
-									<div class="thumb-image" >
+									<div class="thumb-image" style='height:450px; width:450px; '>
 										<img src="<?php echo $image[$i];?>"  class="img-fluid" alt="" style='height:450px; max-height:90%; width:auto; max-width: 90%;' > 
 									</div>
 									</li>

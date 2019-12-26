@@ -15,9 +15,9 @@
 
         $result_set = addBrand($args);
         if($result_set>0)
-           echo "<script>alert('Brand Added.');</script>";
+           echo "<script>alert('Brand Added.');window.location='index.php';</script>";
         else
-        echo "<script>alert('Some Error Occured Please Try Again Later...');</script>";
+            echo "<script>alert('Some Error Occured Please Try Again Later...');</script>";
         unset($_POST['add_brand']);
     }
     $category=get_parent_categories();

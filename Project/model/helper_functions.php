@@ -114,7 +114,7 @@ function upload_image($img, $image_for = "product")
 		$UploadOk = false;
 		array_push($errors, $randomfilename." file is already exist.");
 	}
-	echo $filepath;
+	
 	if($UploadOk == true){
         ///echo $temp;
         move_uploaded_file($temp,$dirname.$randomfilename);

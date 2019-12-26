@@ -53,9 +53,9 @@
 		<div class="container-fluid">
 			<div class="row main-top-w3l py-2">
 				<div class="col-md-4 col-md-6 header-most-top">
-					<p class="text-white text-lg-left text-center">B a n g G o o d s
-						<i class="fas fa-shopping-cart ml-1"></i>
-					</p>
+				<a href="index.html" ><p class="text-white text-lg-left text-center">B a n g G o o d s
+						<i class="fas fa-shopping-cart ml-1"></i> - A D M I N
+					</p></a>
 				</div>
 				<div class="col-md-6 header-right mt-lg-0 mt-2">
 					<!-- header lists -->

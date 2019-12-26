@@ -115,8 +115,8 @@ foreach ($orders as $order) {
                     order_id : btn.id
                 },
                 success: function (data) {
-                    alert(data);
-                    //alert("Order Is Approved...!!!");
+                    //alert(data);
+                    alert("Order Is Approved...!!!");
                 },
                 error: function (errorThrown) {
                     alert(errorThrown);
@@ -138,8 +138,8 @@ foreach ($orders as $order) {
                    order_id : btn.id
                },
                success: function (data) {
-                   alert(data);
-                   //alert("Order Is Approved...!!!");
+                   //alert(data);
+                   alert("Order Is Disapproved...!!!");
                },
                error: function (errorThrown) {
                    alert(errorThrown);

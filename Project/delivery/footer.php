@@ -8,22 +8,16 @@
 						<h3 class="text-white font-weight-bold mb-3">Categories</h3>
 						<ul>
 							<li class="mb-3">
-								<a href="product.html">Mobiles </a>
+								<a href="../product.php?search=All Mobile">Mobile Phones</a>
 							</li>
 							<li class="mb-3">
-								<a href="product.html">Computers</a>
+								<a href="../product.php?search=All Laptop">Laptops</a>
 							</li>
 							<li class="mb-3">
-								<a href="product.html">TV, Audio</a>
+								<a href="../product.php?search=Computer Accessories">Computer Accessories</a>
 							</li>
 							<li class="mb-3">
-								<a href="product2.html">Smartphones</a>
-							</li>
-							<li class="mb-3">
-								<a href="product.html">Washing Machines</a>
-							</li>
-							<li>
-								<a href="product2.html">Refrigerators</a>
+							<a href="./product.php?search=All Accessories">All Accessories</a>
 							</li>
 						</ul>
 					</div>
@@ -33,22 +27,22 @@
 						<h3 class="text-white font-weight-bold mb-3">Quick Links</h3>
 						<ul>
 							<li class="mb-3">
-								<a href="about.php">About Us</a>
+								<a href="../about.php">About Us</a>
 							</li>
 							<li class="mb-3">
-								<a href="contact.php">Contact Us</a>
+								<a href="../contact.php">Contact Us</a>
 							</li>
 							<li class="mb-3">
-								<a href="help.php">Help</a>
+								<a href="../help.php">Help</a>
 							</li>
 							<li class="mb-3">
-								<a href="faqs.php">Faqs</a>
+								<a href="../faqs.php">Faqs</a>
 							</li>
 							<li class="mb-3">
-								<a href="terms.php">Terms of use</a>
+								<a href="../terms.php">Terms of use</a>
 							</li>
 							<li>
-								<a href="privacy.php">Privacy Policy</a>
+								<a href="../privacy.php">Privacy Policy</a>
 							</li>
 						</ul>
 					</div>
@@ -66,8 +60,7 @@
 								<a href="mailto:example@mail.com"> bangGoods@example.com</a>
 							</li>
 							<li>
-								<i class="fas fa-envelope-open"></i>
-								<a href="mailto:example@mail.com"> mail 2@example.com</a>
+								
 							</li>
 						</ul>
 					</div>
@@ -162,51 +155,6 @@
 		});
 	</script>
 	<!-- //popup modal (for location)-->
-
-	<!-- cart-js -->
-	<script src="../js/minicart.js"></script>
-	<script>
-		paypals.minicarts.render(); 
-		//use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
-
-		paypals.minicarts.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
-	<!-- //cart-js -->
-
-	<!-- password-script -->
-	<script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
-
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
-	<!-- //password-script -->
-	
 	<!-- scroll seller -->
 	<script src="../js/scroll.js"></script>
 	<!-- //scroll seller -->

@@ -198,7 +198,8 @@ if(isset($_POST['action']))
 {
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : "ERROR";
     $pro_id = isset($_POST['pro_id']) ? $_POST['pro_id'] : "ERROR";
-    
+    $qty = isset($_POST['qty']) ? $_POST['qty'] : "ERROR";
+
     if($_POST['action']=='update_quantity')
     {
         $qty = isset($_POST['qty']) ? $_POST['qty'] : "ERROR";
@@ -209,7 +210,7 @@ if(isset($_POST['action']))
     if($_POST['action']=='insert_cart')
     {
         $type = isset($_POST['type']) ? $_POST['type'] : "ERROR" ;
-        $product=array("pro_id"=>$pro_id,"qty"=>1);
+        $product=array("pro_id"=>$pro_id,"qty"=>$qty);
         $result_set=addProductCart($user_id,$type,$product);
         echo $result_set;
     }

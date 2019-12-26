@@ -99,7 +99,7 @@ class User{
 
     function isValidPassword($password = ''){
 
-        if(count($password) < 1)
+        if(strlen($password) < 1)
             return false;
         else{
 
@@ -124,8 +124,9 @@ class User{
             $dbObj = Database::getInstance();
 
             $result = $dbObj->run_query("update ".User::$table_name." set password='".$new_password."' where user_id =".$this->user_id);
-
-            if($result){
+        
+            //echo $result;
+            if($result==0){
                 return "Passowrd Changed Successfully.";
             }
             else{
@@ -143,7 +144,7 @@ class User{
 
 function login_user($name = "", $password = '', $login_type = "username"){
 
-    if(count($name) < 1 || count($password) < 1){
+    if(strlen($name) < 1 || strlen($password) < 1){
         return "Name Or Password Is Not Provided";
     }
     $user = null;    
@@ -192,10 +193,17 @@ function get_user_by_email($email = ''){
 
 function get_user_by_username($name = ''){
     $dbObj = Database::getInstance();
+    $result =  array();
     $result = $dbObj->get_result("select * from ".User::$table_name." where username='".$name."'");
 
+    if(is_array($result)){
 
-    if(count($result) < 1 ){
+        if(count($result) < 1 ){
+            return FALSE;
+         }
+    }
+    else if(strlen($result) < 1)
+    {
         return FALSE;
     }
     $user = new User($result);
@@ -276,7 +284,8 @@ function register_new_user($args = array(), $args_profile = array()){
     */
 
     require_once("Profile.php");
-
+    //echo $user_id;
+    //print_r( $args_profile);
     add_new_profile($user->user_id, $args_profile);    
 
     return $user;

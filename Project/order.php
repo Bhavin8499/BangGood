@@ -40,6 +40,9 @@ if(!isset($_SESSION['user_id'])){
 				<span>O</span>rders</h3>
             <!-- //tittle heading -->
             <?php 
+            
+            if(!empty($orders) && count($orders)!=0)
+            {
                 foreach ($orders as $order) 
                 {?>
 			<div class="row">
@@ -87,7 +90,8 @@ if(!isset($_SESSION['user_id'])){
                     </div >
                     </div>
                 </div>    
-                <?php } ?>
+                <?php }
+            } ?>
             </div>
             
            

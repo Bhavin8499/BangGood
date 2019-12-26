@@ -2,7 +2,12 @@
 <html lang="en">
 <?php
 
-     require_once(dirname(__FILE__)."/../model/Product/Product.php");
+     if(!class_exists('Product'))
+     {
+        require_once(dirname(__FILE__)."/../model/Product/Product.php");
+     }
+    
+         
      
     global  $result_set; 
     if(isset($_REQUEST['pro_del']))
@@ -12,7 +17,7 @@
         //echo $del_pro->name;
         $update_id=$del_pro->deleteProduct();
         //echo $update_id;
-        header('location:showall.php');
+        header('location:showallProduct.php');
     }
 
     if(isset($_REQUEST['pro_category']))

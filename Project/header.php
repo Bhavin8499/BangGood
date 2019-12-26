@@ -1,4 +1,4 @@
-<?php 
+<?php
 	session_start();
 
 	if(isset($_SESSION['user_id'])){
@@ -133,10 +133,14 @@
 								<div style="margin-left:10%; margin-right:10%;"><?php echo $profile_user->name; ?></div>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="editprofile.php">Edit Profile</a>
-								<a class="dropdown-item" href=".php">View Profile</a>
+								<a class="dropdown-item" href="viewprofile.php">View Profile</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="alladdress.php">All Address</a>
+								<a class="dropdown-item" href="addupdateaddress.php">Add New Address</a>
 								<div class="dropdown-divider"></div>
 								<a href="#" data-toggle="modal" data-target="#resetpass" class="dropdown-item">Reset Password</a>	
-								<a class="dropdown-item" href="logout.php">Logout</a>						</div>	
+								<!-- <a class="dropdown-item" href="logout.php">Logout</a>							 -->
+							</div>
 						</li>
 					</ul>
 					<!-- //header lists -->

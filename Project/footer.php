@@ -60,8 +60,7 @@
 								<a href="mailto:example@mail.com"> bangGoods@example.com</a>
 							</li>
 							<li>
-								<i class="fas fa-envelope-open"></i>
-								<a href="mailto:example@mail.com"> mail 2@example.com</a>
+								
 							</li>
 						</ul>
 					</div>

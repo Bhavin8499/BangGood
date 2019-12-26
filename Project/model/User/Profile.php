@@ -71,7 +71,7 @@ class Profile{
         
         $dbObj = Database::getInstance();
 
-        $qry = "select profile_img from $this->tablename where user_id = $this->user_id";
+        $qry = "select profile_img from ".Profile::$table_name." where id = $this->user_id";
 
         $arr = $dbObj->get_result($qry);
 
@@ -86,7 +86,7 @@ class Profile{
         
         $dbObj = Database::getInstance();
 
-        $qry = "select cover_img from $this->tablename where user_id = $this->user_id";
+        $qry = "select cover_img from ".Profile::$table_name."where id = $this->user_id";
 
         $arr = $dbObj->get_result($qry);
 
@@ -105,7 +105,14 @@ function get_user_profile_by_id($id = ''){
     $result = $dbObj->get_result($sql);
     
 
-    if(count($result) < 1 ){
+    if(is_array($result)){
+
+        if(count($result) < 1 ){
+            return FALSE;
+         }
+    }
+    else if(strlen($result) < 1)
+    {
         return FALSE;
     }
 

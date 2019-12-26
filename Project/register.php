@@ -6,6 +6,8 @@ include("header.php");
 <?php
 if(!function_exists("register_new_user")){
 	include("model/User/User.php");
+	if(!function_exists("generate_insert_query"))
+		include("model/helper_functions.php");
 }
 	if(isset($_POST['submit'])){
 
@@ -16,14 +18,22 @@ if(!function_exists("register_new_user")){
         	"mobile_no" => $_POST["mobno"]
 		];
 		
+		$imgName = upload_image($_FILES["profile_img"], "profile_image");
+
 		$args_profile = [
 			"name" => $_POST["name"],
-        	"birthdate" => $_POST["inlineRadioOptions"],
-        	"gender" => $_POST["birthdate"]
+			"birth_date" => $_POST["birthdate"],
+			"profile_img"=>$imgName,
+        	"gender" => $_POST["inlineRadioOptions"]
 		];
 
 		$user = register_new_user($args, $args_profile);
-		echo $user->user_id;
+		
+		
+		//echo $user->user_id;
+
+
+
 	}
 
 ?>
@@ -36,7 +46,7 @@ if(!function_exists("register_new_user")){
 <div style="margin-left: auto; margin-right: auto;" class="col-md-10">
 
 
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
 				<div class="contact-grids1 w3agile-6">
 					
 						<div class="contact-form1 form-group">

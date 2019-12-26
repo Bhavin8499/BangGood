@@ -144,7 +144,7 @@
                                     <label class="col-form-label">Category&nbsp;</label>
                                     <select class="form-control custom-select form-control-sm-2" name="pro_cat" id="" onChange="brandLoad(this)"
                                         required="true">
-                                        <option value=NULL>Select Category</option>
+                                        <option value=0>Select Category</option>
                                         <option value=1>Mobile</option>
                                         <option value=2>Laptop</option>
                                         <option value=3>Accessories</option>

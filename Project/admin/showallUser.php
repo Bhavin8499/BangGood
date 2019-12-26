@@ -1,7 +1,14 @@
 <!doctype html>
 <html lang="en">
 <?php
-    require_once(dirname(__FILE__)."/../model/User/User.php");
+	if(!class_exists('User')){
+		
+		require_once(dirname(__FILE__)."/../model/User/User.php");
+	}
+	if(!class_exists('Profile')){
+		require_once(dirname(__FILE__)."/../model/User/Profile.php");
+	}
+	
     global  $result_set; 
     $result_set=getAllUser('*');
 
@@ -129,7 +136,9 @@
 								<tbody>
 									<tr data-status="pagado">
 										<td style="width:10%;vertical-align: middle;text-align:center;">
-											<img src="../images/user.jpg" alt="profile pic"   style='height:50px; width:50px;border-radius:35px;' />
+											<?php $profile_user = get_user_profile_by_id($result_set[$i]['user_id']);?>
+											<?php //if(!empty($profile_user)) { echo '..'.$profile_user->get_profile_image(); } else{ echo '../images/user.jpg';} ?>
+											<img src= "<?php if(!empty($profile_user)) { echo '../'.$profile_user->get_profile_image(); } else{ echo '../images/user.jpg';} ?>" alt="profile pic" style="height:50px; width:50px;border-radius:35px;" />
 										</td>
 										<td style="width:17%;vertical-align: middle;text-align:center;">
                                             <?php echo $result_set[$i]['username'];?>

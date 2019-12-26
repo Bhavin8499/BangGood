@@ -249,6 +249,9 @@ function getAllDeliveredOrders(){
 
     $result = $dbObj->get_results($query);
 
+    if(!is_array($result))
+        return $orders;
+
     foreach ($result as $orderArgs) {
         
         $order = new Order();
@@ -271,14 +274,16 @@ function getOrderByUserID( $id = 0){
 
     $result = $dbObj->get_results($query);
 
-    foreach ($result as $orderArgs) {
-        
-        $order = new Order();
-        $order->setOrderDetails($orderArgs);
-        array_push($orders, $order);
+    if(!empty($result))
+    { 
+        foreach ($result as $orderArgs) {
+            
+            $order = new Order();
+            $order->setOrderDetails($orderArgs);
+            array_push($orders, $order);
 
+        }
     }
-
     return $orders;
 
 }

@@ -173,19 +173,19 @@ function getSearchedProduct($columns='*',$tag,$query)
 {
    if($query=="All Mobile")
    {
-    $sql = "SELECT ".$columns." FROM  product WHERE cat_id = 1 ORDER BY pro_id";    
+    $sql = "SELECT ".$columns." FROM  product WHERE cat_id = 1 ORDER BY pro_id AND can_buy=1";    
    }
    else if($query=="New Arrivals")
    {
-    $sql = "SELECT ".$columns." FROM  product ORDER BY pro_id  DESC LIMIT 15";    
+    $sql = "SELECT ".$columns." FROM  product WHERE can_buy=1 ORDER BY pro_id DESC LIMIT 15 ";    
    }
    else if($query=="All Laptop")
    {
-    $sql = "SELECT ".$columns." FROM  product WHERE cat_id = 2 ORDER BY pro_id";    
+    $sql = "SELECT ".$columns." FROM  product WHERE cat_id = 2 ORDER BY pro_id AND can_buy=1";    
    }
    else if($query=="All Accessories")
    {
-    $sql = "SELECT ".$columns." FROM  product WHERE cat_id = 3 ORDER BY pro_id";    
+    $sql = "SELECT ".$columns." FROM  product WHERE cat_id = 3 ORDER BY pro_id AND can_buy=1";    
    }
    else 
    {
@@ -199,7 +199,7 @@ function getSearchedProduct($columns='*',$tag,$query)
     return $result_set;
 }
 function getRecentProduct($columns='*',$cat_id){
-    $sql = "SELECT ".$columns." FROM  product WHERE cat_id= ".$cat_id." ORDER BY pro_id DESC LIMIT 4";
+    $sql = "SELECT ".$columns." FROM  product WHERE cat_id= ".$cat_id." AND CAN_BUY=1 ORDER BY pro_id DESC LIMIT 4";
     
     $dbObj = Database::getInstance();
 
@@ -207,12 +207,12 @@ function getRecentProduct($columns='*',$cat_id){
 
     return $result_set;
 }
-if(isset($_POST["action"]))
+if(isset($_POST["action"]) && $_POST["action"]=="fetch_data" )
  {
     //foreach ($_POST as $key => $value) { echo "Field ==== ".$key."   is === ".$value."<br>"; }
       
  $dbObj = Database::getInstance();
- $query = "SELECT * FROM PRODUCT WHERE CAN_BUY=1 ";
+ $query = "SELECT * FROM product WHERE can_buy=1 ";
     if(isset($_POST["cat"]))
     {
          $cat_filter=implode("|",$_POST["cat"]);
@@ -290,9 +290,9 @@ if(isset($_POST["action"]))
                     <h3 style="color:gray;text-align:center;">No Such Product</h3>
                 </div>
             </div>';
-            
-        $output .= '</div>
+            $output .= '</div>
             </div>';
+            //print $query;
         }
         echo $output;
 }

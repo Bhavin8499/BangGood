@@ -88,7 +88,7 @@ class Contact{
         
         $dbObj=Database::getInstance();
 
-        $sql = "SELECT ".$columns." FROM contact_us";
+        $sql = "SELECT ".$columns." FROM contact_us ORDER BY cid DESC LIMIT 20";
 
         $result_set = $dbObj->get_results($sql);
 
