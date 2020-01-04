@@ -161,7 +161,7 @@
 
 								<div class="controls form-group">
 									Order Note :
-									<textarea name="order_note" class="form-control"></textarea>
+									<textarea name="order_note" class="form-control" required=required></textarea>
 								</div>
 
 								

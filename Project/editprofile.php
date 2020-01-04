@@ -63,7 +63,7 @@ include("header.php");
 											
 											<div>
 												<label class="col-form-label">Birth date</label>
-							                    <input type="date" class="form-control" name="birthdate" value="<?php echo $profile->birthdate; ?>">
+							                    <input type="date" class="form-control" name="birthdate" value="<?php echo $profile->birthdate; ?>" required>
 												
 											</div>
 

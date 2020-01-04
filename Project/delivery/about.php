@@ -282,19 +282,19 @@
 			<div class="row">
 				<div class="col-lg-6 col-sm-6">
  	           <div class="card hovercard">
-                <div class="cardheader" style="background-image:url('images/BSProfileBack.jpg');">
+                <div class="cardheader" style="background-image:url('images/profile background.jpg');">
                 </div>
                 <div class="avatar">
-                    <img alt="" src="images/user.jpg">
+                    <img alt="" src="images/bhavin.jpg">
                 </div>
                 <div class="info">
                     <div class="title">
                         <a target="_blank" href="https://scripteden.com/">Bhavin Sanchaniya</a>
                     </div><br />
-                    <div class="display-5" style="text-align:left; padding-left:16%;"><b>Enrollment Number</b> : 003103162530</div>
+                    <div class="display-5" style="text-align:left; padding-left:16%;"><b>Enrollment Number</b> : 195223693010</div>
                     <div class="display-5" style="text-align:left; padding-left:16%;"><b>College Name</b> : Marwadi Eduction Foundation</div>					
-                 <div class="display-5" style="text-align:left; padding-left:16%;"><b>Work At</b> : iFlash Developer</div>					
-                 <div class="display-5" style="text-align:left; padding-left:16%;"><b>Current Position</b> : iOS | PHP Developer </div>					
+                 <div class="display-5" style="text-align:left; padding-left:16%;"><b>Work At</b> : iFlash apps</div>					
+                 <div class="display-5" style="text-align:left; padding-left:16%;"><b>Current Position</b> : Junior iOS Developer</div>					
                 </div><br />
                 <div class="bottom" style="background-color:#38a4ff; padding:4px;">
                     <a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/SanchaniyaBhav1">
@@ -324,16 +324,16 @@
 		<!-- Second Portfolio -->
         <div class="col-lg-6 col-sm-6">
             <div class="card hovercard">
-                <div class="cardheader"  style="background-image:url('./images/harsh.jpg');">
+                <div class="cardheader"  style="background-image:url('./images/profile background.jpg');">
                 </div>
                 <div class="avatar">
-                    <img alt="" src="./images/harsh.jpeg">
+                    <img alt="" src="images/harsh.jpeg">
                 </div>
                 <div class="info">
                     <div class="title">
                         <a target="_blank" href="https://scripteden.com/">Harsh Chhatbar</a>
                     </div><br />
-                    <div class="display-5" style="text-align:left; padding-left:16%;"><b>Enrollment Number</b> : </div>
+                    <div class="display-5" style="text-align:left; padding-left:16%;"><b>Enrollment Number</b> : 195223693026</div>
                     <div class="display-5" style="text-align:left; padding-left:16%;"><b>College Name</b> : Marwadi Eduction Foundation</div>		
                		<div class="display-5" style="text-align:left; padding-left:16%;"><b>Work At</b> : Freelancer</div>					
                  	<div class="display-5" style="text-align:left; padding-left:16%;"><b>Current Position</b> : Student</div>					

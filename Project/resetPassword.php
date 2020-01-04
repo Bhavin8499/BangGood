@@ -2,7 +2,7 @@
     if(isset($_POST['update_pass']))
     {
         if(!class_exists('User')){
-            include(dirname(__File__)."/model/User/User.php");
+            include(dirname(__FILE__)."/model/User/User.php");
         }
         $user = get_user_by_id($_SESSION["user_id"]);
         $result_set = $user->change_password($_POST['oldpass'],$_POST['newpass']);

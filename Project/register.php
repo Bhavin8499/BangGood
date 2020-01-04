@@ -78,7 +78,7 @@ if(!function_exists("register_new_user")){
 						<label class="col-form-label" for="gender_title">Gender :</label>
 						<div class="form-check form-check-inline">
 						
-							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender_male" value="Male">
+							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="gender_male" value="Male" checked>
 							<label class="form-check-label" for="gender_male">Male</label>
 						</div>
 						<div class="form-check form-check-inline">

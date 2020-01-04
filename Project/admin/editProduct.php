@@ -265,7 +265,7 @@
             <img src="<?php echo "../".$imgName; ?>" class="img-fluid"  style="max-height:250px; width:auto;"> 
         </div>
         <div>
-            <input type="checkbox" name="old_images[]" value="<?php echo $imgName; ?>" checked="checked" ">&nbsp;Uncheck To Remove
+            <input type="checkbox" name="old_images[]" value="<?php echo $imgName; ?>" checked="checked">&nbsp;Uncheck To Remove
         </div>
     </div>
            

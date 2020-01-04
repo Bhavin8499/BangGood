@@ -107,12 +107,12 @@ $del = new Delivery($_GET['id'], $_SESSION["user_id"]);
                                <option value=2>In progress</option>
                                <option value=3>Reach Near Hub</option>
                                <option value=4>Out Of Delivery</option>
-                               <option value=5>Delivered</option>
+                               <!--<option value=5>Delivered</option>-->
                              </select>
                         </div>
 						<div class="form-group ">
                             <label class="col-form-label">Description : </label>                                           
-                            <textarea style="width:100%; min-height:250px;" name="txtDesc">Hello World Replace This</textarea>
+                            <textarea style="width:100%; min-height:250px;" name="txtDesc"></textarea>
                         
 						</div>
                         <div class="right-w3l">
