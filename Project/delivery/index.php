@@ -17,7 +17,7 @@ include("nevigation.php");
 
 $orders = getRemainingOrders();
 
-$ord = $orders[0];
+//$ord = $orders[0];
 //echo $ord->getOrderProductCount();
 
 ?>
@@ -36,6 +36,32 @@ $ord = $orders[0];
 
 <?php
 $counter = 0;
+
+if(count($orders) < 1){?>
+    <div class="ads-grid col-md-12 col-xs-12">
+		<div class="container-fluid px-sm-4 px-3 py-sm-5 py-3 mb-4">
+			<div class="row">
+				<div class="wrapper col-md-12 col-xs-12">
+							<div class="product-sec1 px-sm-4 px-3 py-sm-5  py-3 mb-4">
+								<div class="row d-flex justify-content-center">
+									<span > <h3>No Order Are Found For Delivery</h3></span>
+						</div>
+					</div>
+							
+							<!-- second section -->
+				
+						<!-- //fourth section -->
+						</div>
+					</div>
+			
+				</div>
+			</div>
+	<!-- //top products -->
+
+			</div>
+		</div>
+<?php }
+
 foreach ($orders as $order) {
     $counter += 1;
     $addre = $order->getAddress();

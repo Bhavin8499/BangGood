@@ -16,6 +16,9 @@ if(isset($_POST['action']))
         $dbObj = Database::getInstance();
         $dbObj->run_query($query);
 
+        $query = "insert into delivery (user_id,ord_id,status_list,is_delivered) values (0,$order_id, '','No')";
+        $dbObj->run_query($query);
+
         echo true;
     }
 }
