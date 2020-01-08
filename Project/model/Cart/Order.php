@@ -98,10 +98,11 @@ class Order{
         $result = $dbObj->get_results($query);
         
         $arrProducts = array();
-
-        foreach ($result as $product) {
-            $model = new OrderProduct($product);
-            array_push($arrProducts, $model);
+        if(is_array($result)){
+            foreach ($result as $product) {
+                $model = new OrderProduct($product);
+                array_push($arrProducts, $model);
+            }
         }
 
         return $arrProducts;
@@ -112,9 +113,10 @@ class Order{
         $arr = $this->getProducts();
 
         $count = 0;
-
-        foreach ($arr as $prod) {
-            $count += $prod->qty;
+        if(is_array($arr)){
+            foreach ($arr as $prod) {
+                $count += $prod->qty;
+            }
         }
         
         return $count;
@@ -125,9 +127,10 @@ class Order{
         $arr = $this->getProducts();
 
         $count = 0;
-
-        foreach ($arr as $prod) {
-            $count += $prod->qty * $prod->price;
+        if(is_array($arr)){
+            foreach ($arr as $prod) {
+                $count += $prod->qty * $prod->price;
+            }
         }
         
         return $count;
@@ -144,28 +147,29 @@ function getAddress(){
         try {
             $dbObj = Database::getInstance();
             $ord_id = $this->order_id;
-            
-            foreach ($cart as $cart_product) {
-                
-                $product = new Product($cart_product->product_id);
-                $qty = $cart_product->qty;
-                $price = $product->getPrice();
+            if(is_array($cart)){
+                foreach ($cart as $cart_product) {
+                    
+                    $product = new Product($cart_product->product_id);
+                    $qty = $cart_product->qty;
+                    $price = $product->getPrice();
 
-                $args = [
-                    "ord_id" => $ord_id,
-                    "pro_id" => $cart_product->product_id,
-                    "qty" => $qty,
-                    "price" => $price
-                ];
-                
+                    $args = [
+                        "ord_id" => $ord_id,
+                        "pro_id" => $cart_product->product_id,
+                        "qty" => $qty,
+                        "price" => $price
+                    ];
+                    
 
-                $query = generate_insert_query($args, Order::$TABLE_NAME_ORDER_PRODUCT);
+                    $query = generate_insert_query($args, Order::$TABLE_NAME_ORDER_PRODUCT);
 
-                $dbObj->run_query($query);
+                    $dbObj->run_query($query);
 
-                $query = "update product set qty=qty-".$qty." where pro_id=".$cart_product->product_id;
-                $dbObj->run_query($query);
+                    $query = "update product set qty=qty-".$qty." where pro_id=".$cart_product->product_id;
+                    $dbObj->run_query($query);
 
+                }
             }
             return true;
         } 
@@ -205,12 +209,14 @@ function getAllOrders(){
 
     $result = $dbObj->get_results($query);
 
-    foreach ($result as $orderArgs) {
-        
-        $order = new Order();
-        $order->setOrderDetails($orderArgs);
-        array_push($orders, $order);
+    if(is_array($result)){
+        foreach ($result as $orderArgs) {
+            
+            $order = new Order();
+            $order->setOrderDetails($orderArgs);
+            array_push($orders, $order);
 
+        }
     }
 
     return $orders;
@@ -227,12 +233,14 @@ function getRemainingOrders(){
 
     $result = $dbObj->get_results($query);
 
-    foreach ($result as $orderArgs) {
-        
-        $order = new Order();
-        $order->setOrderDetails($orderArgs);
-        array_push($orders, $order);
+    if(is_array($result)){
+        foreach ($result as $orderArgs) {
+            
+            $order = new Order();
+            $order->setOrderDetails($orderArgs);
+            array_push($orders, $order);
 
+        }
     }
 
     return $orders;

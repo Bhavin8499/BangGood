@@ -185,7 +185,7 @@
 							</div>
 							<div class="col-8 text-form-footer">
 								<h3>Free Shipping</h3>
-								<p>on orders over 1999INR</p>
+								<p>on all orders</p>
 							</div>
 						</div>
 					</div>

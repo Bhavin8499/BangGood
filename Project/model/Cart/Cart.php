@@ -44,10 +44,11 @@ class Cart{
         $modelArr = array();
 
         $cartArr = (array)json_decode($this->value,true);
-
-        foreach ($cartArr as $product) {
-            $cartItem = new CartProduct($product);
-            array_push($modelArr, $cartItem);
+        if(is_array($cartArr)){
+            foreach ($cartArr as $product) {
+                $cartItem = new CartProduct($product);
+                array_push($modelArr, $cartItem);
+            }
         }
 
 
@@ -55,10 +56,11 @@ class Cart{
     }
     function deleteProduct($id){
         $value = (array)json_decode($this->value,true);
-        
-        foreach($value as $key=>$row){
-            if($row['pro_id'] == $id){
-              unset($value[$key]);
+        if(is_array($value)){
+            foreach($value as $key=>$row){
+                if($row['pro_id'] == $id){
+                unset($value[$key]);
+                }
             }
         }
 

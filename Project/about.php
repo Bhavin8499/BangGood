@@ -301,7 +301,7 @@
                         <i class="fa fa-twitter"></i>
                     </a>
                     <a class="btn btn-danger btn-sm" rel="publisher"
-                       href="https://plus.google.com/111610564764014992243">
+                       href="mailto:sanchaniyabhavin8499@gmail.com">
                         <i class="fa fa-google"></i>
                     </a>
                     <a class="btn btn-primary btn-sm" rel="publisher"
@@ -341,12 +341,12 @@
                 </div><br />
                 <div class="bottom" style="background-color:#38a4ff; padding:4px;">
                     <a class="btn btn-danger btn-sm" rel="publisher"
-                       href="https://plus.google.com/+ahmshahnuralam">
-                        <i class="fa fa-google-plus"></i>
+                       href="mailto:hchhatbar86@gmail.com">
+                        <i class="fa fa-google"></i>
                     </a>
                     <a class="btn btn-primary btn-sm" rel="publisher"
-                       href="https://plus.google.com/shahnuralam">
-                        <i class="fa fa-facebook"></i>
+                       href="https://in.linkedin.com/in/harsh-chhantbar">
+                        <i class="fa fa-linkedin"></i>
                     </a>
                 </div>
             </div>
